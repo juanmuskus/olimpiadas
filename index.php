@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/signin.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/index.js"></script>
+    <title>Unicordoba - Olimpiadas Math</title>
+  </head>
+<body class="text-center">
+<main class="form-signin">
+  <form>
+    <h1 class="h3 mb-3 fw-normal"><img src="img/unicor.png" width="10%" height="10%"> <b>Universidad de Córdoba</b></h1>
+    <p class="text-center"><img src="img/math.png" width="5%" height="5%"> Olimpiadas de Matemáticas</p>
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Email</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit"><i class="bi bi-box-arrow-in-right"></i> Ingresar</button>
+  </form>
+    <div class="form-floating mt-4">
+    <button class="btn btn-danger" id="bcoord"><i class="bi bi-person-plus"></i> Incripción para coord. IE's</button>
+    </div>
+    <div class="form-floating mt-2">
+      <button class="btn btn-secondary" id="bmail"><i class="bi bi-bell"></i> Olvidaste tu contraseña ?</button><hr>
+    </div>
+    <p class="mt-5 mb-3 text-dark"><img src="img/cintia.ico" width="15%" height="15%"> &copy; Desarrollado por CINTIA - 2024</p>
+  
+</main>
+
+<!-- Modal: recuperar x correo -->
+<div class="modal fade" id="rmail" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Olimpiadas - Math</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-start">Ingresa tu e-mail registrado para recuperar tu contraseña:</p>
+        <form action="">
+          <div class="mb-3">
+              <input type="mail" name="mail" id="mail" class="form-control" placeholder="ejemplo@correo.com" aria-describedby="helpId" required/>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
+        <button type="button" class="btn btn-success"><i class="bi bi-envelope-at-fill"></i> Recuperar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN recuperar x correo -->
+
+
+<!-- Modal: Coord -->
+<div class="modal fade" id="coord" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Olimpiadas - Math</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-start"><b>Inscripción de Coordinadores de IE's</b></p>
+        <form action="">
+          <div class="col-6 mb-2">
+            <p class="text-start">Doc. identidad</p>
+            <input type="number" name="doci" id="doci" class="form-control" required>
+          </div>
+          <div class="col-8 mb-2">
+            <p class="text-start">Nombres</p>
+            <input type="text" name="nom" id="nom" class="form-control" required>
+          </div>
+          <div class="col-8 mb-2">
+            <p class="text-start">Apellidos</p>
+            <input type="text" name="apel" id="apel" class="form-control" required>
+          </div>
+          <div class="col-10 mb-2">
+            <p class="text-start">E-mail</p>
+            <input type="mail" name="cmail" id="cmail" class="form-control" required>
+          </div>
+          <div class="col-6 mb-2">
+            <p class="text-start">Municipio:</p>
+            <select name="mpio" id="mpio" class="form-control" required>
+            <?php
+              include 'conexion.php';
+              $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
+              $result = $con->query($sql);
+              while ($mostrar = mysqli_fetch_array($result)) {
+                echo '<option value="'.utf8_encode($mostrar['mpio']).'">'.utf8_encode($mostrar['mpio']).'</option>';
+              } 
+              $con->close();
+              ?>
+            </select>
+          </div>
+
+          <div class="col-12 mb-2">
+            <p class="text-start">IE's:</p>
+            <select name="lies" id="lies" class="form-control" required>
+            // Cargar las IES de acuerdo al municipio seleccionado
+            </select>
+          </div>
+                              
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
+        <button type="button" class="btn btn-success"><i class="bi bi-envelope-at-fill"></i> Recuperar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN Coord -->
+</body>
+</html>

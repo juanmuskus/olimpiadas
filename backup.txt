@@ -1,0 +1,4 @@
+// click para llmar el moidal de recuperar x correo
+$('#recmail').click(function(){
+  $('#rmail').show();
+})
