@@ -5,6 +5,7 @@ $(document).ready(function(){
         $('#rmail').modal('show');
     })
     
+    // mostrar el modal de coordinadores y ocultar el de remitentes
     $('#bcoord').click(function(){
         $('#rmail').modal('hide');
         $('#coord').modal('show');
@@ -15,19 +16,17 @@ $(document).ready(function(){
     $('#mpio').change(function() {
         var mpiosel = $(this).val();
         $.ajax({
-            url: 'lista_ies.php?mpio=' + mpiosel,
-            type: 'GET',
-            dataType: "json",
-            success: function(data) {
-                $("#lies").empty();
-                $.each(data, function(index, ies){
-                    $("#lies").append('<option value="' + ies.id + '">' + ies.nombre + '</option>');
+            url: 'lista_ies.php',
+            type: 'POST',
+            data: {mpio: mpiosel},
+            success: function(response){
+                $('#lies').empty(); // Limpiar el select de opciones anteriores
+                var data = JSON.parse(response);
+                data.forEach(function(ie) {
+                    $('#lies').append('<option value="' + ie.id + '">' + ie.nombre + '</option>');
                 });
-            },
-            error: function(){
-                alert("error");
             }
-        });
+        });        
     });
     
 });

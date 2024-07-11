@@ -98,9 +98,9 @@
               include 'conexion.php';
               $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
               $result = $con->query($sql);
-              while ($mostrar = mysqli_fetch_array($result)) {
-                echo '<option value="'.utf8_encode($mostrar['mpio']).'">'.utf8_encode($mostrar['mpio']).'</option>';
-              } 
+              while ($mostrar = mysqli_fetch_array($result))
+                echo '<option value="'.mb_convert_encoding($mostrar['mpio'],'UTF-8','ISO-8859-1').'">'.mb_convert_encoding($mostrar['mpio'],'UTF-8','ISO-8859-1').'</option>';
+              // cerrar la conexión
               $con->close();
               ?>
             </select>
@@ -117,7 +117,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
-        <button type="button" class="btn btn-success"><i class="bi bi-envelope-at-fill"></i> Recuperar</button>
+        <button type="button" class="btn btn-success"><i class="bi bi-save"></i> Registrar</button>
       </div>
     </div>
   </div>

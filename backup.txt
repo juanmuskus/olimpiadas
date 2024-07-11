@@ -2,3 +2,38 @@
 $('#recmail').click(function(){
   $('#rmail').show();
 })
+
+
+// ajax de mpio
+
+        $.ajax({
+            url: 'lista_ies.php?mpio=' + mpiosel,
+            type: 'GET',
+            dataType: "json",
+            success: function(data) {
+                $("#lies").empty();
+                $.each(data, function(ies){
+                    $("#lies").append('<option value="' + ies.id + '">' + unicodeToUtf8(ies.nombre) + '</option>');
+                });
+            },
+            error: function(){
+                console.error("Error al cargar lista de IES: ${error}");
+            }
+        });
+
+// *********************************
+
+        $.ajax({
+            url: 'lista_ies.php',
+            method: 'POST',
+            data: { mpio: mpiosel },
+            success: function(data) {
+                $("#lies").empty();
+                $.each(data, function(ies){
+                    $("#lies").append('<option value="' + ies.id + '">' + ies.nombre + '</option>');
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al cargar lista de IES: ${error}");
+            }
+        });

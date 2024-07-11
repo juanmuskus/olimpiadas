@@ -20,7 +20,7 @@ USE `math` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users` (
+CREATE TABLE IF NOT EXISTS `math`.`users` (
   `idusers` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombres` VARCHAR(255) NOT NULL,
   `apellidos` VARCHAR(255) NOT NULL,
@@ -34,7 +34,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`IES`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`IES` (
+CREATE TABLE IF NOT EXISTS `math`.`IES` (
   `idIES` BIGINT NOT NULL,
   `nombre` VARCHAR(255) NOT NULL,
   `mpio` VARCHAR(200) NOT NULL,
@@ -46,7 +46,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`estudiantes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`estudiantes` (
+CREATE TABLE IF NOT EXISTS `math`.`estudiantes` (
   `doc` INT UNSIGNED NOT NULL,
   `nombre1` VARCHAR(255) NULL,
   `nombes2` VARCHAR(255) NULL,
@@ -69,7 +69,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`coordinadores`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`coordinadores` (
+CREATE TABLE IF NOT EXISTS `math`.`coordinadores` (
   `docidentidad` INT UNSIGNED NOT NULL,
   `nombres` VARCHAR(255) NOT NULL,
   `apellidos` VARCHAR(255) NOT NULL,
