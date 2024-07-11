@@ -1,0 +1,2 @@
+- enviar correos, no sirve phpmailer con gmail
+- interface de back 

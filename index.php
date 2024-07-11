@@ -47,16 +47,15 @@
       </div>
       <div class="modal-body">
         <p class="text-start">Ingresa tu e-mail registrado para recuperar tu contraseña:</p>
-        <form action="">
           <div class="mb-3">
-              <input type="mail" name="mail" id="mail" class="form-control" placeholder="ejemplo@correo.com" aria-describedby="helpId" required/>
+          <form action="recovery_mail.php" method="POST">
+          <input type="mail" name="mail" id="mail" class="form-control" placeholder="ejemplo@correo.com" aria-describedby="helpId" required/>
           </div>
-          
-        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
-        <button type="button" class="btn btn-success"><i class="bi bi-envelope-at-fill"></i> Recuperar</button>
+        <button type="submit" class="btn btn-success"><i class="bi bi-envelope-at-fill"></i> Recuperar</button>
+        </form>
       </div>
     </div>
   </div>
