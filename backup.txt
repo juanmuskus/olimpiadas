@@ -1,4 +1,4 @@
-key: 01b89aa64b6ff724d7aef0a7beb2e594-8a084751-d63f376f
+
 mailgun
 
 // click para llmar el moidal de recuperar x correo

@@ -6,9 +6,17 @@
 </head>
 <body>
 <?php
-use Mailgun\Mailgun;
-//Load Composer's autoloader
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 require 'vendor/autoload.php';
+
+require 'vendor/phpmailer/phpmailer/src/Exception.php';
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require 'vendor/phpmailer/phpmailer/src/SMTP.php';
+
+
 include 'conexion.php';
 
 if (isset($_POST['mail'])){
@@ -47,19 +55,34 @@ else {
         exit;
     } 
     else {
-    $mg = Mailgun::create('01b89aa64b6ff724d7aef0a7beb2e594-8a084751-d63f376f'); // For US servers
-    $mg->messages()->send("olimpiadas.unicordoba.edu.co", [
-    'from'    => 'eventos.unicor@gmail.com',
-    'to'      => $mailu,
-    'subject' => 'Olimpiadas Maths - Unicórdoba',
-    'text'    => 'It is so simple to send a message.'
-    ]);
-    //$mail->MsgHTML("<html><body style=' font-family: tahoma;'><p>Hola,<b> ".trim($nom," ")." ".trim($apel," ")." </b></p><p>Ha solicitado recuperar la contraseña de su cuenta en la web de las Olimpiadas de Matemáticas - Universidad de Córdoba. Su contraseña es: <b>".$pass."</b></p><p>Por favor, haga marca esta contraseña como confidencial y no la comparta con nadie.</p></body></html>");    
-    echo "<script>   
+        $mail = new PHPMailer(true);
+        try {
+            $mail->Host       = 'smtp.mail.yahoo.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'juanmuskus@yahoo.com';
+            $mail->Password   = 'jrkquldloxmjjydv';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
+                
+            //Recipients
+            $mail->setFrom('cbanquet@correo.unicordoba.edu.co', 'Coord. Olimpiadas Maths');
+            $mail->addAddress(trim($mailu," "));     
+            //Content
+            $mail->isHTML(true);                                 
+            $mail->Subject = 'Olimpiadas Maths - Unicórdoba';
+            $mail->Body    = "<html><body style=' font-family: tahoma;'><p>Hola,<b> ".trim($nom," ")." ".trim($apel," ")." </b></p><p>Ha solicitado recuperar la contraseña de su cuenta en la web de las Olimpiadas de Matemáticas - Universidad de Córdoba. Su contraseña es: <b>".$pass."</b></p><p>Por favor, haga marca esta contraseña como confidencial y no la comparta con nadie.</p></body></html>";
+        
+            $mail->send();
+            echo "<script>   
             swal({text: 'Mensaje enviado ...!!!', title: 'Olimpiadas Maths', icon: 'success',}).then((value) => {
             window.location = 'index.php';
             });
             </script>";
+            
+        } catch (Exception $e) {
+            echo "No se pudo enviar el correo. Mail Error: {$mail->ErrorInfo}";
+        }
+        $mail->SmtpClose();  
     }
     }
     }

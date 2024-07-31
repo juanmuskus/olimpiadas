@@ -13,18 +13,17 @@
   </head>
 <body class="text-center">
 <main class="form-signin">
-  <form>
+  <form action="login.php" method="post">
     <h1 class="h3 mb-3 fw-normal"><img src="img/unicor.png" width="10%" height="10%"> <b>Universidad de Córdoba</b></h1>
     <p class="text-center"><img src="img/math.png" width="5%" height="5%"> Olimpiadas de Matemáticas</p>
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="email" class="form-control" id="floatingInput" name="mail" placeholder="name@example.com">
       <label for="floatingInput">Email</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" class="form-control" name="pass" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Contraseña</label>
     </div>
-
     <button class="w-100 btn btn-lg btn-primary" type="submit"><i class="bi bi-box-arrow-in-right"></i> Ingresar</button>
   </form>
     <div class="form-floating mt-4">

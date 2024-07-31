@@ -1,0 +1,108 @@
+<?php
+session_start();
+if (isset($_SESSION['usuario'])){
+    $us = $_SESSION['usuario'];
+    $tipo = $_SESSION['tipo'];
+}
+else
+{
+    echo "<title>Error</title>";
+    echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css'>";
+    echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
+    echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
+    echo "Ud no posee acceso al sistema !!!";
+    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    die();
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    <link rel="stylesheet" href="css/main.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Olimpiadas Maths <?php echo date('Y');?></title>
+</head>
+<body>
+<div id="wrapper">
+        <!-- Sidebar -->
+        <?php
+        include 'menu.php';
+        ?>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" style="border:0.1rem solid black"><i class="bi bi-list"></i></a>
+                    </div>
+                </div>
+                <?php 
+                include 'conexion.php';
+                if ($tipo == 'C'){ // listado para cooord
+                include 'aviso.php';
+                // query x Ies
+                $idies = $_SESSION['id_ies'];
+                $sql = "SELECT * FROM estudiantes WHERE (IES_idIES = $idies) ORDER BY grado, apellido1 DESC";
+                echo "<div class='col-lg-12 alert alert-info'><i class='bi bi-people-fill'></i> Estudiantes</div>";
+                ?>
+                <div class="table-responsive">
+                    <table class="table" >
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Doc. Identidad</th>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Grado</th>
+                                <th scope="col">E-Mail</th>
+                                <th scope="col">Operaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <?php
+                                $result = $con->query($sql);
+                                $i=0;
+                                foreach ($result as $row){
+                                    echo "<tr>";
+                                    echo "<td>".$i++."</td>";
+                                    echo "<td>".$row['doc']."</td>";
+                                    echo "<td>".$row['nombre1']." ".$row['nombre1']."</td>";
+                                    echo "<td>".$row['apellido1']." ".$row['apellido2']."</td>";
+                                    echo "<td>".$row['grado']."</td>";
+                                    echo "<td>".$row['email']."</td>";
+                                    echo "</tr>";
+                                }
+                                $con->close();
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <?php
+                }
+                else { // listado para admin
+                echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
+                // query all
+                $sql = "SELECT * FROM estudiantes ORDER BY IES_idIES, apellidos";
+            }
+                ?>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper --></body>
+</html>
+<script>
+    $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+</script>
