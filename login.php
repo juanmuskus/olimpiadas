@@ -29,6 +29,7 @@ $cant= $existe_u->num_rows;
             $_SESSION['tipo']=$tipo;
             $_SESSION['cant_est']=$cant_est;
             $_SESSION['id_ies']=$id_ies;
+            $_SESSION['mail']=$mail;
             header('location:main.php');    
         }
         else {

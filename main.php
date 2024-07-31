@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['usuario'])){
     $us = $_SESSION['usuario'];
     $tipo = $_SESSION['tipo'];
+    $mail = $_SESSION['mail'];
 }
 else
 {
@@ -50,10 +51,10 @@ else
                 // query x Ies
                 $idies = $_SESSION['id_ies'];
                 $sql = "SELECT * FROM estudiantes WHERE (IES_idIES = $idies) ORDER BY grado, apellido1 DESC";
-                echo "<div class='col-lg-12 alert alert-info'><i class='bi bi-people-fill'></i> Estudiantes</div>";
+                echo "<div class='row'><div class='col-lg-9 nav-brad text-primary'><h3><i class='bi bi-people-fill'></i> Estudiantes</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'><button class='btn btn-success'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;<button class='btn btn-primary'><i class='bi bi-file-earmark-spreadsheet-fill'></i> Exportar .xls</button></div></div><hr>";
                 ?>
                 <div class="table-responsive">
-                    <table class="table" >
+                    <table class="table table-hover" >
                         <thead>
                             <tr>
                                 <th scope="col">No.</th>
@@ -68,16 +69,18 @@ else
                         <tbody>
                                 <?php
                                 $result = $con->query($sql);
-                                $i=0;
+                                $i=1;
                                 foreach ($result as $row){
                                     echo "<tr>";
-                                    echo "<td>".$i++."</td>";
+                                    echo "<td>".$i."</td>";
                                     echo "<td>".$row['doc']."</td>";
                                     echo "<td>".$row['nombre1']." ".$row['nombre1']."</td>";
                                     echo "<td>".$row['apellido1']." ".$row['apellido2']."</td>";
                                     echo "<td>".$row['grado']."</td>";
                                     echo "<td>".$row['email']."</td>";
+                                    echo "<td><button class='btn btn-warning' placeholder='Modificar'><i class='bi bi-pencil-square'></i></button> <button class='btn btn-danger' placeholder='Eliminar'><i class='bi bi-trash-fill'></i></button></td>";
                                     echo "</tr>";
+                                    $i++;
                                 }
                                 $con->close();
                             ?>

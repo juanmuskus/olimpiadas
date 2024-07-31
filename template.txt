@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['usuario'])){
     $us = $_SESSION['usuario'];
     $tipo = $_SESSION['tipo'];
+    $mail = $_SESSION['mail'];
 }
 else
 {

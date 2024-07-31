@@ -23,7 +23,7 @@
                     </li>";
                 ?>
                 <li>
-                    <a href="#"><i class="bi bi-key-fill"></i> Password</a>
+                    <a href="cambiarpass.php"><i class="bi bi-key-fill"></i> Password</a>
                 </li>
                 <li>
                     <a href="salir.php"><i class="bi bi-power"></i> Salir</a>
