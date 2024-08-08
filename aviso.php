@@ -1,6 +1,6 @@
 <div class="row">
                     <div class="col-lg-12 alert alert-success mt-2">
-                        <p>Bienvenido(a) <b><?php echo $us;?></b> al sistema de inscripción para las Olimpiadas de Matemáticas de la Universidad de Córdoba.</p>
+                        <p>Bienvenido(a) <b><?php echo $us;?></b> al sistema de inscripción para las Olimpiadas <?php echo date('Y');?> de Matemáticas de la Universidad de Córdoba.</p>
                         <?php
                         include 'conexion.php';
                         $idies = $_SESSION['id_ies'];

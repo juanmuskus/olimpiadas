@@ -1,34 +1,21 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// Dirección de correo del destinatario
+$to = 'grupometrico@gmail.com';
 
-require 'vendor/autoload.php'; // Si usas Composer, asegúrate de que el autoloader esté incluido
+// Asunto del correo
+$subject = 'Asunto';
 
-$mail = new PHPMailer(true);
+// Mensaje del correo
+$message = 'Este es el cuerpo del mensaje del correo.';
 
-try {
-    // Configuración del servidor SMTP
-    $mail->isSMTP();
-    $mail->Host       = 'smtp.mail.yahoo.com';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'juanmuskus@yahoo.com';
-    $mail->Password   = 'jrkquldloxmjjydv';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
+// Cabeceras del correo
+$headers = 'From: jmuskus@correo.unicordoba.edu.co' . "\r\n" .
+           'X-Mailer: PHP/' . phpversion();
 
-    // Remitente y destinatario
-    $mail->setFrom('juanmuskus@yahoo.com', 'Juan Muskus');
-    $mail->addAddress('grupometrico@gmail.com', 'Destinatario');
-
-    // Contenido del correo
-    $mail->isHTML(true);                                        // Establece el formato del correo en HTML
-    $mail->Subject = 'Aquí está el asunto';
-    $mail->Body    = 'Este es el contenido del correo en <b>HTML</b>';
-    $mail->AltBody = 'Este es el contenido del correo en texto plano';
-
-    $mail->send();
-    echo 'El correo ha sido enviado.';
-} catch (Exception $e) {
-    echo "El correo no pudo ser enviado. Error: {$mail->ErrorInfo}";
+// Enviar el correo
+if (mail($to, $subject, $message, $headers)) {
+    echo 'Correo enviado exitosamente.';
+} else {
+    echo 'Error al enviar el correo.';
 }
 ?>
