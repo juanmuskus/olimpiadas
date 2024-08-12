@@ -23,7 +23,7 @@ if (isset($_SESSION['usuario'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -104,7 +104,7 @@ if (isset($_SESSION['usuario'])) {
                     // query all
                     $sqlroot = "SELECT e.*, CONCAT(i.nombre,' de ',i.mpio) AS iesnom FROM estudiantes e, ies i WHERE idIES = IES_idIES ORDER BY IES_idIES, apellido1";
                     echo "<div class='row'><div class='col-lg-9 nav-brad text-primary'><h3><i class='bi bi-people-fill'></i> Estudiantes</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
-                    <button class='btn btn-success' id = 'bnuevo'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
+                    <button class='btn btn-success' id = 'bnuevoroot'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
                     </div>
                     </div>
                     <hr>";
@@ -131,7 +131,7 @@ if (isset($_SESSION['usuario'])) {
                                     echo "<tr>";
                                     echo "<td>" . $i . "</td>";
                                     echo "<td>" . $row['doc'] . "</td>";
-                                    echo "<td>" . $row['nombre1'] . " " . $row['nombre1'] . "</td>";
+                                    echo "<td>" . $row['nombre1'] . " " . $row['nombre2'] . "</td>";
                                     echo "<td>" . $row['apellido1'] . " " . $row['apellido2'] . "</td>";
                                     echo "<td>" . $row['grado'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
@@ -349,6 +349,115 @@ if (isset($_SESSION['usuario'])) {
     </div>
     </form>
     <!-- Fin Modal UPDATE -->
+
+    <!-- Modal nuevo x ROOT-->
+    <div class="modal fade" id="new_estroot" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Estudiante - Admin
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- formulario -->
+                    <form method='post' action='nuevo_estroot.php'>
+                        <fieldset>
+                            <!-- Text input Id -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="rdoci"><i class="bi bi-check text-success"></i> Doc. Identidad</label>
+                                <div class="col-md-5">
+                                    <input id="rdoci" name="rdoci" type="number" placeholder="" class="form-control" min="999999" required>
+                                </div>
+                            </div>
+
+                            <!-- Nombres -->
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label for="rnom1" class="form-label"><i class="bi bi-check text-success"></i> Nombre 1</label>
+                                    <input type="text" class="form-control" id="rnom1" name="rnom1" style="text-transform:uppercase" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="rnom2" class="form-label">Nombre 2</label>
+                                    <input type="text" class="form-control" id="rnom2" name="rnom2" style="text-transform:uppercase">
+                                </div>
+                            </div>
+
+                            <!-- Apellidos -->
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label for="rpel1" class="form-label"><i class="bi bi-check text-success"></i> Apellido 1</label>
+                                    <input type="text" class="form-control" id="rapel1" name="rapel1" style="text-transform:uppercase" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="rapel2" class="form-label">Apellido 2</label>
+                                    <input type="text" class="form-control" id="rapel2" name="rapel2" style="text-transform:uppercase">
+                                </div>
+                            </div>
+
+                            <!-- grado-->
+                            <div class="form-group mt-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="rgrado" class="form-label"><i class="bi bi-check text-success"></i> Grado</label>
+                                        <select class="form-select" aria-label="Default select example" name="rgrado" required>
+                                            <option value="6" selected>6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label class="form-label" for="restmail"><i class="bi bi-check text-success"></i> E-mail</label>
+                                            <input id="restmail" name="restmail" type="email" placeholder="" class="form-control" value="@" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                <div class="col-8">
+                                    <p class="text-start"><i class="bi bi-check text-success"></i> Municipio:</p>
+                                    <select name="rmpio" id="rmpio" class="form-control" required>
+                                        <?php
+                                        include 'conexion.php';
+                                        $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
+                                        $result = $con->query($sql);
+                                        while ($mostrar = mysqli_fetch_array($result))
+                                            echo '<option value="' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '">' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '</option>';
+                                        // cerrar la conexión
+                                        $con->close();
+                                        ?>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                <div class="col-12 mb-2">
+                                    <p class="text-start"><i class="bi bi-check text-success"></i> IE's:</p>
+                                    <select name="rlies" id="rlies" class="form-control" required>
+                                        // Cargar las IES de acuerdo al municipio seleccionado
+                                    </select>
+                                </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <small><i class="bi bi-check text-success"></i> Campos requeridos</small>
+                                </div>
+
+                        </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#new_user" aria-label="Close"><i class="bi bi-x"></i> Cancelar</button>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-person-plus-fill"></i> Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <!-- Fin Modal Nuevo x ROOT -->
+
 </body>
 
 </html>
@@ -375,7 +484,14 @@ if (isset($_SESSION['usuario'])) {
 
         $('#bnuevo').click(function() {
             $('#update_est').modal('hide');
+            $('#new_estroot').modal('hide');
             $('#new_est').modal('show');
+        });
+
+        $('#bnuevoroot').click(function() {
+            $('#update_est').modal('hide');
+            $('#new_est').modal('hide');
+            $('#new_estroot').modal('show');
         });
 
         $('#tablaest').DataTable({
@@ -470,6 +586,7 @@ if (isset($_SESSION['usuario'])) {
 
     function update_est(doci, nom1, nom2, ape1, ape2, grado, email) {
         $('#update_est').modal('hide');
+        $('#new_estroot').modal('hide');
         $('#udoci').val(doci);
         $('#udoc_ident').html('Documento de Identidad: <b>' + doci + '</b>');
         $('#unom1').val(nom1);
@@ -502,4 +619,20 @@ if (isset($_SESSION['usuario'])) {
                 }
             });
     }
+
+    $('#rmpio').change(function() {
+        var mpiosel = $(this).val();
+        $.ajax({
+            url: 'lista_ies.php',
+            type: 'POST',
+            data: {mpio: mpiosel},
+            success: function(response){
+                $('#rlies').empty(); // Limpiar el select de opciones anteriores
+                var data = JSON.parse(response);
+                data.forEach(function(ie) {
+                    $('#rlies').append('<option value="' + ie.id + '">' + ie.nombre + '</option>');
+                });
+            }
+        });        
+    });
 </script>

@@ -16,10 +16,9 @@ if (isset($_SESSION['usuario'])) {
 }
 include('conexion.php');
 $id = $_REQUEST['id'];
-//eliminar certificado
+//eliminar estudiante
 $sql = "DELETE FROM estudiantes WHERE doc = $id";
 $con->query($sql);
-//echo $con->affected_rows;
 $con->close();
 header('location: main.php');
 ?>

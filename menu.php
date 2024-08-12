@@ -10,7 +10,7 @@
                 <?php
                 if ($tipo=='A')
                 echo "<li>
-                    <a href='#'><i class='bi bi-person-check-fill'></i> Coordinadores</a>
+                    <a href='coord.php'><i class='bi bi-person-check-fill'></i> Coordinadores</a>
                 </li>
                 <li>
                     <a href='ies.php'><i class='bi bi-buildings-fill'></i> IE´s</a>
