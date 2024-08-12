@@ -3,8 +3,6 @@ if (isset($_SESSION['usuario'])) {
     $us = $_SESSION['usuario'];
     $tipo = $_SESSION['tipo'];
     $mail = $_SESSION['mail'];
-    $id_ies=$_SESSION['id_ies'];
-    $cant_est=$_SESSION['cant_est'];
 } else {
     echo "<title>Error</title>";
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css'>";
@@ -14,14 +12,47 @@ if (isset($_SESSION['usuario'])) {
     echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+<?php
 include('conexion.php');
 $id = $_REQUEST['id'];
+$cant_est = $_REQUEST['estudiantes'];
+echo $id." ".$cant_est;
 //eliminar coordinador
-$sql = "UPDATE users_coord SET estado = 'A' WHERE docidentidad = $id";
+$sql = "UPDATE users_coord SET estado ='A', cant_est = $cant_est WHERE docidentidad = 15045319";
 $con->query($sql);
+echo "<script>
+    swal({text: 'Coordinador habilitado con éxito', title: 'Olimpiadas Maths',}).then((value) => {
+    window.location= 'coord.php';
+    });
+</script>";
 $con->close();
-
 // se debe enviar un correo al coordinador informando que ha sido habilitado con sus credenciales y link de acceso 
 
-header('location: coord.php');
 ?>
+</body>
+</html>
+<style>
+.swal-text{
+    padding: 17px;
+    display: block;
+    margin: 22px;
+    text-align: center;
+    font-size: large;
+    color: #61534e;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.swal-title {
+    font-family: Arial, Helvetica, sans-serif;
+}
+</style>

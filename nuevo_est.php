@@ -58,7 +58,7 @@ if ($filas > 0) {
     $filas_doc = mysqli_num_rows($result_doc);
     if ($filas_doc > 0) {
         echo "<script>   
-        swal({text: 'Ya existe un estudiante registrado con este numero de  documento: ".$doci."', title: 'Olimpiadas Maths',}).then((value) => {
+        swal({text: 'Ya existe un estudiante registrado con este numero de documento: ".$doci."', title: 'Olimpiadas Maths',}).then((value) => {
         window.location= 'main.php';
         });
         </script>";

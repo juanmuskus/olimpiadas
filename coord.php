@@ -87,7 +87,7 @@ else
                                     echo "<td>" . $row['cant_est'] . "</td>";
                                     echo "<td>" . mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') . "</td>";
                                     echo "<td>
-                                    <button class='btn btn-primary btn-sm' onclick='habilitar_coord(" . $row['docidentidad'] . "','" . $row['nomcoord'] . ")'><i class='bi bi-person-fill-check'></i> Habilitar</button>
+                                    <button class='btn btn-primary btn-sm' onclick=\"habilitar_coord('" . $row['docidentidad'] . "','" . $row['nomcoord'] . "');\"><i class='bi bi-person-fill-check'></i> Habilitar</button>
                                     <button class='btn btn-danger btn-sm' onclick='delete_coord(" . $row['docidentidad'] . ")'><i class='bi bi-trash-fill'></i> Eliminar</button>";
                                     echo "</td></tr>";
                                     $i++;
@@ -191,26 +191,40 @@ $(document).ready(function() {
             });
     }
 
-    function habilitar_coord(id,nom) {
-        swal("Olimpiadas Maths", "Se habilitará la cuenta del coord. "+nom+", inmediatmante será notificado a su correo.", "warning", {
-                buttons: {
-                    cancel: "Cancelar",
-                    catch: {
-                        text: "Habilitar",
-                        value: "catch",
-                    }
-                },
-            })
-            .then((value) => {
-                switch (value) {
-                    case "catch":
-                        window.location = 'habilitar_coord.php?id=' + id;
-                        break;
+    function habilitar_coord(id, nom) {
+    swal({
+        title: "Olimpiadas Maths",
+        text: "Se habilitará la cuenta del coord. " + nom + ". Por favor, ingrese la cantidad de estudiantes:",
+        content: {
+            element: "input",
+            attributes: {
+                placeholder: "Cantidad de estudiantes",
+                type: "number",
+                min: "1",
+            },
+        },
+        buttons: {
+            cancel: "Cancelar",
+            confirm: {
+                text: "Habilitar",
+                value: true,
+            },
+        },
+    })
+    .then((value) => {
+        if (value) {
+            let cantidadEstudiantes = document.querySelector('.swal-content__input').value;
+            if (cantidadEstudiantes) {
+                window.location = 'habilitar_coord.php?id=' + id + '&estudiantes=' + cantidadEstudiantes;
+            } else {
+                swal("Error", "Debe ingresar una cantidad de estudiantes válida.", "error");
+            }
+        } else {
+            window.location = 'coord.php';
+        }
+    });
+}
 
-                    default:
-                        window.location = 'coord.php';
-                }
-            });
-    }
+
 </script>
 

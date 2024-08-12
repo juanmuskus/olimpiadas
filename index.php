@@ -72,7 +72,7 @@
       </div>
       <div class="modal-body">
         <p class="text-start"><b>Inscripción de Coordinadores de IE's</b></p>
-        <form action="">
+        <form action="registrar_coord.php" method="post">
           <div class="col-6 mb-2">
             <p class="text-start">Doc. identidad</p>
             <input type="number" name="doci" id="doci" class="form-control" required>
@@ -111,11 +111,11 @@
             </select>
           </div>
                               
-        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
-        <button type="button" class="btn btn-success"><i class="bi bi-save"></i> Registrar</button>
+        <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Registrar</button>
+        </form>
       </div>
     </div>
   </div>
