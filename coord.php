@@ -51,7 +51,7 @@ else
         echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
         // query all
         $sqlcoord = "SELECT docidentidad, CONCAT(u.apellidos,' ',u.nombres) AS nomcoord, u.email, u.pass, u.estado, u.cant_est, CONCAT(i.nombre,' de ',i.mpio) AS iesnom  FROM users_coord u, ies i WHERE (u.tipo = 'C') AND (idIES = IES_idIES) ORDER BY nomcoord, iesnom";
-        echo "<div class='row'><div class='col-lg-9 nav-brad text-success'><h3><i class='bi bi-person-video3'></i> Coordinadores</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
+        echo "<div class='row mb-3'><div class='col-lg-9 nav-brad text-success'><h3><i class='bi bi-person-video3'></i> Coordinadores</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
         <button class='btn btn-success' id = 'bnuevocoord'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
         </div>
         </div>
@@ -170,7 +170,7 @@ $(document).ready(function() {
     });
 
     function delete_coord(id) {
-        swal("Olimpiadas Maths", "Realmente desea eliminar este Coordinador ? ", "warning", {
+        swal("Olimpiadas Maths", "Se elimarán el coord. y los estudiantes de la Inst. Educativa...! ", "warning", {
                 buttons: {
                     cancel: "Cancelar",
                     catch: {

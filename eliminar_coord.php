@@ -14,11 +14,52 @@ if (isset($_SESSION['usuario'])) {
     echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+<?php
 include('conexion.php');
 $id = $_REQUEST['id'];
+$sqlies = "SELECT IES_idIES FROM users_coord WHERE docidentidad = $id";
+$result = $con->query($sqlies);
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $ies = $row['IES_idIES'];
+    $sqlest = "DELETE FROM estudiantes WHERE IES_idIES = $ies";
+    $con->query($sqlest);
+}
+
 //eliminar coordinador
 $sql = "DELETE FROM users_coord WHERE docidentidad = $id";
 $con->query($sql);
+echo "<script>
+    swal({text: 'Coordinador y estudiantes eliminados con éxito', title: 'Olimpiadas Maths',}).then((value) => {
+    window.location= 'coord.php';
+    })
+    </script>";
 $con->close();
-header('location: coord.php');
 ?>
+</body>
+</html>
+<style>
+.swal-text{
+    padding: 17px;
+    display: block;
+    margin: 22px;
+    text-align: center;
+    font-size: large;
+    color: #61534e;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.swal-title {
+    font-family: Arial, Helvetica, sans-serif;
+}
+</style>
