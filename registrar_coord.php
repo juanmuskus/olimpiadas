@@ -19,12 +19,12 @@ $tipo = 'C';
 $can_est = 0;
 $idies = $_POST['lies'];
 
-$sql_evaldoci = "SELECT * FROM users_coord WHERE docidentidad = $doci";
+$sql_evaldoci = "SELECT * FROM users_coord WHERE (docidentidad = $doci) or (email = '$mail')";
 $res_evaldoci = $con->query($sql_evaldoci);
 $filas = mysqli_num_rows($res_evaldoci);
 if ($filas > 0) {
     echo "<script>   
-    swal({text: 'Ya existe un coordinador registrado con este numero de documento: ".$doci."', title: 'Olimpiadas Maths',}).then((value) => {
+    swal({text: 'Ya existe un coordinador registrado con este numero de documento o correo: ".$doci." / ".$mail."', title: 'Olimpiadas Maths',}).then((value) => {
     window.location= 'login.php';
     });
     </script>";

@@ -1,12 +1,10 @@
 <?php
 session_start();
-if (isset($_SESSION['usuario'])){
+if (isset($_SESSION['usuario'])) {
     $us = $_SESSION['usuario'];
     $tipo = $_SESSION['tipo'];
     $mail = $_SESSION['mail'];
-}
-else
-{
+} else {
     echo "<title>Error</title>";
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css'>";
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
@@ -18,19 +16,23 @@ else
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
-    <title>Olimpiadas Maths <?php echo date('Y');?></title>
+    <script src="js/coord.js"></script>
+    <title>Olimpiadas Maths <?php echo date('Y'); ?></title>
 </head>
+
 <body>
-<div id="wrapper">
+    <div id="wrapper">
         <!-- Sidebar -->
         <?php
         include 'menu.php';
@@ -44,65 +46,124 @@ else
                     <div class="col-lg-12">
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" style="border:0.1rem solid black"><i class="bi bi-list"></i></a>
                     </div>
-        <!-- /#page-content-wrapper -->
-        <div class="row">
-        <?php
-        include 'conexion.php';
-        echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
-        // query all
-        $sqlcoord = "SELECT docidentidad, CONCAT(u.apellidos,' ',u.nombres) AS nomcoord, u.email, u.pass, u.estado, u.cant_est, CONCAT(i.nombre,' de ',i.mpio) AS iesnom  FROM users_coord u, ies i WHERE (u.tipo = 'C') AND (idIES = IES_idIES) ORDER BY nomcoord, iesnom";
-        echo "<div class='row mb-3'><div class='col-lg-9 nav-brad text-success'><h3><i class='bi bi-person-video3'></i> Coordinadores</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
-        <button class='btn btn-success' id = 'bnuevocoord'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
-        </div>
-        </div>
-        <hr>";
-        ?>
-        <div class="table-responsive">
-                        <table class="table table-hover" id="tablacoord">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Doc. Identidad</th>
-                                    <th scope="col">Coord.</th>
-                                    <th scope="col">E-Mail</th>
-                                    <th scope="col">Contraseña</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Cant. Estudiantes</th>
-                                    <th scope="col">IE's</th>
-                                    <th scope="col">Operaciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $result = $con->query($sqlcoord);
-                                $i = 1;
-                                foreach ($result as $row) {
-                                    echo "<tr>";
-                                    echo "<td>" . $i . "</td>";
-                                    echo "<td>" . $row['docidentidad'] . "</td>";
-                                    echo "<td>" . $row['nomcoord']."</td>";
-                                    echo "<td>" . $row['email'] . "</td>";
-                                    echo "<td>" . $row['pass'] . "</td>";
-                                    echo "<td>" . $row['estado'] . "</td>";
-                                    echo "<td>" . $row['cant_est'] . "</td>";
-                                    echo "<td>" . mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') . "</td>";
-                                    echo "<td>
+                    <!-- /#page-content-wrapper -->
+                    <div class="row">
+                        <?php
+                        include 'conexion.php';
+                        echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
+                        // query all
+                        $sqlcoord = "SELECT docidentidad, CONCAT(u.apellidos,' ',u.nombres) AS nomcoord, u.email, u.pass, u.estado, u.cant_est, CONCAT(i.nombre,' de ',i.mpio) AS iesnom  FROM users_coord u, ies i WHERE (u.tipo = 'C') AND (idIES = IES_idIES) ORDER BY nomcoord, iesnom";
+                        echo "<div class='row mb-3'><div class='col-lg-9 nav-brad text-success'><h3><i class='bi bi-person-video3'></i> Coordinadores</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
+                        <button class='btn btn-success' id = 'bnuevocoord'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
+                        </div>
+                        </div>
+                        <hr>";
+                        ?>
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="tablacoord">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Doc. Identidad</th>
+                                        <th scope="col">Coord.</th>
+                                        <th scope="col">E-Mail</th>
+                                        <th scope="col">Contraseña</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Cant. Estudiantes</th>
+                                        <th scope="col">IE's</th>
+                                        <th scope="col">Operaciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $result = $con->query($sqlcoord);
+                                    $i = 1;
+                                    foreach ($result as $row) {
+                                        echo "<tr>";
+                                        echo "<td>" . $i . "</td>";
+                                        echo "<td>" . $row['docidentidad'] . "</td>";
+                                        echo "<td>" . $row['nomcoord'] . "</td>";
+                                        echo "<td>" . $row['email'] . "</td>";
+                                        echo "<td>" . $row['pass'] . "</td>";
+                                        echo "<td>" . $row['estado'] . "</td>";
+                                        echo "<td>" . $row['cant_est'] . "</td>";
+                                        echo "<td>" . mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') . "</td>";
+                                        echo "<td>
                                     <button class='btn btn-primary btn-sm' onclick=\"habilitar_coord('" . $row['docidentidad'] . "','" . $row['nomcoord'] . "');\"><i class='bi bi-person-fill-check'></i> Habilitar</button>
                                     <button class='btn btn-danger btn-sm' onclick='delete_coord(" . $row['docidentidad'] . ")'><i class='bi bi-trash-fill'></i> Eliminar</button>";
-                                    echo "</td></tr>";
-                                    $i++;
-                                }
-                                $con->close();
-                                ?>
-                            </tbody>
-                        </table>
+                                        echo "</td></tr>";
+                                        $i++;
+                                    }
+                                    $con->close();
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
-    </div>
-    
-    <!-- /#wrapper --></body>
+        <!-- /#wrapper -->
+        <div class="modal fade" id="nuevocoord" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Olimpiadas - Math</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-start"><b>Nuevo Coordinador de IE's</b></p>
+                        <form action="nregistrar_coord.php" method="post">
+                            <div class="col-6 mb-2">
+                                <p class="text-start">Doc. identidad</p>
+                                <input type="number" name="doci" id="doci" class="form-control" required>
+                            </div>
+                            <div class="col-8 mb-2">
+                                <p class="text-start">Nombres</p>
+                                <input type="text" name="nom" id="nom" class="form-control" required>
+                            </div>
+                            <div class="col-8 mb-2">
+                                <p class="text-start">Apellidos</p>
+                                <input type="text" name="apel" id="apel" class="form-control" required>
+                            </div>
+                            <div class="col-10 mb-2">
+                                <p class="text-start">E-mail</p>
+                                <input type="mail" name="cmail" id="cmail" class="form-control" required>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <p class="text-start">Municipio:</p>
+                                <select name="mpio" id="mpio" class="form-control" required>
+                                    <?php
+                                    include 'conexion.php';
+                                    $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
+                                    $result = $con->query($sql);
+                                    while ($mostrar = mysqli_fetch_array($result))
+                                        echo '<option value="' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '">' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '</option>';
+                                    // cerrar la conexión
+                                    $con->close();
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <p class="text-start">IE's:</p>
+                                <select name="lies" id="lies" class="form-control" required>
+                                    // Cargar las IES de acuerdo al municipio seleccionado
+                                </select>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
+                        <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
 </html>
 <link href="dataTables/datatables.min.css" rel="stylesheet">
 <script src="dataTables/datatables.min.js"></script>
@@ -119,12 +180,12 @@ else
 <link rel="stylesheet" href="datatables/dataTables.bootstrap5.css">
 <script>
     $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-});
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 
-$(document).ready(function() {  
-    $('#tablacoord').DataTable({
+    $(document).ready(function() {
+        $('#tablacoord').DataTable({
             "buttons": [{
                     "extend": 'copy',
                     "text": 'Copiar'
@@ -192,39 +253,36 @@ $(document).ready(function() {
     }
 
     function habilitar_coord(id, nom) {
-    swal({
-        title: "Olimpiadas Maths",
-        text: "Se habilitará la cuenta del coord. " + nom + ". Por favor, ingrese la cantidad de estudiantes:",
-        content: {
-            element: "input",
-            attributes: {
-                placeholder: "Cantidad de estudiantes",
-                type: "number",
-                min: "1",
-            },
-        },
-        buttons: {
-            cancel: "Cancelar",
-            confirm: {
-                text: "Habilitar",
-                value: true,
-            },
-        },
-    })
-    .then((value) => {
-        if (value) {
-            let cantidadEstudiantes = document.querySelector('.swal-content__input').value;
-            if (cantidadEstudiantes) {
-                window.location = 'habilitar_coord.php?id=' + id + '&estudiantes=' + cantidadEstudiantes;
-            } else {
-                swal("Error", "Debe ingresar una cantidad de estudiantes válida.", "error");
-            }
-        } else {
-            window.location = 'coord.php';
-        }
-    });
-}
-
-
+        swal({
+                title: "Olimpiadas Maths",
+                text: "Se habilitará la cuenta del coord. " + nom + ". Por favor, ingrese la cantidad de estudiantes:",
+                content: {
+                    element: "input",
+                    attributes: {
+                        placeholder: "Cantidad de estudiantes",
+                        type: "number",
+                        min: "1",
+                    },
+                },
+                buttons: {
+                    cancel: "Cancelar",
+                    confirm: {
+                        text: "Habilitar",
+                        value: true,
+                    },
+                },
+            })
+            .then((value) => {
+                if (value) {
+                    let cantidadEstudiantes = document.querySelector('.swal-content__input').value;
+                    if (cantidadEstudiantes) {
+                        window.location = 'habilitar_coord.php?id=' + id + '&estudiantes=' + cantidadEstudiantes;
+                    } else {
+                        swal("Error", "Debe ingresar una cantidad de estudiantes válida.", "error");
+                    }
+                } else {
+                    window.location = 'coord.php';
+                }
+            });
+    }
 </script>
-

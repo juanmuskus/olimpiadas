@@ -16,11 +16,8 @@
                     <a href='ies.php'><i class='bi bi-buildings-fill'></i> IE´s</a>
                 </li>
                 <li>
-                    <a href='#'><i class='bi bi-card-checklist'></i> Listados</a>
-                </li>
-                <li>
-                        <a href='#'><i class='bi bi-gear-fill'></i> Admin Users</a>
-                    </li>";
+                    <a href='listado.php'><i class='bi bi-filetype-xlsx'></i> Listado</a>
+                </li>";
                 ?>
                 <li>
                     <a href="cambiarpass.php"><i class="bi bi-key-fill"></i> Password</a>
