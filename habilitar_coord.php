@@ -29,6 +29,16 @@ $cant_est = $_REQUEST['estudiantes'];
 //actualizar coordinador
 $sql = "UPDATE users_coord SET estado ='A', cant_est = $cant_est WHERE docidentidad = $id";
 $con->query($sql);
+//notificar por correo
+include 'sendmail.php';
+$sql_coord = "SELECT * FROM users_coord WHERE docidentidad = $id";
+$res_coord = $con->query($sql_coord);
+$row_coord = $res_coord->fetch_assoc();
+$nom = $row_coord['nombres'];
+$apel = $row_coord['apellidos'];
+$mail = $row_coord['email'];
+$pass = $row_coord['pass'];
+notificar_cta($nom." ".$apel, $id, $mail);
 echo "<script>
     swal({text: 'Coordinador habilitado con éxito', title: 'Olimpiadas Maths',}).then((value) => {
     window.location= 'coord.php';
