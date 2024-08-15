@@ -46,8 +46,6 @@ if ($filas > 0) {
     </script>";
 }
 $con->close();
-// se debe enviar un correo al coordinador informando que ha sido habilitado con sus credenciales y link de acceso 
-//header('location: index.php');
 ?>
 </body>
 </html>

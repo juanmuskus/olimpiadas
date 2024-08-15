@@ -17,10 +17,10 @@ $apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(
     $config
 );
 $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail(); // \SendinBlue\Client\Model\SendSmtpEmail | Values to send a transactional email
-$sendSmtpEmail['to'] = array(array('email'=>'juanmuskus@hotmail.com', 'name'=>'Olimpiadas Maths'));
+$sendSmtpEmail['to'] = array(array('email'=>'fcoalvarez21@gmail.com', 'name'=>'Olimpiadas Maths'));
 $sendSmtpEmail['subject'] = 'Olimpiadas de Matemáticas - Universidad de Córdoba';
 $sendSmtpEmail['templateId'] = 1;
-$sendSmtpEmail['params'] = array('nom'=>'J Muskus Muskus', 'mail'=>'temp@gmail.com', 'ies'=>'liceo Sahagun - Sahagun');
+$sendSmtpEmail['params'] = array('nom'=>'Fco Alvarez', 'mail'=>'fcoalvarez21@gmail.com', 'ies'=>'liceo Sahagun - Sahagun');
 $sendSmtpEmail['headers'] = array('X-Mailin-custom'=>'custom_header_1:custom_value_1|custom_header_2:custom_value_2');
 
 try {
