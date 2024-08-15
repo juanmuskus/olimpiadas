@@ -25,12 +25,20 @@ $filas = mysqli_num_rows($res_evaldoci);
 if ($filas > 0) {
     echo "<script>   
     swal({text: 'Ya existe un coordinador registrado con este numero de documento o correo: ".$doci." / ".$mail."', title: 'Olimpiadas Maths',}).then((value) => {
-    window.location= 'login.php';
+    window.location= 'index.php';
     });
     </script>";
 } else {
     $sql = "INSERT INTO users_coord (docidentidad, nombres, apellidos, email, pass, estado, tipo, cant_est, IES_idIES) VALUES ($doci, '$nom', '$apel', '$mail', '$pass', '$estado', '$tipo', $can_est, $idies)";
     $con->query($sql);
+    include 'sendmail.php';
+    //traer el nombre y mpio de la IES
+    $sqlies = "SELECT nombre, mpio FROM ies WHERE idIES = $idies";
+    $resies = $con->query($sqlies);
+    $filaies = $resies->fetch_assoc();
+    $ies = $filaies['nombre']." - ".$filaies['mpio'];
+    //
+    notificar_cta($nom." ".$apel, $idies, $mail); //    function notificar_cta($nom, $ie, $mail)
     echo "<script>   
     swal({text: 'Coordinador registrado con éxito !!!', title: 'Olimpiadas Maths',}).then((value) => {
     window.location= 'index.php';

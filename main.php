@@ -137,7 +137,7 @@ if (isset($_SESSION['usuario'])) {
                                     echo "<td>" . $row['email'] . "</td>";
                                     echo "<td>" . mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') . "</td>";
                                     echo "<td>
-                                    <button class='btn btn-warning btn-sm' onclick=\"update_est('" . $row['doc'] . "','" . $row['nombre1'] . "','" . $row['nombre2'] . "','" . $row['apellido1'] . "','" . $row['apellido2'] . "','" . $row['grado'] . "','" . $row['email'] . "');\"><i class='bi bi-pencil-square'></i> Actualizar</button> 
+                                    <button class='btn btn-warning btn-sm' onclick=\"update_est('" . $row['doc'] . "','" . $row['nombre1'] . "','" . $row['nombre2'] . "','" . $row['apellido1'] . "','" . $row['apellido2'] . "','" . $row['grado'] . "','" . $row['email'] . "');\"><i class='bi bi-pencil-square'></i> Editar</button> 
                                     <button class='btn btn-danger btn-sm' onclick='delete_est(" . $row['doc'] . ")'><i class='bi bi-trash-fill'></i> Eliminar</button></td>";
                                     echo "</tr>";
                                     $i++;

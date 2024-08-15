@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-    // mostrar el modal de coordinadores y ocultar el de remitentes
+    // mostrar el modal de nuevo coordinadores y ocultar el editar
     $('#bnuevocoord').click(function(){
+        $('#editarcoord').modal('hide');
         $('#nuevocoord').modal('show');
     })
 
     // cargar las ies de acuerdo al mpio seleccionado usando ajax
-
     $('#mpio').change(function() {
         var mpiosel = $(this).val();
         $.ajax({

@@ -24,6 +24,7 @@ class ComposerStaticInit3bf0d4994927243a76875a892e021857
             'Symfony\\Contracts\\Service\\' => 26,
             'Symfony\\Contracts\\HttpClient\\' => 29,
             'Symfony\\Component\\HttpClient\\' => 29,
+            'SendinBlue\\Client\\' => 18,
         ),
         'P' => 
         array (
@@ -79,6 +80,10 @@ class ComposerStaticInit3bf0d4994927243a76875a892e021857
         'Symfony\\Component\\HttpClient\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-client',
+        ),
+        'SendinBlue\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sendinblue/api-v3-sdk/lib',
         ),
         'Psr\\Log\\' => 
         array (

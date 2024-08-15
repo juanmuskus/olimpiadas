@@ -79,11 +79,11 @@
           </div>
           <div class="col-8 mb-2">
             <p class="text-start">Nombres</p>
-            <input type="text" name="nom" id="nom" class="form-control" required>
+            <input type="text" name="nom" id="nom" class="form-control" style="text-transform:uppercase" required>
           </div>
           <div class="col-8 mb-2">
             <p class="text-start">Apellidos</p>
-            <input type="text" name="apel" id="apel" class="form-control" required>
+            <input type="text" name="apel" id="apel" class="form-control" style="text-transform:uppercase" required>
           </div>
           <div class="col-10 mb-2">
             <p class="text-start">E-mail</p>

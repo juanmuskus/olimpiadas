@@ -26,9 +26,8 @@ if (isset($_SESSION['usuario'])) {
 include('conexion.php');
 $id = $_REQUEST['id'];
 $cant_est = $_REQUEST['estudiantes'];
-echo $id." ".$cant_est;
-//eliminar coordinador
-$sql = "UPDATE users_coord SET estado ='A', cant_est = $cant_est WHERE docidentidad = 15045319";
+//actualizar coordinador
+$sql = "UPDATE users_coord SET estado ='A', cant_est = $cant_est WHERE docidentidad = $id";
 $con->query($sql);
 echo "<script>
     swal({text: 'Coordinador habilitado con éxito', title: 'Olimpiadas Maths',}).then((value) => {
