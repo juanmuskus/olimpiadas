@@ -63,4 +63,8 @@ $cant= $existe_u->num_rows;
 .swal-title {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.swal-button {
+        color: black !important;
+    }
 </style>

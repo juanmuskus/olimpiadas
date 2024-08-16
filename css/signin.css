@@ -51,3 +51,7 @@ body {
 .swal-modal{
   font-family: arial;
   }
+
+.swal-button {
+    color: black !important;
+}  

@@ -56,3 +56,22 @@ if (isset($_POST['mail'])) {
 ?>
 </body>
 </html>
+<style>
+.swal-text{
+    padding: 17px;
+    display: block;
+    margin: 22px;
+    text-align: center;
+    font-size: large;
+    color: #61534e;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.swal-title {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.swal-button {
+        color: black !important;
+    }
+</style>

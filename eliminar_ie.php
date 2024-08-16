@@ -56,4 +56,8 @@ $con->close();
 .swal-title {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.swal-button {
+        color: black !important;
+    }
 </style>
