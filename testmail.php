@@ -1,31 +1,30 @@
 <?php 
- $key_api = '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';
-# ------------------
+use PHPMailer\PHPMailer\PHPMailer;
 
-require_once('vendor/autoload.php');
+//Load Composer's autoloader
+require 'vendor/autoload.php';
 
-// Configure API key authorization: api-key
-$config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', $key_api);
+$mail = new PHPMailer(true); // Passing `true` enables exceptions
+$mail->From = 'jmuskus@correo.unicordoba.edu.co'; // Dirección de correo remitente
+$mail->FromName = 'Olimpiadas de Matemáticas'; // Nombre del remitente
+$mail->AddReplyTo('cbanquet@correo.unicordoba.edu.co'); // Dirección de correo para respuestas
+//principal
+$mail->AddAddress('grupometrico@gmail.com'); // Dirección del destinatario y nombre
+$mail->Subject = 'Tester de Correo';
+$mail->Body = 'Este es un correo de prueba';
+$mail->CharSet = 'utf-8';
+$mail->IsHTML(true);
+$mail->IsSMTP();
+$mail->Host = 'smtp.mi.com.co'; // Servidor de Salida
+$mail->Port = 465; //Puerto de salida
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = 'ssl';
+$mail->Username = "admin@olimpiadasmatunicordoba.com.co"; // Tu cuenta de correo, debe ser una cuenta existente
+$mail->Password = "Unicor@2024"; // Tu contraseña
+//guid
+if ($mail->Send())
+    echo 'Correo enviado correctamente';
+else
+    echo 'Error al enviar el correo: '.$mail->ErrorInfo;
 
-// Uncomment below line to configure authorization using: partner-key
-// $config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('partner-key', 'YOUR_API_KEY');
-
-$apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail(); // \SendinBlue\Client\Model\SendSmtpEmail | Values to send a transactional email
-$sendSmtpEmail['to'] = array(array('email'=>'fcoalvarez21@gmail.com', 'name'=>'Olimpiadas Maths'));
-$sendSmtpEmail['subject'] = 'Olimpiadas de Matemáticas - Universidad de Córdoba';
-$sendSmtpEmail['templateId'] = 1;
-$sendSmtpEmail['params'] = array('nom'=>'Fco Alvarez', 'mail'=>'fcoalvarez21@gmail.com', 'ies'=>'liceo Sahagun - Sahagun');
-$sendSmtpEmail['headers'] = array('X-Mailin-custom'=>'custom_header_1:custom_value_1|custom_header_2:custom_value_2');
-
-try {
-    $result = $apiInstance->sendTransacEmail($sendSmtpEmail);
-} catch (Exception $e) {
-    echo 'Exception when calling TransactionalEmailsApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
-}
 ?>
