@@ -22,9 +22,6 @@ $mail->SMTPSecure = 'ssl';
 $mail->Username = "admin@olimpiadasmatunicordoba.com.co"; // Tu cuenta de correo, debe ser una cuenta existente
 $mail->Password = "Unicor@2024"; // Tu contraseña
 //guid
-if ($mail->Send())
-    echo 'Correo enviado correctamente';
-else
-    echo 'Error al enviar el correo: '.$mail->ErrorInfo;
+$mail->Send();
 
 ?>
