@@ -33,6 +33,7 @@ $nom = strtoupper($_POST['enom']);
 $apel = strtoupper($_POST['eapel']);
 $mail = $_POST['edmail'];
 $cant = $_POST['ucant'];
+$nit = $_POST['enit'];
 // sql para verificar que  no existe el email
 $sqlmail = "SELECT * FROM users_coord WHERE email = '$mail'";
 $resultmail = mysqli_query($con, $sqlmail);
@@ -44,7 +45,7 @@ if ($filasmail > 1)
     });
     </script>";
 else {
-        $sql = "UPDATE users_coord SET nombres='$nom', apellidos='$apel', email='$mail', cant_est=$cant WHERE docidentidad = $doci";
+        $sql = "UPDATE users_coord SET nombres='$nom', apellidos='$apel', email='$mail', cant_est=$cant, nit='$nit' WHERE docidentidad = $doci";
         $con->query($sql);
         echo "<script>
             swal({text: 'Coordinador actualizado con éxito...!', title: 'Olimpiadas Maths',}).then((value) => {

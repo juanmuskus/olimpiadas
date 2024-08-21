@@ -8,20 +8,20 @@
 </head>
 <body>
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
 require 'vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
 
-function notificar_cta($nom, $ie, $mail){
-    $mail = new PHPMailer(true); // Passing `true` enables exceptions
+function notificar_cta($nom, $ie, $pmail){
+    $mail = new PHPMailer(); // Passing `true` enables exceptions
     $mail->From = 'cbanquet@correo.unicordoba.edu.co'; // Dirección de correo remitente
     $mail->FromName = 'Olimpiadas de Matemáticas'; // Nombre del remitente
     //principal
-    $mail->AddAddress($mail); // Dirección del destinatario y nombre
+    $mail->AddAddress(trim($pmail)); // Dirección del destinatario y nombre
     $mail->Subject = 'Notificación - Olimpiadas de Matemáticas';
     $html = "<style>p{font-family: tahoma;}</style>
     <img src='https://www.unicordoba.edu.co/wp-content/uploads/2018/11/unicordoba_logo1.png'>
     <p>Estimado(a) docente</p>
-    <p>".$nom." - ".$mail."</p>
+    <p>".$nom." - ".$pmail."</p>
     <p>".$ie."</p>
     <br>
     <p>Cordial saludo:</p>
@@ -51,22 +51,22 @@ function notificar_cta($nom, $ie, $mail){
     $mail->Send();
 }
 
-function recovery_cta($nom, $pass, $mail){
-    $mail = new PHPMailer(true); // Passing `true` enables exceptions
+function recovery_cta($nom, $pass, $pmail){
+    $mail = new PHPMailer(); // Passing `true` enables exceptions
     $mail->From = 'cbanquet@correo.unicordoba.edu.co'; // Dirección de correo remitente
     $mail->FromName = 'Olimpiadas de Matemáticas'; // Nombre del remitente
     //principal
-    $mail->AddAddress($mail); // Dirección del destinatario y nombre
+    $mail->AddAddress(trim($pmail)); // Dirección del destinatario y nombre
     $mail->Subject = 'Recuperación Contraseña - Olimpiadas de Matemáticas';
     $html = "<style>p{font-family: tahoma;}</style>
     <img src='https://www.unicordoba.edu.co/wp-content/uploads/2018/11/unicordoba_logo1.png'>
     <p>Estimado(a) docente</p>
-    <p>".$nom." - ".$mail."</p>
+    <p>".$nom." - ".$pmail."</p>
     <br>
     <p>Cordial saludo:</p>
     <br>
     <p>Te informamos que tus credenciales de acceso son los siguientes:</p>
-    <p>Usuario: <b>".$mail."</b></p>
+    <p>Usuario: <b>".$pmail."</b></p>
     <p>Contraseña: <b>".$pass."</b></p>
     <p>Te recomendamos cambiar tu contraseña en cuanto inicies sesión por seguridad. Para acceder a tu cuenta, por favor ingresa en el siguiente enlace:</p>
     <p><a href='https://olimpiadasmatunicordoba.com.co/' target='_blank'>Olimpiadas de Matemáticas - Universidad de Córdoba</p>
@@ -92,22 +92,22 @@ function recovery_cta($nom, $pass, $mail){
     $mail->Send();
 }
 
-function habilitar_cta($nom, $pass, $mail){
-    $mail = new PHPMailer(true); // Passing `true` enables exceptions
+function habilitar_cta($nom, $pass, $pmail){
+    $mail = new PHPMailer(); // Passing `true` enables exceptions
     $mail->From = 'cbanquet@correo.unicordoba.edu.co'; // Dirección de correo remitente
     $mail->FromName = 'Olimpiadas de Matemáticas'; // Nombre del remitente
     //principal
-    $mail->AddAddress($mail); // Dirección del destinatario y nombre
+    $mail->AddAddress(trim($pmail)); // Dirección del destinatario y nombre
     $mail->Subject = 'Cuenta Habilitada - Olimpiadas de Matemáticas';
     $html = "<style>p{font-family: tahoma;}</style>
     <img src='https://www.unicordoba.edu.co/wp-content/uploads/2018/11/unicordoba_logo1.png'>
     <p>Estimado(a) docente</p>
-    <p>".$nom." - ".$mail."</p>
+    <p>".$nom." - ".$pmail."</p>
     <br>
     <p>Cordial saludo:</p>
     <br>
     <p>Te informamos que tu cuenta ha sido <b>habilitada</b>, tus credenciales de acceso son los siguientes:</p>
-    <p>Usuario: <b>".$mail."</b></p>
+    <p>Usuario: <b>".$pmail."</b></p>
     <p>Contraseña: <b>".$pass."</b></p>
     <p>Te recomendamos cambiar tu contraseña en cuanto inicies sesión por seguridad. Para acceder a tu cuenta, por favor ingresa en el siguiente enlace:</p>
     <p><a href='https://olimpiadasmatunicordoba.com.co/' target='_blank'>Olimpiadas de Matemáticas - Universidad de Córdoba</p>

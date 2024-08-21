@@ -52,7 +52,7 @@ if (isset($_SESSION['usuario'])) {
                         include 'conexion.php';
                         echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
                         // query all
-                        $sqlcoord = "SELECT docidentidad, CONCAT(u.apellidos,' ',u.nombres) AS nomcoord, u.email, u.pass, u.estado, u.cant_est, CONCAT(i.nombre,' de ',i.mpio) AS iesnom  FROM users_coord u, ies i WHERE (u.tipo = 'C') AND (idIES = IES_idIES) ORDER BY nomcoord, iesnom";
+                        $sqlcoord = "SELECT docidentidad, CONCAT(u.apellidos,' ',u.nombres) AS nomcoord, u.email, u.pass, u.estado, u.cant_est, CONCAT(i.nombre,' de ',i.mpio) AS iesnom, nit FROM users_coord u, ies i WHERE (u.tipo = 'C') AND (idIES = IES_idIES) ORDER BY nomcoord, iesnom";
                         echo "<div class='row mb-3'><div class='col-lg-9 nav-brad text-success'><h3><i class='bi bi-person-video3'></i> Coordinadores</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
                         <button class='btn btn-success' id='bnuevocoord'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
                         </div>
@@ -71,6 +71,7 @@ if (isset($_SESSION['usuario'])) {
                                         <th scope="col">Estado</th>
                                         <th scope="col">Cant. Estudiantes</th>
                                         <th scope="col">IE's</th>
+                                        <th scope="col">Nit.</th>
                                         <th scope="col">Operaciones</th>
                                     </tr>
                                 </thead>
@@ -88,9 +89,10 @@ if (isset($_SESSION['usuario'])) {
                                         echo "<td>" . $row['estado'] . "</td>";
                                         echo "<td>" . $row['cant_est'] . "</td>";
                                         echo "<td>" . mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') . "</td>";
+                                        echo "<td>" . $row['nit'] . "</td>";
                                         echo "<td>
                                     <button class='btn btn-primary btn-sm' onclick=\"habilitar_coord('" . $row['docidentidad'] . "','" . $row['nomcoord'] . "');\"><i class='bi bi-eye'></i> Habilitar</button>
-                                    <button class='btn btn-warning btn-sm' onclick=\"update_coord('" . $row['docidentidad'] . "','".mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') ."');\"><i class='bi bi-pencil-fill'></i> Editar</button>
+                                    <button class='btn btn-warning btn-sm' onclick=\"update_coord('" . $row['docidentidad'] . "','" . mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') . "');\"><i class='bi bi-pencil-fill'></i> Editar</button>
                                     <button class='btn btn-danger btn-sm' onclick='delete_coord(" . $row['docidentidad'] . ")'><i class='bi bi-trash-fill'></i> Borrar</button>";
                                         echo "</td></tr>";
                                         $i++;
@@ -123,11 +125,11 @@ if (isset($_SESSION['usuario'])) {
                             </div>
                             <div class="col-8 mb-2">
                                 <p class="text-start">Nombres</p>
-                                <input type="text" name="nom" id="nom" class="form-control" required>
+                                <input type="text" name="nom" id="nom" class="form-control" style="text-transform:uppercase" required>
                             </div>
                             <div class="col-8 mb-2">
                                 <p class="text-start">Apellidos</p>
-                                <input type="text" name="apel" id="apel" class="form-control" required>
+                                <input type="text" name="apel" id="apel" class="form-control" style="text-transform:uppercase" required>
                             </div>
                             <div class="col-10 mb-2">
                                 <p class="text-start">E-mail</p>
@@ -155,6 +157,11 @@ if (isset($_SESSION['usuario'])) {
                                 </select>
                             </div>
 
+                            <div class="col-8 mb-2">
+                                <p class="text-start">Nit. - Ins. Educativa:</p>
+                                <input type="number" name="nit" id="nit" class="form-control" pattern="\d*" required>
+                            </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
@@ -178,8 +185,9 @@ if (isset($_SESSION['usuario'])) {
                         <form action="update_coord.php" method="post">
                             <input type="hidden" name="udocicoord">
                             <div class="row mb-2">
-                                <p class="text-start" id="eidcoord">Doc. identidad:</p><hr>
-                            </div> 
+                                <p class="text-start" id="eidcoord">Doc. identidad:</p>
+                                <hr>
+                            </div>
                             <div class="col-8 mb-2">
                                 <p class="text-start">Nombres:</p>
                                 <input type="text" name="enom" id="enom" class="form-control" style="text-transform:uppercase" required>
@@ -196,7 +204,12 @@ if (isset($_SESSION['usuario'])) {
                                 <p class="text-start">Cant. Estudiantes:</p>
                                 <input type="number" name="ucant" id="ucant" class="form-control" required>
                             </div>
-
+                            
+                            <div class="col-8 mb-2">
+                                <p class="text-start">Nit. - Ins. Educativa:</p>
+                                <input type="number" name="enit" id="enit" class="form-control" pattern="\d*" required>
+                            </div>
+                            
                             <div class="col-12 mb-2">
                                 <p class="text-start">IE's:</p>
                                 <p class="text-primary" id="col"></p>
@@ -338,24 +351,25 @@ if (isset($_SESSION['usuario'])) {
     }
 
     function update_coord(id, col) {
-            $('#nuevocoord').modal('hide');
-                $.ajax({
-                url: 'get_coord.php',
-                type: 'POST',
-                data: {
-                    id: id
-                },
-                success: function(response) {
-                    const coord = JSON.parse(response);
-                    $('#eidcoord').html("Doc. identidad: <b class='text-primary'>"+coord.docidentidad+"</b>");
-                    $('input[name="udocicoord"]').val(coord.docidentidad);
-                    $('#enom').val(coord.nombres);
-                    $('#eapel').val(coord.apellidos);
-                    $('#edmail').val(coord.email);
-                    $('#col').text(col);
-                    $('#ucant').val(coord.cant_est);
-                    $('#editarcoord').modal('show');
-                }
-            });
-        }
+        $('#nuevocoord').modal('hide');
+        $.ajax({
+            url: 'get_coord.php',
+            type: 'POST',
+            data: {
+                id: id
+            },
+            success: function(response) {
+                const coord = JSON.parse(response);
+                $('#eidcoord').html("Doc. identidad: <b class='text-primary'>" + coord.docidentidad + "</b>");
+                $('input[name="udocicoord"]').val(coord.docidentidad);
+                $('#enom').val(coord.nombres);
+                $('#eapel').val(coord.apellidos);
+                $('#edmail').val(coord.email);
+                $('#col').text(col);
+                $('#ucant').val(coord.cant_est);
+                $('#enit').val(coord.nit);
+                $('#editarcoord').modal('show');
+            }
+        });
+    }
 </script>

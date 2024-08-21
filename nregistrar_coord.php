@@ -35,6 +35,7 @@ $estado = 'I';
 $tipo = 'C';
 $can_est = 0;
 $idies = $_POST['lies'];
+$nit = $_POST['nit'];
 
 $sql_evaldoci = "SELECT * FROM users_coord WHERE (docidentidad = $doci) or (email = '$mail')";
 $res_evaldoci = $con->query($sql_evaldoci);
@@ -46,7 +47,7 @@ if ($filas > 0) {
     });
     </script>";
 } else {
-    $sql = "INSERT INTO users_coord (docidentidad, nombres, apellidos, email, pass, estado, tipo, cant_est, IES_idIES) VALUES ($doci, '$nom', '$apel', '$mail', '$pass', '$estado', '$tipo', $can_est, $idies)";
+    $sql = "INSERT INTO users_coord (docidentidad, nombres, apellidos, email, pass, estado, tipo, cant_est, nit, IES_idIES) VALUES ($doci, '$nom', '$apel', '$mail', '$pass', '$estado', '$tipo', $can_est, '$nit',$idies)";
     $con->query($sql);
     echo "<script>   
     swal({text: 'Coordinador registrado con éxito !!!', title: 'Olimpiadas Maths',}).then((value) => {
@@ -55,8 +56,7 @@ if ($filas > 0) {
     </script>";
 }
 $con->close();
-// se debe enviar un correo al coordinador informando que ha sido habilitado con sus credenciales y link de acceso 
-//header('location: index.php');
+
 ?>
 </body>
 </html>

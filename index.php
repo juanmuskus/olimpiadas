@@ -114,7 +114,12 @@
                 // Cargar las IES de acuerdo al municipio seleccionado
               </select>
             </div>
-
+            
+            <div class="col-8 mb-2">
+              <p class="text-start">Nit. - Ins. Educativa:</p>
+              <input type="number" name="nit" id="nit" class="form-control" pattern="\d*" required>
+            </div>
+            
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
