@@ -36,6 +36,7 @@ $tipo = 'C';
 $can_est = 0;
 $idies = $_POST['lies'];
 $nit = $_POST['nit'];
+$lugar = $_POST['lugar'];
 
 $sql_evaldoci = "SELECT * FROM users_coord WHERE (docidentidad = $doci) or (email = '$mail')";
 $res_evaldoci = $con->query($sql_evaldoci);
@@ -47,7 +48,7 @@ if ($filas > 0) {
     });
     </script>";
 } else {
-    $sql = "INSERT INTO users_coord (docidentidad, nombres, apellidos, email, pass, estado, tipo, cant_est, nit, IES_idIES) VALUES ($doci, '$nom', '$apel', '$mail', '$pass', '$estado', '$tipo', $can_est, '$nit',$idies)";
+    $sql = "INSERT INTO users_coord (docidentidad, nombres, apellidos, email, pass, estado, tipo, cant_est, nit, lugar, IES_idIES) VALUES ($doci, '$nom', '$apel', '$mail', '$pass', '$estado', '$tipo', $can_est, '$nit', '$lugar', $idies)";
     $con->query($sql);
     echo "<script>   
     swal({text: 'Coordinador registrado con éxito !!!', title: 'Olimpiadas Maths',}).then((value) => {

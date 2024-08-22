@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/signin.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/index.js"></script>
   <title>Unicordoba - Olimpiadas Maths <?php echo date('Y'); ?></title>
@@ -68,7 +68,7 @@
 
   <!-- Modal: Coord -->
   <div class="modal fade" id="coord" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Olimpiadas - Math</h5>
@@ -81,19 +81,23 @@
               <p class="text-start">Doc. identidad</p>
               <input type="number" name="doci" id="doci" class="form-control" required>
             </div>
-            <div class="col-8 mb-2">
+            <div class="row">
+            <div class="col-6 mb-2">
               <p class="text-start">Nombres</p>
               <input type="text" name="nom" id="nom" class="form-control" style="text-transform:uppercase" required>
             </div>
-            <div class="col-8 mb-2">
+            <div class="col-6 mb-2">
               <p class="text-start">Apellidos</p>
               <input type="text" name="apel" id="apel" class="form-control" style="text-transform:uppercase" required>
             </div>
-            <div class="col-10 mb-2">
+            </div>
+            <div class="col-8 mb-2">
               <p class="text-start">E-mail</p>
               <input type="mail" name="cmail" id="cmail" class="form-control" required>
             </div>
-            <div class="col-6 mb-2">
+            
+            <div class="row mt-3">  
+            <div class="col-4 mb-2">
               <p class="text-start">Municipio:</p>
               <select name="mpio" id="mpio" class="form-control" required>
                 <?php
@@ -108,18 +112,32 @@
               </select>
             </div>
 
-            <div class="col-12 mb-2">
+            <div class="col-8 mb-2">
               <p class="text-start">IE's:</p>
               <select name="lies" id="lies" class="form-control" required>
                 // Cargar las IES de acuerdo al municipio seleccionado
               </select>
             </div>
-            
-            <div class="col-8 mb-2">
+            </div>
+
+            <div class="row mt-3">
+            <div class="col-6 mb-2">
+              <p class="text-start">Modalidad y lugar de Presentación - Fase 1:</p>
+              <select name="lugar" id="lugar" class='form-control' required>
+                <option value="Virtual" selected>Virtual</option>
+                <option value="Montelíbano">Montelíbano</option>
+                <option value="Berástegui">Berástegui</option>
+                <option value="Lorica">Lorica</option>
+                <option value="Sahagún">Sahagún</option>
+              </select>
+            </div>
+
+            <div class="col-6 mb-2">
               <p class="text-start">Nit. - Ins. Educativa:</p>
               <input type="number" name="nit" id="nit" class="form-control" pattern="\d*" required>
             </div>
-            
+            </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
@@ -183,7 +201,7 @@
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Cerrar</button>
         </div>
       </div>
     </div>

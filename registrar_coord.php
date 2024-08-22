@@ -15,12 +15,13 @@
     $nom = $_POST['nom'];
     $apel = $_POST['apel'];
     $mail = $_POST['cmail'];
-    $pass = 'Unicor@'.date('yy');
+    $pass = 'Unicor@'.date('Y');
     $estado = 'I';
     $tipo = 'C';
     $can_est = 0;
     $idies = $_POST['lies'];
     $nit = $_POST['nit'];
+    $lugar = $_POST['lugar'];
 
     $sql_evaldoci = "SELECT * FROM users_coord WHERE (docidentidad = $doci) or (email = '$mail')";
     $res_evaldoci = $con->query($sql_evaldoci);
@@ -32,7 +33,7 @@
     });
     </script>";
     } else {
-        $sql = "INSERT INTO users_coord (docidentidad, nombres, apellidos, email, pass, estado, tipo, cant_est, nit, IES_idIES) VALUES ($doci, '$nom', '$apel', '$mail', '$pass', '$estado', '$tipo', $can_est, '$nit', $idies)";
+        $sql = "INSERT INTO users_coord (docidentidad, nombres, apellidos, email, pass, estado, tipo, cant_est, nit, lugar, IES_idIES) VALUES ($doci, '$nom', '$apel', '$mail', '$pass', '$estado', '$tipo', $can_est, '$nit', '$lugar', $idies)";
         $con->query($sql);
         include 'sendmail.php';
         //traer el nombre y mpio de la IES
