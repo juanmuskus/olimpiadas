@@ -29,14 +29,14 @@ if (isset($_SESSION['usuario'])) {
 // update estudiante
 include 'conexion.php';
 $doci = $_POST['udoci'];
-$nom1 = $_POST['unom1'];
+$nom1 = strtoupper($_POST['unom1']);
 if (!empty($_POST['unom2']))
-    $nom2 = $_POST['unom2'];
+    $nom2 = strtoupper($_POST['unom2']);
 else
     $nom2 = ' ';
-$apel1 = $_POST['uapel1'];
+$apel1 = strtoupper($_POST['uapel1']);
 if (!empty($_POST['uapel2']))
-    $apel2 = $_POST['uapel2'];
+    $apel2 = strtoupper($_POST['uapel2']);
 else
     $apel2 = ' ';
 $grado = $_POST['ugrado'];

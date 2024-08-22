@@ -12,8 +12,8 @@
     <?php
     include('conexion.php');
     $doci = $_POST['doci'];
-    $nom = $_POST['nom'];
-    $apel = $_POST['apel'];
+    $nom = strtoupper($_POST['nom']);
+    $apel = strtoupper($_POST['apel']);
     $mail = $_POST['cmail'];
     $pass = 'Unicor@'.date('Y');
     $estado = 'I';

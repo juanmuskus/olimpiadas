@@ -82,7 +82,7 @@ if (isset($_SESSION['usuario'])) {
                                     echo "<tr>";
                                     echo "<td>" . $i . "</td>";
                                     echo "<td>" . $row['doc'] . "</td>";
-                                    echo "<td>" . $row['nombre1'] . " " . $row['nombre1'] . "</td>";
+                                    echo "<td>" . $row['nombre1'] . " " . $row['nombre2'] . "</td>";
                                     echo "<td>" . $row['apellido1'] . " " . $row['apellido2'] . "</td>";
                                     echo "<td>" . $row['grado'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
@@ -156,6 +156,7 @@ if (isset($_SESSION['usuario'])) {
         <!-- /#page-content-wrapper -->
 
     </div>
+
     <!-- Modal nuevo -->
     <div class="modal fade" id="new_est" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

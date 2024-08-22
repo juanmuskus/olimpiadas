@@ -27,8 +27,8 @@ if (isset($_SESSION['usuario'])) {
 <?php 
 include('conexion.php');
 $doci = $_POST['doci'];
-$nom = $_POST['nom'];
-$apel = $_POST['apel'];
+$nom = strtoupper($_POST['nom']);
+$apel = strtoupper($_POST['apel']);
 $mail = $_POST['cmail'];
 $pass = md5($doci);
 $estado = 'I';

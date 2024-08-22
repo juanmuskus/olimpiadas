@@ -29,14 +29,14 @@ if (isset($_SESSION['usuario'])) {
 include("conexion.php");
 // evaluar campos
 $doci = $_POST['doci'];
-$nom1 = $_POST['nom1'];
+$nom1 = strtoupper($_POST['nom1']);
 if (!empty($_POST['nom2']))
-    $nom2 = $_POST['nom2'];
+    $nom2 = strtoupper($_POST['nom2']);
 else
     $nom2 = ' ';
-$ape1 = $_POST['apel1'];
+$ape1 = strtoupper($_POST['apel1']);
 if (!empty($_POST['apel2']))
-    $ape2 = $_POST['apel2'];
+    $ape2 = strtoupper($_POST['apel2']);
 else
     $ape2 = ' ';
 $grado = $_POST['grado'];

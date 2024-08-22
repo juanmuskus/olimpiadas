@@ -27,8 +27,8 @@ if (isset($_SESSION['usuario'])) {
 <?php 
 include('conexion.php');
 $codigo = $_POST['cod'];
-$mpio = $_POST['mpio'];
-$nom = $_POST['nomie'];
+$mpio = strtoupper($_POST['mpio']);
+$nom = strtoupper($_POST['nomie']);
 $tipo = $_POST['tipo'];
 
 $sql_evalcodigo = "SELECT * FROM ies WHERE idIES = $codigo";

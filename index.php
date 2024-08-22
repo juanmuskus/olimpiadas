@@ -82,60 +82,60 @@
               <input type="number" name="doci" id="doci" class="form-control" required>
             </div>
             <div class="row">
-            <div class="col-6 mb-2">
-              <p class="text-start">Nombres</p>
-              <input type="text" name="nom" id="nom" class="form-control" style="text-transform:uppercase" required>
-            </div>
-            <div class="col-6 mb-2">
-              <p class="text-start">Apellidos</p>
-              <input type="text" name="apel" id="apel" class="form-control" style="text-transform:uppercase" required>
-            </div>
+              <div class="col-6 mb-2">
+                <p class="text-start">Nombres</p>
+                <input type="text" name="nom" id="nom" class="form-control" style="text-transform:uppercase" required>
+              </div>
+              <div class="col-6 mb-2">
+                <p class="text-start">Apellidos</p>
+                <input type="text" name="apel" id="apel" class="form-control" style="text-transform:uppercase" required>
+              </div>
             </div>
             <div class="col-8 mb-2">
               <p class="text-start">E-mail</p>
               <input type="mail" name="cmail" id="cmail" class="form-control" required>
             </div>
-            
-            <div class="row mt-3">  
-            <div class="col-4 mb-2">
-              <p class="text-start">Municipio:</p>
-              <select name="mpio" id="mpio" class="form-control" required>
-                <?php
-                include 'conexion.php';
-                $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
-                $result = $con->query($sql);
-                while ($mostrar = mysqli_fetch_array($result))
-                  echo '<option value="' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '">' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '</option>';
-                // cerrar la conexión
-                $con->close();
-                ?>
-              </select>
-            </div>
 
-            <div class="col-8 mb-2">
-              <p class="text-start">IE's:</p>
-              <select name="lies" id="lies" class="form-control" required>
-                // Cargar las IES de acuerdo al municipio seleccionado
-              </select>
-            </div>
+            <div class="row mt-3">
+              <div class="col-4 mb-2">
+                <p class="text-start">Municipio:</p>
+                <select name="mpio" id="mpio" class="form-control" required>
+                  <?php
+                  include 'conexion.php';
+                  $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
+                  $result = $con->query($sql);
+                  while ($mostrar = mysqli_fetch_array($result))
+                    echo '<option value="' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '">' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '</option>';
+                  // cerrar la conexión
+                  $con->close();
+                  ?>
+                </select>
+              </div>
+
+              <div class="col-8 mb-2">
+                <p class="text-start">IE's:</p>
+                <select name="lies" id="lies" class="form-control" required>
+                  // Cargar las IES de acuerdo al municipio seleccionado
+                </select>
+              </div>
             </div>
 
             <div class="row mt-3">
-            <div class="col-6 mb-2">
-              <p class="text-start">Modalidad y lugar de Presentación - Fase 1:</p>
-              <select name="lugar" id="lugar" class='form-control' required>
-                <option value="Virtual" selected>Virtual</option>
-                <option value="Montelíbano">Montelíbano</option>
-                <option value="Berástegui">Berástegui</option>
-                <option value="Lorica">Lorica</option>
-                <option value="Sahagún">Sahagún</option>
-              </select>
-            </div>
+              <div class="col-6 mb-2">
+                <p class="text-start">Modalidad y lugar de Presentación - Fase 1:</p>
+                <select name="lugar" id="lugar" class='form-control' required>
+                  <option value="Virtual" selected>Virtual</option>
+                  <option value="Montelíbano">Montelíbano</option>
+                  <option value="Berástegui">Berástegui</option>
+                  <option value="Lorica">Lorica</option>
+                  <option value="Sahagún">Sahagún</option>
+                </select>
+              </div>
 
-            <div class="col-6 mb-2">
-              <p class="text-start">Nit. - Ins. Educativa:</p>
-              <input type="number" name="nit" id="nit" class="form-control" pattern="\d*" required>
-            </div>
+              <div class="col-6 mb-2">
+                <p class="text-start">Nit. - Ins. Educativa:</p>
+                <input type="number" name="nit" id="nit" class="form-control" pattern="\d*" required>
+              </div>
             </div>
 
         </div>
@@ -177,14 +177,14 @@
                   </ul>
                   </p>
                   <p class="text-start">De forma presencial el <b>4 de octubre</b> en las sedes de la Universidad de Córdoba</p>
-                  <p class="text-start"> 
+                  <p class="text-start">
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item text-success text-start">Montelíbano de 3 pm a 5 pm</li>
                     <li class="list-group-item text-success text-start">Berástegui de 3 pm a 5 pm</li>
                     <li class="list-group-item text-success text-start">Lorica de 10 am a 12 m</li>
                     <li class="list-group-item text-success text-start">Sahagún de 10 am a 12 m</li>
                   </ul>
-                  </p> 
+                  </p>
                   <p class="text-start">La modalidad (presencial o virtual) deberá ser escogida por el delegado de cada colegio al momento de realizar la inscripción.</p>
                 </td>
               </tr>
@@ -207,11 +207,43 @@
     </div>
   </div>
 
-      <!-- WHATSAPP -->
-      <a target="_blank" href="https://wa.me/+573015920775?text=Hola,%20Estoy%20intresado%20en%20las%20Olimpiadas%20de%20Matemáticas"
-      class="whatsapp-button"><i class="bi bi-whatsapp"></i></a>
-      <!-- FIN WHATSAPP -->
+  <!-- WHATSAPP -->
+  <a target="_blank" href="https://wa.me/+573015920775?text=Hola,%20Estoy%20intresado%20en%20las%20Olimpiadas%20de%20Matemáticas"
+    class="whatsapp-button"><i class="bi bi-whatsapp"></i></a>
+  <!-- FIN WHATSAPP -->
 
+  <!-- AYUDA -->
+  <button class="corner-button" id="botonayuda"><i class="bi bi-question-square-fill"></i> Ayuda</button>
+  <!-- -->
+
+  <!-- AYUDA - Videos -->
+  <div class="modal fade" id="ayuda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Ayuda - Video Tutoriales</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12" style="height: 250px;">
+            <p class="text-primary fs-5">Inscripción de Coordinadores IE's</p>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/lB48u4fZagk?si=r0yzDq9qZSjq7W6w" title="Ayuda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style=''></iframe>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12" style="height: 250px;">
+            <p class="text-primary fs-5">Registro de Estudiantes</p>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/imwxIgu-2HI?si=VHZjWoJri6qQiR_m" title="Ayuda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style=''></iframe>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer mt-5">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
@@ -219,50 +251,77 @@
   $(document).ready(function() {
     $('#anuncio').modal('show');
   });
+
+  $('#botonayuda').click(function() {
+    $('#ayuda').modal('show');
+  });
 </script>
 <style>
   .whatsapp-button {
-        position: fixed;
-        bottom: 30px;
-        right: 15px;
-        z-index: 99;
-        background-color: #25d366;
-        border-radius: 50px;
-        color: #ffffff;
-        text-decoration: none;
-        width: 50px;
-        height: 50px;
-        font-size: 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        -webkit-box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 1);
-        -moz-box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 1);
-        box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 1);
-        animation: effect 5s infinite ease-in;
+    position: fixed;
+    bottom: 30px;
+    right: 15px;
+    z-index: 99;
+    background-color: #25d366;
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 1);
+    animation: effect 5s infinite ease-in;
+  }
+
+  @keyframes effect {
+
+    20%,
+    100% {
+      width: 50px;
+      height: 50px;
+      font-size: 30px;
     }
 
-    @keyframes effect {
-
-        20%,
-        100% {
-            width: 50px;
-            height: 50px;
-            font-size: 30px;
-        }
-
-        0%,
-        10% {
-            width: 55px;
-            height: 55px;
-            font-size: 35px;
-        }
-
-        5% {
-            width: 50px;
-            height: 50px;
-            font-size: 30px;
-        }
+    0%,
+    10% {
+      width: 55px;
+      height: 55px;
+      font-size: 35px;
     }
+
+    5% {
+      width: 50px;
+      height: 50px;
+      font-size: 30px;
+    }
+  }
+
+  .corner-button {
+    font-family: inherit;
+    letter-spacing: 0.02rem;
+    cursor: pointer;
+    background: transparent;
+    border: 0.2rem solid currentColor;
+    padding: 0.5rem 0.6rem;
+    font-size: 1em;
+    color: olive;
+    position: fixed;
+    transition: color 0.3s;
+    z-index: 1;
+    top: 1em;
+    left: 1em;
+    border-radius: 5px;
+    /* zoom: .4; */
+  }
+
+  .corner-button:hover {
+    color: #00c509;
+    background: #f8f9fa;
+  }
 </style>
