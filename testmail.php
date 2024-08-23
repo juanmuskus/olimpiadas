@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 require 'vendor/autoload.php';
 
 $mail = new PHPMailer(true); // Passing `true` enables exceptions
-$mail->From = 'jmuskus@correo.unicordoba.edu.co'; // Dirección de correo remitente
+$mail->From = 'admin@olimpiadasmatunicordoba.com.co'; // Dirección de correo remitente
 $mail->FromName = 'Olimpiadas de Matemáticas'; // Nombre del remitente
 $mail->AddReplyTo('cbanquet@correo.unicordoba.edu.co'); // Dirección de correo para respuestas
 //principal

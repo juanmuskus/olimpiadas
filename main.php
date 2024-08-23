@@ -135,7 +135,7 @@ if (isset($_SESSION['usuario'])) {
                                     echo "<td>" . $row['apellido1'] . " " . $row['apellido2'] . "</td>";
                                     echo "<td>" . $row['grado'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
-                                    echo "<td>" . mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') . "</td>";
+                                    echo "<td>" . $row['iesnom'] . "</td>";
                                     echo "<td>
                                     <button class='btn btn-warning btn-sm' onclick=\"update_est('" . $row['doc'] . "','" . $row['nombre1'] . "','" . $row['nombre2'] . "','" . $row['apellido1'] . "','" . $row['apellido2'] . "','" . $row['grado'] . "','" . $row['email'] . "');\"><i class='bi bi-pencil-square'></i> Editar</button> 
                                     <button class='btn btn-danger btn-sm' onclick='delete_est(" . $row['doc'] . ")'><i class='bi bi-trash-fill'></i> Eliminar</button></td>";
@@ -231,7 +231,7 @@ if (isset($_SESSION['usuario'])) {
                                         $sqlnomies = "SELECT nombre, mpio FROM ies WHERE idIES = $id_ies";
                                         $result = $con->query($sqlnomies);
                                         foreach ($result as $row)
-                                            $nomies = "<b>" . iconv('UTF-8', 'ISO-8859-1', $row['nombre']) . "</b> de <b>" . mb_convert_encoding($row['mpio'], 'UTF-8', 'ISO-8859-1') . "</b>";
+                                            $nomies = "<b>" . $row['nombre'] . "</b> de <b>" . $row['mpio'] . "</b>";
                                         $con->close();
                                         ?>
                                         <p class="text-primary"><?php echo $nomies; ?></p>
@@ -329,7 +329,7 @@ if (isset($_SESSION['usuario'])) {
                                         $sqlnomies = "SELECT nombre, mpio FROM ies WHERE idIES = $id_ies";
                                         $result = $con->query($sqlnomies);
                                         foreach ($result as $row)
-                                            $nomies = "<b>" . iconv('UTF-8', 'ISO-8859-1', $row['nombre']) . "</b> de <b>" . mb_convert_encoding($row['mpio'], 'UTF-8', 'ISO-8859-1') . "</b>";
+                                            $nomies = "<b>" . $row['nombre'] . "</b> de <b>" . $row['mpio'] . "</b>";
                                         $con->close();
                                         ?>
                                         <p class="text-primary"><?php echo $nomies; ?></p>
@@ -426,7 +426,7 @@ if (isset($_SESSION['usuario'])) {
                                         $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
                                         $result = $con->query($sql);
                                         while ($mostrar = mysqli_fetch_array($result))
-                                            echo '<option value="' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '">' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '</option>';
+                                            echo '<option value="' . $mostrar['mpio'], 'UTF-8', 'ISO-8859-1' . '">' . $mostrar['mpio'] . '</option>';
                                         // cerrar la conexión
                                         $con->close();
                                         ?>
@@ -462,10 +462,10 @@ if (isset($_SESSION['usuario'])) {
 </body>
 
 </html>
-<link href="dataTables/datatables.min.css" rel="stylesheet">
-<script src="dataTables/datatables.min.js"></script>
+<link href="datatables/datatables.min.css" rel="stylesheet">
+<script src="datatables/datatables.min.js"></script>
 <link rel="stylesheet" href="datatables/buttons.bootstrap5.min.css">
-<script src="dataTables/dataTables.buttons.min.js"></script>
+<script src="datatables/dataTables.buttons.min.js"></script>
 <script src="datatables/buttons.bootstrap5.min.js"></script>
 <script src="datatables/pdfmake.min.js"></script>
 <script src="datatables/jszip.min.js"></script>

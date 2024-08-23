@@ -11,7 +11,7 @@
                             $mpio = $row['mpio'];
                         }
                         ?>
-                        <small>La IE <b><?php echo iconv('UTF-8', 'ISO-8859-1', $nomies).'</b> de <b>'.mb_convert_encoding($mpio,'UTF-8', 'ISO-8859-1'); ?></b>
+                        <small>La IE <b><?php echo $nomies.'</b> de <b>'.$mpio; ?></b>
                         posee un cupo de inscripción de <b><?php echo $_SESSION['cant_est'];?></b> estudiantes.</small>
                     </div>
                 </div>

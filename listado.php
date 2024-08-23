@@ -72,10 +72,10 @@ if (isset($_SESSION['usuario'])) {
 			$html .= '<td>' . $rows["email"] . '</td>';
 			$html .= '<td>' . $rows["password"] . '</td>';
 			$html .= '<td>' . $rows["country"] . '</td>';
-			$html .= '<td>' . mb_convert_encoding($rows['nombre'], 'UTF-8', 'ISO-8859-1').' '. mb_convert_encoding($rows['mpio'], 'UTF-8', 'ISO-8859-1') .'</td>';
+			$html .= '<td>' . $rows['nombre'].' '. $rows['mpio'] .'</td>';
 			$html .= '<td>' . $rows["course1"] . '</td>';
 			$html .= '<td>' . $rows["type1"] . '</td>';
-			$html .= '<td>' . mb_convert_encoding($rows['group1'], 'UTF-8', 'ISO-8859-1') . '</td>';
+			$html .= '<td>' . $rows['group1'] . '</td>';
 			$html .= '</tr>';;
 		}
 		// Configuración en la cabecera

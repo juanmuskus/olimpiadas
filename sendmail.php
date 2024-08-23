@@ -13,10 +13,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 function notificar_cta($nom, $ie, $pmail){
     $mail = new PHPMailer(); // Passing `true` enables exceptions
-    $mail->From = 'cbanquet@correo.unicordoba.edu.co'; // Dirección de correo remitente
+    $mail->From = 'admin@olimpiadasmatunicordoba.com.co'; // Dirección de correo remitente
     $mail->FromName = 'Olimpiadas de Matemáticas'; // Nombre del remitente
     //principal
     $mail->AddAddress(trim($pmail)); // Dirección del destinatario y nombre
+    $mail->AddReplyTo('cbanquet@correo.unicordoba.edu.co');
     $mail->Subject = 'Notificación - Olimpiadas de Matemáticas';
     $html = "<style>p{font-family: tahoma;}</style>
     <img src='https://www.unicordoba.edu.co/wp-content/uploads/2018/11/unicordoba_logo1.png'>
@@ -53,10 +54,11 @@ function notificar_cta($nom, $ie, $pmail){
 
 function recovery_cta($nom, $pass, $pmail){
     $mail = new PHPMailer(); // Passing `true` enables exceptions
-    $mail->From = 'cbanquet@correo.unicordoba.edu.co'; // Dirección de correo remitente
+    $mail->From = 'admin@olimpiadasmatunicordoba.com.co'; // Dirección de correo remitente
     $mail->FromName = 'Olimpiadas de Matemáticas'; // Nombre del remitente
     //principal
     $mail->AddAddress(trim($pmail)); // Dirección del destinatario y nombre
+    $mail->AddReplyTo('cbanquet@correo.unicordoba.edu.co');
     $mail->Subject = 'Recuperación Contraseña - Olimpiadas de Matemáticas';
     $html = "<style>p{font-family: tahoma;}</style>
     <img src='https://www.unicordoba.edu.co/wp-content/uploads/2018/11/unicordoba_logo1.png'>
@@ -92,12 +94,13 @@ function recovery_cta($nom, $pass, $pmail){
     $mail->Send();
 }
 
-function habilitar_cta($nom, $pass, $pmail){
+function habilitar_cta($nom, $pass, $pmail, $cant, $lugar){
     $mail = new PHPMailer(); // Passing `true` enables exceptions
-    $mail->From = 'cbanquet@correo.unicordoba.edu.co'; // Dirección de correo remitente
+    $mail->From = 'admin@olimpiadasmatunicordoba.com.co'; // Dirección de correo remitente
     $mail->FromName = 'Olimpiadas de Matemáticas'; // Nombre del remitente
     //principal
     $mail->AddAddress(trim($pmail)); // Dirección del destinatario y nombre
+    $mail->AddReplyTo('cbanquet@correo.unicordoba.edu.co');
     $mail->Subject = 'Cuenta Habilitada - Olimpiadas de Matemáticas';
     $html = "<style>p{font-family: tahoma;}</style>
     <img src='https://www.unicordoba.edu.co/wp-content/uploads/2018/11/unicordoba_logo1.png'>
@@ -109,6 +112,8 @@ function habilitar_cta($nom, $pass, $pmail){
     <p>Te informamos que tu cuenta ha sido <b>habilitada</b>, tus credenciales de acceso son los siguientes:</p>
     <p>Usuario: <b>".$pmail."</b></p>
     <p>Contraseña: <b>".$pass."</b></p>
+    <p>Se asignó un cupo de inscripción para tu institución educativa de <b>".$cant."</b> estudiantes .</p>
+    <p>Modalidad / Ubicación de la fase 1: <b>".$lugar."</b></p>
     <p>Te recomendamos cambiar tu contraseña en cuanto inicies sesión por seguridad. Para acceder a tu cuenta, por favor ingresa en el siguiente enlace:</p>
     <p><a href='https://olimpiadasmatunicordoba.com.co/' target='_blank'>Olimpiadas de Matemáticas - Universidad de Córdoba</p>
     <p>Si tiene alguna pregunta o inquietud, no dude en informar al correo: <b style='color:navy'><a href='mailto:cbanquet@correo.unicordoba.edu.co'>cbanquet@correo.unicordoba.edu.co</a></b> .Estamos a su disposición para ayudarle en lo que necesite.</p>

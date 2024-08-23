@@ -38,7 +38,9 @@ $nom = $row_coord['nombres'];
 $apel = $row_coord['apellidos'];
 $mail = $row_coord['email'];
 $pass = $row_coord['pass'];
-habilitar_cta($nom . " " . $apel, $pass, $mail);
+$cant = $row_coord['cant_est'];
+$lugar = $row_coord['lugar'];
+habilitar_cta($nom . " " . $apel, $pass, $mail, $cant, $lugar);
 echo "<script>
     swal({text: 'Coordinador habilitado con éxito', title: 'Olimpiadas Maths',}).then((value) => {
     window.location= 'coord.php';

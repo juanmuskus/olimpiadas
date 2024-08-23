@@ -20,8 +20,8 @@ if (isset($_SESSION['usuario'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" >
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -90,11 +90,11 @@ if (isset($_SESSION['usuario'])) {
                                         echo "<td>" . $row['estado'] . "</td>";
                                         echo "<td>" . $row['cant_est'] . "</td>";
                                         echo "<td>" . $row['lugar'] . "</td>";
-                                        echo "<td>" . mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') . "</td>";
+                                        echo "<td>" . $row['iesnom'] . "</td>";
                                         echo "<td>" . $row['nit'] . "</td>";
                                         echo "<td>
                                     <button class='btn btn-primary btn-sm' onclick=\"habilitar_coord('" . $row['docidentidad'] . "','" . $row['nomcoord'] . "');\"><i class='bi bi-eye'></i> Habilitar</button>
-                                    <button class='btn btn-warning btn-sm' onclick=\"update_coord('" . $row['docidentidad'] . "','" . mb_convert_encoding($row['iesnom'], 'UTF-8', 'ISO-8859-1') . "');\"><i class='bi bi-pencil-fill'></i> Editar</button>
+                                    <button class='btn btn-warning btn-sm' onclick=\"update_coord('" . $row['docidentidad'] . "','" . $row['iesnom'] . "');\"><i class='bi bi-pencil-fill'></i> Editar</button>
                                     <button class='btn btn-danger btn-sm' onclick='delete_coord(" . $row['docidentidad'] . ")'><i class='bi bi-trash-fill'></i> Borrar</button>";
                                         echo "</td></tr>";
                                         $i++;
@@ -151,7 +151,7 @@ if (isset($_SESSION['usuario'])) {
                                         $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
                                         $result = $con->query($sql);
                                         while ($mostrar = mysqli_fetch_array($result))
-                                            echo '<option value="' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '">' . mb_convert_encoding($mostrar['mpio'], 'UTF-8', 'ISO-8859-1') . '</option>';
+                                            echo '<option value="' . $mostrar['mpio'] . '">' . $mostrar['mpio'] . '</option>';
                                         // cerrar la conexión
                                         $con->close();
                                         ?>
@@ -268,10 +268,10 @@ if (isset($_SESSION['usuario'])) {
 </body>
 
 </html>
-<link href="dataTables/datatables.min.css" rel="stylesheet">
-<script src="dataTables/datatables.min.js"></script>
+<link href="datatables/datatables.min.css" rel="stylesheet">
+<script src="datatables/datatables.min.js"></script>
 <link rel="stylesheet" href="datatables/buttons.bootstrap5.min.css">
-<script src="dataTables/dataTables.buttons.min.js"></script>
+<script src="datatables/dataTables.buttons.min.js"></script>
 <script src="datatables/buttons.bootstrap5.min.js"></script>
 <script src="datatables/pdfmake.min.js"></script>
 <script src="datatables/jszip.min.js"></script>
