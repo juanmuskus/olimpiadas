@@ -54,7 +54,7 @@ if (isset($_SESSION['usuario'])) {
                     include 'aviso.php';
                     // query x Ies
                     $idies = $_SESSION['id_ies'];
-                    $sql = "SELECT * FROM estudiantes WHERE (IES_idIES = $idies) ORDER BY grado, apellido1 DESC";
+                    $sql = "SELECT e.*, lugar FROM estudiantes e, users_coord i  WHERE (i.IES_idIES = e.IES_idIES) and (IES_idIES = $idies) ORDER BY grado, apellido1 DESC";
                     echo "<div class='row'><div class='col-lg-9 nav-brad text-primary'><h3><i class='bi bi-people-fill'></i> Estudiantes</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
                     <button class='btn btn-success' id = 'bnuevo'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
                     </div>
@@ -86,6 +86,7 @@ if (isset($_SESSION['usuario'])) {
                                     echo "<td>" . $row['apellido1'] . " " . $row['apellido2'] . "</td>";
                                     echo "<td>" . $row['grado'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
+                                    echo "<td>" . $row['lugar'] . "</td>";
                                     echo "<td>
                                     <button class='btn btn-warning btn-sm' onclick=\"update_est('" . $row['doc'] . "','" . $row['nombre1'] . "','" . $row['nombre2'] . "','" . $row['apellido1'] . "','" . $row['apellido2'] . "','" . $row['grado'] . "','" . $row['email'] . "');\"><i class='bi bi-pencil-square'></i> Actualizar</button> 
                                     <button class='btn btn-danger btn-sm' onclick='delete_est(" . $row['doc'] . ")'><i class='bi bi-trash-fill'></i> Eliminar</button></td>";
@@ -102,7 +103,7 @@ if (isset($_SESSION['usuario'])) {
                 } else { // listado para admin
                     echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
                     // query all
-                    $sqlroot = "SELECT e.*, CONCAT(i.nombre,' de ',i.mpio) AS iesnom FROM estudiantes e, ies i WHERE idIES = IES_idIES ORDER BY IES_idIES, apellido1";
+                    $sqlroot = "SELECT e.*, CONCAT(ie.nombre,' de ',ie.mpio) AS iesnom, lugar FROM estudiantes e, ies ie, users_coord us WHERE (e.IES_idIES = us.IES_idIES) AND (us.IES_idIES = ie.idIES)  ORDER BY ie.idIES, apellido1";
                     echo "<div class='row'><div class='col-lg-9 nav-brad text-primary'><h3><i class='bi bi-people-fill'></i> Estudiantes</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
                     <button class='btn btn-success' id = 'bnuevoroot'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
                     </div>
@@ -120,6 +121,7 @@ if (isset($_SESSION['usuario'])) {
                                     <th scope="col">Grado</th>
                                     <th scope="col">E-Mail</th>
                                     <th scope="col">IES</th>
+                                    <th scope="col">Modalidad/Lugar</th>
                                     <th scope="col">Operaciones</th>
                                 </tr>
                             </thead>
@@ -136,6 +138,7 @@ if (isset($_SESSION['usuario'])) {
                                     echo "<td>" . $row['grado'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
                                     echo "<td>" . $row['iesnom'] . "</td>";
+                                    echo "<td>" . $row['lugar'] . "</td>";
                                     echo "<td>
                                     <button class='btn btn-warning btn-sm' onclick=\"update_est('" . $row['doc'] . "','" . $row['nombre1'] . "','" . $row['nombre2'] . "','" . $row['apellido1'] . "','" . $row['apellido2'] . "','" . $row['grado'] . "','" . $row['email'] . "');\"><i class='bi bi-pencil-square'></i> Editar</button> 
                                     <button class='btn btn-danger btn-sm' onclick='delete_est(" . $row['doc'] . ")'><i class='bi bi-trash-fill'></i> Eliminar</button></td>";
@@ -426,7 +429,7 @@ if (isset($_SESSION['usuario'])) {
                                         $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
                                         $result = $con->query($sql);
                                         while ($mostrar = mysqli_fetch_array($result))
-                                            echo '<option value="' . $mostrar['mpio'], 'UTF-8', 'ISO-8859-1' . '">' . $mostrar['mpio'] . '</option>';
+                                            echo '<option value="' . $mostrar['mpio'] . '">' . $mostrar['mpio'] . '</option>';
                                         // cerrar la conexión
                                         $con->close();
                                         ?>
@@ -634,6 +637,6 @@ if (isset($_SESSION['usuario'])) {
                     $('#rlies').append('<option value="' + ie.id + '">' + ie.nombre + '</option>');
                 });
             }
-        });        
+        });      
     });
 </script>

@@ -7,7 +7,7 @@
   <link href="css/signin.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/index.js"></script>
   <title>Unicordoba - Olimpiadas Maths <?php echo date('Y'); ?></title>
@@ -105,7 +105,7 @@
                   $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
                   $result = $con->query($sql);
                   while ($mostrar = mysqli_fetch_array($result))
-                    echo '<option value="'.$mostrar['mpio'].'">' .$mostrar['mpio']. '</option>';
+                    echo '<option value="' . $mostrar['mpio'] . '">' . $mostrar['mpio'] . '</option>';
                   // cerrar la conexión
                   $con->close();
                   ?>
@@ -227,16 +227,16 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12" style="height: 250px;">
-            <p class="text-primary fs-5">Inscripción de Coordinadores IE's</p>
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/lB48u4fZagk?si=r0yzDq9qZSjq7W6w" title="Ayuda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style=''></iframe>
+              <p class="text-primary fs-5">Inscripción de Coordinadores IE's</p>
+              <video src="video/Inscripcion_Coord_IEs.mp4" style="width: 100%; height: 100%; object-fit: cover;" controls></video>
             </div>
-        </div>
-        <div class="row mt-5">
+          </div>
+          <div class="row" style="margin-top:5rem;">
             <div class="col-12" style="height: 250px;">
-            <p class="text-primary fs-5">Registro de Estudiantes</p>
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/imwxIgu-2HI?si=VHZjWoJri6qQiR_m" title="Ayuda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style=''></iframe>
+              <p class="text-primary fs-5">Registro de Estudiantes</p>
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/imwxIgu-2HI?si=VHZjWoJri6qQiR_m" title="Ayuda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style=''></iframe>
             </div>
-        </div>
+          </div>
         </div>
         <div class="modal-footer mt-5">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Cerrar</button>
