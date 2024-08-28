@@ -54,7 +54,7 @@ if (isset($_SESSION['usuario'])) {
                     include 'aviso.php';
                     // query x Ies
                     $idies = $_SESSION['id_ies'];
-                    $sql = "SELECT e.*, lugar FROM estudiantes e, users_coord i  WHERE (i.IES_idIES = e.IES_idIES) and (IES_idIES = $idies) ORDER BY grado, apellido1 DESC";
+                    $sql = "SELECT e.*, lugar FROM estudiantes e, users_coord us WHERE (e.IES_idIES = us.IES_idIES) and (us.IES_idIES = $idies) ORDER BY grado, apellido1 DESC";
                     echo "<div class='row'><div class='col-lg-9 nav-brad text-primary'><h3><i class='bi bi-people-fill'></i> Estudiantes</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
                     <button class='btn btn-success' id = 'bnuevo'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
                     </div>
@@ -71,6 +71,7 @@ if (isset($_SESSION['usuario'])) {
                                     <th scope="col">Apellidos</th>
                                     <th scope="col">Grado</th>
                                     <th scope="col">E-Mail</th>
+                                    <th scope="col">Modalidad/Lugar</th>
                                     <th scope="col">Operaciones</th>
                                 </tr>
                             </thead>

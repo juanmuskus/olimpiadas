@@ -23,5 +23,4 @@ $mail->Username = "admin@olimpiadasmatunicordoba.com.co"; // Tu cuenta de correo
 $mail->Password = "Unicor@2024"; // Tu contraseña
 //guid
 $mail->Send();
-
 ?>
