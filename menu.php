@@ -25,5 +25,22 @@
                 <li>
                     <a href="salir.php"><i class="bi bi-power"></i> Salir</a>
                 </li>
+                <li id='logo' class='text-center'>
+                <small style='color:white' id='des'>Desarrollado por:
+                <a href="https://cintia.unicordoba.edu.co/" target="_blank" id="llogo"><img class='img-fluid' src="img/CINTIA_LOGO.png"></a>
+                </small>
+                </li>
             </ul>
         </div>
+        <style>
+            #logo{
+                margin-top: 10rem;
+                padding: 0.5rem;
+                width: 80%;
+                height: 80%;
+            }
+            #llogo:hover {
+                background-color: black;
+                border-radius: 10px;
+            }
+        </style>
