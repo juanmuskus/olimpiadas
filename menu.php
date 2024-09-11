@@ -17,6 +17,9 @@
                 </li>
                 <li>
                     <a href='listado.php'><i class='bi bi-filetype-xlsx'></i> Listado</a>
+                </li>
+                <li>
+                    <a href='auditoria.php'><i class='bi bi-grid-3x2'></i> Auditoria IEs</a>
                 </li>";
                 ?>
                 <li>
