@@ -52,7 +52,7 @@ if (isset($_SESSION['usuario'])) {
                         include 'conexion.php';
                         echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
                         // query all
-                        $sqlcoord = "SELECT COUNT(e.doc) as cante, i.idIES as id, concat(i.nombre,' de ',i.mpio) as col FROM estudiantes e, ies i where (e.ies_IDIES = i.idIES ) GROUP BY ies_IDIES;";
+                        $sqlcoord = "SELECT COUNT(e.doc) AS cante, us.nit, CONCAT(i.nombre, ' de ', i.mpio) AS col, us.email AS cmail FROM estudiantes e JOIN ies i ON e.ies_IDIES = i.idIES JOIN users_coord us ON us.IES_idIES = e.ies_IDIES GROUP BY i.idIES, i.nombre, i.mpio, us.email, us.nit;";
                         echo "<div class='row mb-3'><div class='col-lg-9 nav-brad text-success'><h3><i class='bi bi-person-video3'></i> Cant. de Estudiantes x IE's</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
                         &nbsp;
                         </div>
@@ -64,7 +64,8 @@ if (isset($_SESSION['usuario'])) {
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
-                                        <th scope="col">Id IE's</th>
+                                        <th scope="col">Nit IE's</th>
+                                        <th scope="col">Email Coord.</th>
                                         <th scope="col">IE's</th>
                                         <th scope="col">Cant. Estudiantes</th>
                                     </tr>
@@ -76,7 +77,8 @@ if (isset($_SESSION['usuario'])) {
                                     foreach ($result as $row) {
                                         echo "<tr>";
                                         echo "<td>" . $i . "</td>";
-                                        echo "<td>" . $row['id'] . "</td>";
+                                        echo "<td>" . $row['nit'] . "</td>";
+                                        echo "<td>" . $row['cmail'] . "</td>";
                                         echo "<td>" . $row['col'] . "</td>";
                                         echo "<td>" . $row['cante'] . "</td>";
                                         $i++;
