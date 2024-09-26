@@ -1,3 +1,8 @@
+// sql : SELECT doc, COUNT(*) AS total  
+FROM estudiantes  
+GROUP BY doc
+HAVING total > 1;
+
 // <button class='btn btn-warning btn-sm' onclick=\"update_est('" . $row['doc'] . "','" . $row['nombre1'] . "','" . $row['nombre2'] . "','" . $row['apellido1'] . "','" . $row['apellido2'] . "','" . $row['grado'] . "','" . $row['email'] . "');\"><i class='bi bi-pencil-square'></i> Actualizar</button> 
 mailgun
 
