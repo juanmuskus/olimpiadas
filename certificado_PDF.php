@@ -13,7 +13,7 @@
         $ie = $_REQUEST['ie'];
         
         require('fpdf/fpdf.php');
-        header("Content-Type: text/html;charset=utf-8");
+        //header("Content-Type: text/html;charset=utf-8");
 
         $pdf = new FPDF('L','mm','Letter');
         $pdf-> AddPage();
