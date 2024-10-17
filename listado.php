@@ -52,10 +52,10 @@ if (isset($_SESSION['usuario'])) {
             case grado 
             when 6 then 'M061'
             when 7 then 'M071'
-            when 6 then 'M081'
-            when 6 then 'M091'
-            when 6 then 'M010'
-            when 6 then 'M011'
+            when 8 then 'M081'
+            when 9 then 'M091'
+            when 10 then 'M010'
+            when 11 then 'M011'
             end
             AS course1,
             1 AS type1, nombre AS group1

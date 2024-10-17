@@ -214,6 +214,7 @@
 
   <!-- AYUDA -->
   <button class="corner-button" id="botonayuda"><i class="bi bi-question-square-fill"></i> Ayuda</button>
+  <button class="corner-button2" id="botoncert"><i class="bi bi-filetype-pdf"></i> Certificados</button>
   <!-- -->
 
   <!-- AYUDA - Videos -->
@@ -244,16 +245,55 @@
       </div>
     </div>
   </div>
+
+<!-- Certificados -->
+<div class="modal fade" id="mcert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-filetype-pdf"></i> Certificados</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-start">Ingrese el doc. de identidad del estudiante: </p>
+        <div class="row">
+          <div class="col-4">
+        <input type="number" name="busdoci" id="busdoci" class="form-control" required>
+        <small id="busaviso" class="text-danger"></small>
+        </div>
+        <div class="col-4 text-start">
+        <button type="button" class="btn btn-danger" id="bbuscar"><i class="bi bi-search"></i> Buscar</button>
+        </div>
+        </div>        
+        <div class="row mt-4">
+          <div id="info">
+            
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x"></i> Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>  
+
 </body>
 
 </html>
 <script>
   $(document).ready(function() {
-    $('#anuncio').modal('show');
+    $('#anuncio').modal('hide');
+    $('#ayuda').modal('hide');
+    $('#mcert').modal('show');
   });
 
   $('#botonayuda').click(function() {
     $('#ayuda').modal('show');
+  });
+
+  $('#botoncert').click(function() {
+    $('#mcert').modal('show');
   });
 </script>
 <style>
@@ -320,8 +360,31 @@
     /* zoom: .4; */
   }
 
-  .corner-button:hover {
+    .corner-button2 {
+    font-family: inherit;
+    letter-spacing: 0.02rem;
+    cursor: pointer;
+    background: transparent;
+    border: 0.2rem solid currentColor;
+    padding: 0.5rem 0.6rem;
+    font-size: 1em;
+    color: green;
+    position: fixed;
+    transition: color 0.3s;
+    z-index: 2;
+    top: 1em;
+    left: 7em;
+    border-radius: 5px;
+    /* zoom: .4; */
+  }
+  
+  .corner-button:hover{
     color: #00c509;
+    background: #f8f9fa;
+  }
+
+  .corner-button2:hover {
+    color: red;
     background: #f8f9fa;
   }
 </style>

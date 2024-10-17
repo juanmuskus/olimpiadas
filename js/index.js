@@ -29,4 +29,29 @@ $(document).ready(function(){
         });        
     });
     
+    $('#bbuscar').click(function(){
+        let doci = $('#busdoci').val();
+        if (doci == '') {
+            document.getElementById('busaviso').textContent = 'Debe ingresar el número de documento';
+            return;
+        }
+        else {
+        document.getElementById('busaviso').textContent = '';
+        $.ajax({
+            url: 'buscarcert.php',
+            type: 'GET',
+            data: {doci: doci},
+            success: function(response){
+                $("#info").html(response);
+            }
+            });
+        }
+    });
+
+    const Modal = document.getElementById('mcert')
+    Modal.addEventListener('show.bs.modal', event => {
+        $("#info").html('');
+        $('#busdoci').val('');
+    })
+
 });
