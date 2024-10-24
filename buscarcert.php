@@ -24,7 +24,7 @@ echo "<table class='table'>
                 <td>" . iconv("ISO-8859-1", "UTF-8//IGNORE",$noms) . "</td>
                 <td>" . iconv("ISO-8859-1", "UTF-8//IGNORE",$col) . "</td>
                 <td>" . $grado . "</td>
-                <td><a href='certificado_PDF.php?nom=".$noms."&ie=".$col."' target='_blank'><buttto class='btn btn-success'><i class='bi bi-arrow-bar-down'></i> Descargar</buttto></a></td>
+                <td><a href='certificado_PDF.php?nom=".$noms."&ie=".$col."&grado=".$grado."' target='_blank'><buttto class='btn btn-success'><i class='bi bi-arrow-bar-down'></i> Descargar</buttto></a></td>
             </tr>
         </table>";
 }
