@@ -22,7 +22,7 @@
     $idies = $_POST['lies'];
     $nit = $_POST['nit'];
     $lugar = $_POST['lugar'];
-    $tipo = $_POST['tipo'];
+    $tipoIE = $_POST['tipo'];
 
     $sql_evaldoci = "SELECT * FROM users_coord WHERE (docidentidad = $doci) or (email = '$mail')";
     $res_evaldoci = $con->query($sql_evaldoci);
@@ -44,7 +44,7 @@
         $ies = $filaies['nombre'] . " - " . $filaies['mpio'];
         //
         // colocar en el campo tipo de la tabla IES
-        $sqlies = "UPDATE ies SET tipo = '$tipo' WHERE idIES = $idies";
+        $sqlies = "UPDATE ies SET tipo = '$tipoIE' WHERE idIES = $idies";
         $con->query($sqlies);
         //
         notificar_cta($nom . " " . $apel, $ies, $mail); //    function notificar_cta($nom, $ie, $mail)
