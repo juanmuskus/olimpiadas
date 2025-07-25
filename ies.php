@@ -21,7 +21,7 @@ if (isset($_SESSION['usuario'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -52,7 +52,8 @@ if (isset($_SESSION['usuario'])) {
                         include 'conexion.php';
                         echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
                         // query all
-                        $sqlcoord = "SELECT idIES, nombre, mpio, CASE tipo WHEN 'U' THEN 'Urbano' WHEN 'R' THEN 'Rural' END AS tipo FROM ies order by mpio, nombre";
+                        $con->set_charset("utf8");
+                        $sqlcoord = "SELECT idIES, nombre, mpio, CASE zona WHEN 'U' THEN 'Urbano' WHEN 'R' THEN 'Rural' END as zona, CASE tipo WHEN 'PUB' THEN 'Pública' WHEN 'PRI' THEN 'Privada' END as tipo FROM ies order by mpio, nombre";
                         echo "<div class='row mb-3'><div class='col-lg-9 nav-brad text-primary'><h3><i class='bi bi-person-video3'></i> Instituciones Educativas</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
                         <button class='btn btn-success' id = 'bnuevocoord'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
                         </div>
@@ -67,6 +68,7 @@ if (isset($_SESSION['usuario'])) {
                                         <th scope="col">Id IE's</th>
                                         <th scope="col">Nombre IE</th>
                                         <th scope="col">Municpio</th>
+                                        <th scope="col">Ubicación</th>
                                         <th scope="col">Tipo</th>
                                         <th scope="col">Operaciones</th>
                                     </tr>
@@ -81,6 +83,7 @@ if (isset($_SESSION['usuario'])) {
                                         echo "<td>" . $row['idIES'] . "</td>";
                                         echo "<td>" . $row['nombre'] . "</td>";
                                         echo "<td>" . $row['mpio'] . "</td>";
+                                        echo "<td>" . $row['zona'] . "</td>";
                                         echo "<td>" . $row['tipo'] . "</td>";
                                         echo "<td>
                                         <button class='btn btn-warning btn-sm' id='bupdate'><i class='bi bi-arrow-repeat'></i> Actualizar</button>
@@ -121,14 +124,22 @@ if (isset($_SESSION['usuario'])) {
                                 <p class="text-start">Nombre IE</p>
                                 <input type="text" name="nomie" id="nomie" class="form-control" style="text-transform:uppercase" required>
                             </div>
-                            <div class="col-6 mb-2">
-                                <p class="text-start">IE's:</p>
-                                <select name="tipo" id="tipo" class="form-control" required>
-                                    <option value="U" selected>Urbano</option>
-                                    <option value="R">Rural</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-6 mb-2">
+                                    <p class="text-start">Ubicación IE's:</p>
+                                    <select name="tipo" id="tipo" class="form-control" required>
+                                        <option value="U" selected>Urbano</option>
+                                        <option value="R">Rural</option>
+                                    </select>
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <p class="text-start">Tipo IE's:</p>
+                                    <select name="tipoIE" id="tipoIE" class="form-control" required>
+                                        <option value="PUB" selected>Pública</option>
+                                        <option value="PRI">Privada</option>
+                                    </select>
+                                </div>
                             </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
@@ -138,45 +149,7 @@ if (isset($_SESSION['usuario'])) {
                 </div>
             </div>
         </div>
-            <div class="modal fade" id="nuevocoord" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Olimpiadas - Math</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="text-start"><b>Nueva Inst. Educativa</b></p>
-                        <form action="registrar_ie.php" method="post">
-                            <div class="col-6 mb-2">
-                                <p class="text-start">Codigo</p>
-                                <input type="number" name="cod" id="cod" class="form-control" required>
-                            </div>
-                            <div class="col-10 mb-2">
-                                <p class="text-start">Municipio</p>
-                                <input type="text" name="mpio" id="mpio" class="form-control" style="text-transform:uppercase" required>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <p class="text-start">Nombre IE</p>
-                                <input type="text" name="nomie" id="nomie" class="form-control" style="text-transform:uppercase" required>
-                            </div>
-                            <div class="col-6 mb-2">
-                                <p class="text-start">IE's:</p>
-                                <select name="tipo" id="tipo" class="form-control" required>
-                                    <option value="U" selected>Urbano</option>
-                                    <option value="R">Rural</option>
-                                </select>
-                            </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
-                        <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Registrar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="modal fade" id="updateIE" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
@@ -189,10 +162,10 @@ if (isset($_SESSION['usuario'])) {
                         <p class="text-start"><b>Actualizar Inst. Educativa</b></p>
                         <form action="update_ie.php" method="post">
                             <div class="col-6 mb-2">
-                            <fieldset disabled>
-                                <p class="text-start">Codigo</p>
-                                <input type="number" name="cod" id="cod" class="form-control" disabled>
-                            </fieldset>
+                                <fieldset disabled>
+                                    <p class="text-start">Codigo</p>
+                                    <input type="number" name="cod" id="cod" class="form-control" disabled>
+                                </fieldset>
                                 <input type="hidden" name="codx" id="codx">
                             </div>
                             <div class="col-10 mb-2">
@@ -204,14 +177,22 @@ if (isset($_SESSION['usuario'])) {
                                 <p class="text-start">Nombre IE</p>
                                 <input type="text" name="nomie" id="nomie" class="form-control" style="text-transform:uppercase" required>
                             </div>
-                            <div class="col-6 mb-2">
-                                <p class="text-start">IE's:</p>
-                                <select name="tipo" id="tipo" class="form-control" required>
-                                    <option value="U" selected>Urbano</option>
-                                    <option value="R">Rural</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-6 mb-2">
+                                    <p class="text-start">Ubicación IE's:</p>
+                                    <select name="tipo" id="tipo" class="form-control" required>
+                                        <option value="U" selected>Urbano</option>
+                                        <option value="R">Rural</option>
+                                    </select>
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <p class="text-start">Tipo IE's:</p>
+                                    <select name="tipoIE" id="tipoIE" class="form-control" required>
+                                        <option value="PUB" selected>Pública</option>
+                                        <option value="PRI">Privada</option>
+                                    </select>
+                                </div>
                             </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cerrar</button>
@@ -349,6 +330,7 @@ if (isset($_SESSION['usuario'])) {
         var nombre = $(this).closest('tr').find('td:eq(2)').text();
         var mpio = $(this).closest('tr').find('td:eq(3)').text();
         var tipo = $(this).closest('tr').find('td:eq(4)').text() === 'Urbano' ? 'U' : 'R';
+        var tipoIE = $(this).closest('tr').find('td:eq(5)').text() === 'Pública' ? 'PUB' : 'PRI';
 
         $('#updateIE #cod').val(id);
         $('#updateIE #codx').val(id);
@@ -356,6 +338,7 @@ if (isset($_SESSION['usuario'])) {
         $('#updateIE #mpio').val(mpio);
         $('#updateIE #mpiox').val(mpio);
         $('#updateIE #tipo').val(tipo);
+        $('#updateIE #tipoIE').val(tipoIE);
 
         $('#updateIE').modal('show');
     });

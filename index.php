@@ -104,6 +104,7 @@
                 <select name="mpio" id="mpio" class="form-control" required>
                   <?php
                   include 'conexion.php';
+                  $con->set_charset("utf8");
                   $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
                   $result = $con->query($sql);
                   while ($mostrar = mysqli_fetch_array($result))

@@ -52,6 +52,7 @@ if (isset($_SESSION['usuario'])) {
                         include 'conexion.php';
                         echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
                         // query all
+                        $con->set_charset("utf8");
                         $sqlcoord = "SELECT COUNT(e.doc) AS cante, us.nit, CONCAT(i.nombre, ' de ', i.mpio) AS col, us.email AS cmail FROM estudiantes e JOIN ies i ON e.ies_IDIES = i.idIES JOIN users_coord us ON us.IES_idIES = e.ies_IDIES GROUP BY i.idIES, i.nombre, i.mpio, us.email, us.nit;";
                         echo "<div class='row mb-3'><div class='col-lg-9 nav-brad text-success'><h3><i class='bi bi-person-video3'></i> Cant. de Estudiantes x IE's</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
                         &nbsp;

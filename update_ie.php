@@ -29,9 +29,10 @@ include('conexion.php');
 $codigo = $_POST['codx'];
 $mpio = $_POST['mpiox'];
 $nom = strtoupper($_POST['nomie']);
-$tipo = $_POST['tipo'];
+$zona = $_POST['tipo'];
+$tipoIE = $_POST['tipoIE'];
 
-$sql = "UPDATE ies SET mpio = '$mpio', nombre = '$nom', tipo = '$tipo' WHERE idIES = $codigo";
+$sql = "UPDATE ies SET mpio = '$mpio', nombre = '$nom', zona = '$zona', tipo = '$tipoIE' WHERE idIES = $codigo";
 
 $res = $con->query($sql);
 if ($res) {

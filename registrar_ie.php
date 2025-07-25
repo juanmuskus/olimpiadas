@@ -29,7 +29,8 @@ include('conexion.php');
 $codigo = $_POST['cod'];
 $mpio = strtoupper($_POST['mpio']);
 $nom = strtoupper($_POST['nomie']);
-$tipo = $_POST['tipo'];
+$zona = $_POST['tipo'];
+$tipoIE = $_POST['tipoIE']; // Renombrar variable para mayor claridad
 
 $sql_evalcodigo = "SELECT * FROM ies WHERE idIES = $codigo";
 $res_evaldoci = $con->query($sql_evalcodigo);
@@ -41,7 +42,7 @@ if ($filas > 0) {
     });
     </script>";
 } else {
-    $sql = "INSERT INTO ies (idIES, mpio, nombre, tipo) VALUES ($codigo, '$mpio', '$nom', '$tipo')";
+    $sql = "INSERT INTO ies (idIES, mpio, nombre, zona, tipo) VALUES ($codigo, '$mpio', '$nom','$zona', '$tipoIE')";
     $con->query($sql);
     echo "<script>   
     swal({text: 'Inst. Educativa registrada con éxito !!!', title: 'Olimpiadas Maths',}).then((value) => {
