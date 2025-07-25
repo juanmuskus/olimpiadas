@@ -95,7 +95,7 @@
             </div>
             <div class="col-8 mb-2">
               <p class="text-start">E-mail</p>
-              <input type="mail" name="cmail" id="cmail" class="form-control" required>
+              <input type="email" name="cmail" id="cmail" class="form-control" required>
             </div>
 
             <div class="row mt-3">
@@ -118,7 +118,7 @@
               <div class="col-8 mb-2">
                 <p class="text-start">IE's:</p>
                 <select name="lies" id="lies" class="form-control" required>
-                  // Cargar las IES de acuerdo al municipio seleccionado
+                  <!-- Cargar las IES de acuerdo al municipio seleccionado -->
                 </select>
               </div>
             </div>
