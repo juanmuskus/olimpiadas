@@ -16,7 +16,8 @@
 <body class="text-center">
   <main class="form-signin">
     <form action="login.php" method="post">
-      <h1 class="h3 mb-3 fw-normal"><img src="img/unicor.png" width="10%" height="10%"> <b>Universidad de Córdoba</b></h1>
+      <img src="img/logo_unicor.png" class="mb-4" alt="Unicordoba" width="100%" height="100%">
+      <h1 class="h3 mb-3 fw-normal"><b>Universidad de Córdoba</b></h1>
       <p class="text-center"><img src="img/math.png" width="5%" height="5%"> Olimpiadas de Matemáticas</p>
       <div class="form-floating">
         <input type="email" class="form-control" id="floatingInput" name="mail" placeholder="name@example.com">
@@ -36,8 +37,9 @@
       <hr>
       <a href="#" data-bs-toggle="modal" data-bs-target="#anuncio"><i class="bi bi-info-circle-fill"></i> Ver Anuncio</a>
     </div>
-    <p class="mt-5 mb-3 text-dark"><img src="img/cintia.ico" width="15%" height="15%"> &copy; Desarrollado por CINTIA - 2024</p>
-
+    <small class="mt-2 text-secondary">Desarrollado por:</small><br>
+    <small class="mt-1 mb-3 text-dark"><img src="img/cintia.ico" width="10%" height="10%"> Centro de Innovación en TIC para apoyo a la Academia <b>CINTIA</b></small>
+    <small class="mt-2">&copy 2025</small>
   </main>
 
   <!-- Modal: recuperar x correo -->
@@ -285,7 +287,9 @@
   $(document).ready(function() {
     $('#anuncio').modal('hide');
     $('#ayuda').modal('hide');
-    $('#mcert').modal('show');
+    //$('#mcert').modal('show'); activar para ver certificados
+    $('#rmail').modal('hide');
+    $('#coord').modal('hide');
   });
 
   $('#botonayuda').click(function() {
