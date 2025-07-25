@@ -124,7 +124,7 @@
 
             <div class="row mt-3">
               <div class="col-6 mb-2">
-                <p class="text-start">Modalidad y lugar de Presentación - Fase 1:</p>
+                <p class="text-start">Modalidad y lugar Presentación - Fase 1:</p>
                 <select name="lugar" id="lugar" class='form-control' required>
                   <option value="Virtual" selected>Virtual</option>
                   <option value="Montelíbano">Montelíbano</option>
@@ -134,9 +134,17 @@
                 </select>
               </div>
 
-              <div class="col-6 mb-2">
+              <div class="col-3 mb-2">
                 <p class="text-start">Nit. - Ins. Educativa:</p>
                 <input type="number" name="nit" id="nit" class="form-control" pattern="\d*" required>
+              </div>
+
+              <div class="col-3 mb-2">
+                <p class="text-start">Tipo Ins. Educ.:</p>
+                <select name="tipo" id="tipo" class='form-control' required>
+                  <option value="PUB" selected>Pública</option>
+                  <option value="PRI">Privada</option>
+                </select>
               </div>
             </div>
 
