@@ -165,7 +165,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-1 text-primary" id="exampleModalLabel">Información Importamte !</h1>
+          <h1 class="modal-title fs-1 text-primary" id="exampleModalLabel">Información Importante !</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -175,41 +175,31 @@
           include 'fun_texto.php';
           $valor_texto = num2Text($valor);
           ?>
-          <p class="text-start">La inscripción a las Olimpiadas Matemáticas Unicórdoba <?php echo date('Y'); ?> tiene como fecha límite el día <b>20 de septiembre de <?php echo date('Y'); ?></b>. Este proceso se hace a través de este formulario y tiene una inversión de $<?php echo number_format($valor); ?> (<?php echo $valor_texto;?> mil pesos) por estudiante participante. Cada colegio debe hacer una única consignación por el valor total de los inscritos a un link que será enviado al correo del delegado designado por cada institución educativa.</p>
+          <p class="text-start">La inscripción a las Olimpiadas Matemáticas Unicórdoba <?php echo date('Y'); ?> tiene como fecha límite el día <b>20 de septiembre de <?php echo date('Y'); ?></b>. Este proceso se hace a través de este formulario y tiene una inversión de $<?php echo number_format($valor); ?> (<?php echo $valor_texto;?> mil pesos) por estudiante participante. Cada colegio debe hacer una única consignación por el valor total de los inscritos, el recibo de pago se generará en el siguiente link <a href="https://educacioncontinuada.appsprod.unicordoba.edu.co/inscripcursos/576"><button class="btn btn-primary btn-sm"><i class="bi bi-currency-dollar"></i> Pago</button></a>, debe diligenciar bien la información para que la factura electrónica salga correctamente. El recibo de pago aparece por $ <?php echo number_format($valor); ?> pesos, pero una vez nos informe el número de estudiantes que participarán se ajustará el valor a pagar.</p>
           <p class="text-start">El evento se desarrollará en dos etapas.</p>
           <table class="table table-hover">
             <tbody>
               <tr>
                 <th scope="row" class="align-middle text-danger">Primera Etapa</th>
                 <td>
-                  <p class="text-start">Clasificatoria: se llevará a cabo de manera virtual y presencial</p>
-                  <p class="text-start">De forma virtual del <b>30 de septiembre al 4 de octubre de <?php echo date('Y'); ?></b>, de 8:00 am a 6:00 pm, a través de la plataforma Campus Virtual de la Universidad de Córdoba. Se detalla a continuación por grados:</p>
+                  <p class="text-start">Clasificatoria: se llevará a cabo de manera virtual</p>
+                  <p class="text-start">De forma virtual del <b>29 de septiembre al 3 de octubre de <?php echo date('Y'); ?></b>, de 8:00 am a 6:00 pm, a través de la plataforma <a href="https://maraton.unicordoba.edu.co/login/index.php">Maratón</a> de la Universidad de Córdoba. Se detalla a continuación por grados:</p>
                   <p class="text-start">
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-primary text-start">Grado 6 el día 30 de septiembre</li>
-                    <li class="list-group-item text-primary text-start">Grado 7 el día 1 de octubre</li>
-                    <li class="list-group-item text-primary text-start">Grado 8 el día 2 de octubre</li>
-                    <li class="list-group-item text-primary text-start">Grado 9 el día 3 de octubre</li>
-                    <li class="list-group-item text-primary text-start">Grado 10 y 11 el día 4 de octubre</li>
+                    <li class="list-group-item text-primary text-start">Grado 6 el día 29 de septiembre</li>
+                    <li class="list-group-item text-primary text-start">Grado 7 el día 30 de septiembre</li>
+                    <li class="list-group-item text-primary text-start">Grado 8 el día 1 de octubre</li>
+                    <li class="list-group-item text-primary text-start">Grado 9 el día 2 de octubre</li>
+                    <li class="list-group-item text-primary text-start">Grado 10 y 11 el día 3 de octubre</li>
                   </ul>
                   </p>
-                  <p class="text-start">De forma presencial el <b>4 de octubre</b> en las sedes de la Universidad de Córdoba</p>
-                  <p class="text-start">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-success text-start">Montelíbano de 3 pm a 5 pm</li>
-                    <li class="list-group-item text-success text-start">Berástegui de 3 pm a 5 pm</li>
-                    <li class="list-group-item text-success text-start">Lorica de 10 am a 12 m</li>
-                    <li class="list-group-item text-success text-start">Sahagún de 10 am a 12 m</li>
-                  </ul>
-                  </p>
-                  <p class="text-start">La modalidad (presencial o virtual) deberá ser escogida por el delegado de cada colegio al momento de realizar la inscripción.</p>
                 </td>
               </tr>
               <tr>
                 <th scope="row" class="align-middle text-danger">Segunda Etapa</th>
                 <td>
-                  <p class="text-start"><i>Final:</i> se realizará el día <b>1 de noviembre del 2025</b>, de 7:30 am a 1:00 pm, en las instalaciones de la Universidad de Córdoba (Departamento de Matemáticas y Estadística, Bloque 38). Carrera 6 No. 77- 305 Montería - Córdoba, Colombia, Nit: 891080031-3.</p>
-                  <p class="text-start"><i><b>Cada colegio puede inscribir <b>hasta 36 estudiantes</b>, los cuales puede distribuir a su conveniencia. Además, después de haber realizado el respectivo pago por derecho a inscripción, por favor, enviar comprobante de pago al número de WhatsApp del coordinador del evento</b></i><a href="https://wa.me/573015920775" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a></p>
+                  <p class="text-start"><b>Final:</b> se realizará el día <b>31 de septiembre del <?php echo date('Y'); ?></b>, de 7:30 am a 1:00 pm, en las instalaciones de la Universidad de Córdoba (Departamento de Matemáticas y Estadística, Bloque 38). Carrera 6 No. 77- 305 Montería - Córdoba, Colombia, Nit: 891080031-3.</p>
+                  <p class="text-start bg-danger-subtle">Cada colegio puede inscribir <b>hasta 36 estudiantes</b>, los cuales puede distribuir a su conveniencia. Además, después de haber realizado el respectivo pago por derecho a inscripción, por favor, enviar comprobante de pago al número de WhatsApp del coordinador del evento<a href="https://wa.me/573015920775" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a></p>
                   <p class="text-start">Cualquier inquietud ponte en contacto con nosotros a través del <a href="https://wa.me/573015920775" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a> o escribe al coordinador de las olimpiadas, Carlos Banquet Brango <b><i>cbanquet@correo.unicordoba.edu.co</i></b></p>
                 </td>
               </tr>
