@@ -199,8 +199,8 @@
                 <th scope="row" class="align-middle text-danger">Segunda Etapa</th>
                 <td>
                   <p class="text-start"><b>Final:</b> se realizará el día <b>31 de septiembre del <?php echo date('Y'); ?></b>, de 7:30 am a 1:00 pm, en las instalaciones de la Universidad de Córdoba (Departamento de Matemáticas y Estadística, Bloque 38). Carrera 6 No. 77- 305 Montería - Córdoba, Colombia, Nit: 891080031-3.</p>
-                  <p class="text-start bg-danger-subtle">Cada colegio puede inscribir <b>hasta 36 estudiantes</b>, los cuales puede distribuir a su conveniencia. Además, después de haber realizado el respectivo pago por derecho a inscripción, por favor, enviar comprobante de pago al número de WhatsApp del coordinador del evento<a href="https://wa.me/573015920775" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a></p>
-                  <p class="text-start">Cualquier inquietud ponte en contacto con nosotros a través del <a href="https://wa.me/573015920775" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a> o escribe al coordinador de las olimpiadas, Carlos Banquet Brango <b><i>cbanquet@correo.unicordoba.edu.co</i></b></p>
+                  <p class="text-start bg-danger-subtle">Cada colegio puede inscribir <b>hasta 36 estudiantes</b>, los cuales puede distribuir a su conveniencia. Además, después de haber realizado el respectivo pago por derecho a inscripción, por favor, enviar comprobante de pago al número de WhatsApp del coordinador del evento<a href="https://wa.me/573015920775" class="btn btn-success" target="_blank"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a></p>
+                  <p class="text-start">Cualquier inquietud ponte en contacto con nosotros a través del <a href="https://wa.me/573015920775" class="btn btn-success" target="_blank"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a> o escribe al coordinador de las olimpiadas, Carlos Banquet Brango <b><i>cbanquet@correo.unicordoba.edu.co</i></b></p>
                 </td>
               </tr>
             </tbody>
