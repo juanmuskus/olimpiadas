@@ -18,7 +18,7 @@
     <form action="login.php" method="post">
       <img src="img/logo_unicor.png" class="mb-4" alt="Unicordoba" width="100%" height="100%">
       <h1 class="h3 mb-3 fw-normal"><b>Universidad de Córdoba</b></h1>
-      <p class="text-center"><img src="img/math.png" width="5%" height="5%"> Olimpiadas de Matemáticas</p>
+      <p class="text-center"><img src="img/math.png" width="5%" height="5%"> Olimpiadas de Matemáticas <?php echo date('Y'); ?></p>
       <div class="form-floating">
         <input type="email" class="form-control" id="floatingInput" name="mail" placeholder="name@example.com">
         <label for="floatingInput">Email</label>
@@ -39,7 +39,7 @@
     </div>
     <small class="mt-2 text-secondary">Desarrollado por:</small><br>
     <small class="mt-1 mb-3 text-dark"><img src="img/cintia.ico" width="10%" height="10%"> Centro de Innovación en TIC para apoyo a la Academia <b>CINTIA</b></small>
-    <small class="mt-2">&copy 2025</small>
+    <small class="mt-2">&copy <?php echo date('Y'); ?></small>
   </main>
 
   <!-- Modal: recuperar x correo -->
@@ -169,7 +169,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p class="text-start">La inscripción a las Olimpiadas Matemáticas Unicórdoba 2024 tiene como fecha límite el día <b>20 de septiembre de 2024</b>. Este proceso se hace a través de este formulario y tiene una inversión de $10.000 (diez mil pesos) por estudiante participante. Cada colegio debe hacer una única consignación por el valor total de los inscritos a un link que será enviado al correo del delegado designado por cada institución educativa.</p>
+          <?php
+          $y = date('Y'); 
+          $valor = 10000+(((int)$y-2023)*1000); 
+          include 'fun_texto.php';
+          $valor_texto = num2Text($valor);
+          ?>
+          <p class="text-start">La inscripción a las Olimpiadas Matemáticas Unicórdoba <?php echo date('Y'); ?> tiene como fecha límite el día <b>20 de septiembre de <?php echo date('Y'); ?></b>. Este proceso se hace a través de este formulario y tiene una inversión de $<?php echo number_format($valor); ?> (<?php echo $valor_texto;?> mil pesos) por estudiante participante. Cada colegio debe hacer una única consignación por el valor total de los inscritos a un link que será enviado al correo del delegado designado por cada institución educativa.</p>
           <p class="text-start">El evento se desarrollará en dos etapas.</p>
           <table class="table table-hover">
             <tbody>
@@ -177,7 +183,7 @@
                 <th scope="row" class="align-middle text-danger">Primera Etapa</th>
                 <td>
                   <p class="text-start">Clasificatoria: se llevará a cabo de manera virtual y presencial</p>
-                  <p class="text-start">De forma virtual del <b>30 de septiembre al 4 de octubre de 2024</b>, de 8:00 am a 6:00 pm, a través de la plataforma Campus Virtual de la Universidad de Córdoba. Se detalla a continuación por grados:</p>
+                  <p class="text-start">De forma virtual del <b>30 de septiembre al 4 de octubre de <?php echo date('Y'); ?></b>, de 8:00 am a 6:00 pm, a través de la plataforma Campus Virtual de la Universidad de Córdoba. Se detalla a continuación por grados:</p>
                   <p class="text-start">
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item text-primary text-start">Grado 6 el día 30 de septiembre</li>
@@ -202,7 +208,7 @@
               <tr>
                 <th scope="row" class="align-middle text-danger">Segunda Etapa</th>
                 <td>
-                  <p class="text-start"><i>Final:</i> se realizará el día <b>1 de noviembre del 2024</b>, de 7:30 am a 1:00 pm, en las instalaciones de la Universidad de Córdoba (Departamento de Matemáticas y Estadística, Bloque 38). Carrera 6 No. 77- 305 Montería - Córdoba, Colombia, Nit: 891080031-3.</p>
+                  <p class="text-start"><i>Final:</i> se realizará el día <b>1 de noviembre del 2025</b>, de 7:30 am a 1:00 pm, en las instalaciones de la Universidad de Córdoba (Departamento de Matemáticas y Estadística, Bloque 38). Carrera 6 No. 77- 305 Montería - Córdoba, Colombia, Nit: 891080031-3.</p>
                   <p class="text-start"><i><b>Cada colegio puede inscribir <b>hasta 36 estudiantes</b>, los cuales puede distribuir a su conveniencia. Además, después de haber realizado el respectivo pago por derecho a inscripción, por favor, enviar comprobante de pago al número de WhatsApp del coordinador del evento</b></i><a href="https://wa.me/573015920775" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a></p>
                   <p class="text-start">Cualquier inquietud ponte en contacto con nosotros a través del <a href="https://wa.me/573015920775" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a> o escribe al coordinador de las olimpiadas, Carlos Banquet Brango <b><i>cbanquet@correo.unicordoba.edu.co</i></b></p>
                 </td>
