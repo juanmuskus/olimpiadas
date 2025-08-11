@@ -175,7 +175,7 @@
           include 'fun_texto.php';
           $valor_texto = num2Text($valor);
           ?>
-          <p class="text-start">La inscripción a las Olimpiadas Matemáticas Unicórdoba <?php echo date('Y'); ?> tiene como fecha límite el día <b>20 de septiembre de <?php echo date('Y'); ?></b>. Este proceso se hace a través de este formulario y tiene una inversión de $<?php echo number_format($valor); ?> (<?php echo $valor_texto;?> mil pesos) por estudiante participante. Cada colegio debe hacer una única consignación por el valor total de los inscritos, el recibo de pago se generará en el siguiente link <a href="https://educacioncontinuada.appsprod.unicordoba.edu.co/inscripcursos/576"><button class="btn btn-primary btn-sm"><i class="bi bi-currency-dollar"></i> Pago</button></a>, debe diligenciar bien la información para que la factura electrónica salga correctamente. El recibo de pago aparece por $ <?php echo number_format($valor); ?> pesos, pero una vez nos informe el número de estudiantes que participarán se ajustará el valor a pagar.</p>
+          <p class="text-start">La inscripción a las Olimpiadas Matemáticas Unicórdoba <?php echo date('Y'); ?> tiene como fecha límite el día <b>20 de septiembre de <?php echo date('Y'); ?></b>. Este proceso se hace a través de este formulario y tiene una inversión de $<?php echo number_format($valor); ?> (<?php echo $valor_texto;?> mil pesos) por estudiante participante. Cada colegio debe hacer una única consignación por el valor total de los inscritos, el recibo de pago se generará en el siguiente link <a href="https://educacioncontinuada.appsprod.unicordoba.edu.co/inscripcursos/576" target="_blank"><button class="btn btn-primary btn-sm"><i class="bi bi-currency-dollar"></i> Pago</button></a>, debe diligenciar bien la información para que la factura electrónica salga correctamente. El recibo de pago aparece por $ <?php echo number_format($valor); ?> pesos, pero una vez nos informe el número de estudiantes que participarán se ajustará el valor a pagar.</p>
           <p class="text-start">El evento se desarrollará en dos etapas.</p>
           <table class="table table-hover">
             <tbody>
@@ -183,7 +183,7 @@
                 <th scope="row" class="align-middle text-danger">Primera Etapa</th>
                 <td>
                   <p class="text-start">Clasificatoria: se llevará a cabo de manera virtual</p>
-                  <p class="text-start">De forma virtual del <b>29 de septiembre al 3 de octubre de <?php echo date('Y'); ?></b>, de 8:00 am a 6:00 pm, a través de la plataforma <a href="https://maraton.unicordoba.edu.co/login/index.php">Maratón</a> de la Universidad de Córdoba. Se detalla a continuación por grados:</p>
+                  <p class="text-start">De forma virtual del <b>29 de septiembre al 3 de octubre de <?php echo date('Y'); ?></b>, de 8:00 am a 6:00 pm, a través de la plataforma <a href="https://maraton.unicordoba.edu.co/login/index.php" target="_blank">Maratón</a> de la Universidad de Córdoba. Se detalla a continuación por grados:</p>
                   <p class="text-start">
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item text-primary text-start">Grado 6 el día 29 de septiembre</li>
