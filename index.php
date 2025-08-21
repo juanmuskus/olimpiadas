@@ -170,12 +170,12 @@
         </div>
         <div class="modal-body">
           <?php
-          $y = date('Y'); 
-          $valor = 10000+(((int)$y-2023)*1000); 
+          $y = date('Y');
+          $valor = 10000 + (((int)$y - 2023) * 1000);
           include 'fun_texto.php';
           $valor_texto = num2Text($valor);
           ?>
-          <p class="text-start">La inscripción a las Olimpiadas Matemáticas Unicórdoba <?php echo date('Y'); ?> tiene como fecha límite el día <b>20 de septiembre de <?php echo date('Y'); ?></b>. Este proceso se hace a través de este formulario y tiene una inversión de $<?php echo number_format($valor); ?> (<?php echo $valor_texto;?> mil pesos) por estudiante participante. Cada colegio debe hacer una única consignación por el valor total de los inscritos, el recibo de pago se generará en el siguiente link <a href="https://educacioncontinuada.appsprod.unicordoba.edu.co/inscripcursos/576" target="_blank"><button class="btn btn-primary btn-sm"><i class="bi bi-currency-dollar"></i> Pago</button></a>, debe diligenciar bien la información para que la factura electrónica salga correctamente. El recibo de pago aparece por $ <?php echo number_format($valor); ?> pesos, pero una vez nos informe el número de estudiantes que participarán se ajustará el valor a pagar.</p>
+          <p class="text-start">La inscripción a las Olimpiadas Matemáticas Unicórdoba <?php echo date('Y'); ?> tiene como fecha límite el día <b>20 de septiembre de <?php echo date('Y'); ?></b>. Este proceso se hace a través de este formulario y tiene una inversión de $<?php echo number_format($valor); ?> (<?php echo $valor_texto; ?> mil pesos) por estudiante participante. Cada colegio debe hacer una única consignación por el valor total de los inscritos, el recibo de pago se generará en el siguiente link <a href="https://educacioncontinuada.appsprod.unicordoba.edu.co/inscripcursos/576" target="_blank"><button class="btn btn-primary btn-sm"><i class="bi bi-currency-dollar"></i> Pago</button></a>, debe diligenciar bien la información para que la factura electrónica salga correctamente. El recibo de pago aparece por $ <?php echo number_format($valor); ?> pesos, pero una vez nos informe el número de estudiantes que participarán se ajustará el valor a pagar.</p>
           <p class="text-start">El evento se desarrollará en dos etapas.</p>
           <table class="table table-hover">
             <tbody>
@@ -222,6 +222,8 @@
   <!-- AYUDA -->
   <button class="corner-button" id="botonayuda"><i class="bi bi-question-square-fill"></i> Ayuda</button>
   <button class="corner-button2" id="botoncert"><i class="bi bi-filetype-pdf"></i> Certificados</button>
+  <button class="corner-button3" id="botonorg"><i class="bi bi-people-fill"></i> Comite Organizador</button>
+
   <!-- -->
 
   <!-- AYUDA - Videos -->
@@ -253,37 +255,149 @@
     </div>
   </div>
 
-<!-- Certificados -->
-<div class="modal fade" id="mcert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-filetype-pdf"></i> Certificados</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p class="text-start">Ingrese el doc. de identidad del estudiante: </p>
-        <div class="row">
-          <div class="col-4">
-        <input type="number" name="busdoci" id="busdoci" class="form-control" required>
-        <small id="busaviso" class="text-danger"></small>
+  <!-- Certificados -->
+  <div class="modal fade" id="mcert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-filetype-pdf"></i> Certificados</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="col-4 text-start">
-        <button type="button" class="btn btn-danger" id="bbuscar"><i class="bi bi-search"></i> Buscar</button>
-        </div>
-        </div>        
-        <div class="row mt-4">
-          <div id="info">
-            
+        <div class="modal-body">
+          <p class="text-start">Ingrese el doc. de identidad del estudiante: </p>
+          <div class="row">
+            <div class="col-4">
+              <input type="number" name="busdoci" id="busdoci" class="form-control" required>
+              <small id="busaviso" class="text-danger"></small>
+            </div>
+            <div class="col-4 text-start">
+              <button type="button" class="btn btn-danger" id="bbuscar"><i class="bi bi-search"></i> Buscar</button>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div id="info">
+
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x"></i> Cerrar</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x"></i> Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>  
+
+  <!-- Modal Comite Organizador-->
+  <div class="modal fade" id="morg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-people-fill"></i> Comite Organizador</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row p-2">
+            <div class="card mt-2 p-1">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src="img/cbanquet.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-10">
+                  <div class="card-body text-start">
+                    <h5 class="card-title text-primary">Coordinador / 7°</h5>
+                    <p class="card-text"><b>Phd. Carlos Banquet Brango</b></p>
+                    <small>Licenciatura en Matemáticas y Física, Universidad De Córdoba, Colombia. Maestría en Matemáticas, Universidad Nacional de Colombia, Sede Medellín, Colombia. Doctor En Matemáticas, Universidad Estatal De Campinas, Campinas, Brasil.</small>
+                    <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> cbanquet@correo.unicordoba.edu.co</small></p>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-3">
+                  <div class="card" style="height: 100%;">
+                    <img src="img/jborja.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title text-primary">Sexto grado</h5>
+                    <p class="card-text"><b>Phd. Jerson Mnauel Borja Soto</b></p>                      
+                      <small class="card-text">Matemático, Universidad de Córdoba, Colombia. Magister en Matemáticas- Universidad De Los Andes, Colombia. Doctorado En Matemáticas - Universidad De Los Andes, Colombia.</small>
+                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> yersonborjas@correo.unicordoba.edu.co</small></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-3">
+                  <div class="card" style="height: 100%;">
+                    <img src="img/jlloreda.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title text-primary">Octavo grado</h5>
+                    <p class="card-text"><b>Msc. Jimmy Herlin Lloreda Zuñiga</b></p>                      
+                      <small class="card-text">Matemático, Universidad de Córdoba, Colombia. Maestría en Matemáticas, Universidad Nacional de Colombia, Sede Medellín, Colombia.</small>
+                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> jhlloreda@correo.unicordoba.edu.co</small></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-3">
+                  <div class="card" style="height: 100%;">
+                    <img src="img/eperez.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title text-primary">Noveno grado</h5>
+                    <p class="card-text"><b>Phd. Edgardo Enrique Pérez Reyes</b></p>                      
+                      <small class="card-text">Matemático, Universidad de Córdoba, Colombia. Magister en Matemáticas Aplicadas - Recinto Universitario de Mayaguez Universidad de Puerto Rico, Doctor en Ciencias-Matemática Aplicada, Universidade de São Paulo - Brazil.</small>
+                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> edgardoperezr@correo.unicordoba.edu.co</small></p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-3">
+                  <div class="card" style="height: 100%;">
+                    <img src="img/jreyes.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title text-primary">Decimo grado</h5>
+                    <p class="card-text"><b>Msc. Jorge Armando Reyes Vasquez</b></p>                      
+                      <small class="card-text">Matemático, Universidad de Córdoba, Colombia. Maestría En Matemáticas, Universidad Nacional De Colombia, Sede Medellín, Colombia.</small>
+                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> jorgereyesv@correo.unicordoba.edu.co</small></p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row mt-2">
+                <div class="col-3">
+                  <div class="card" style="height: 100%;">
+                    <img src="img/lbenites.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title text-primary">Once grado</h5>
+                    <p class="card-text"><b>Phd. Luis Enrique Benitez Babilonia</b></p>                      
+                      <small class="card-text">Matemático, Universidad De Córdoba, Colombia. Magíster en Matemáticas, Universidad de Antioquia, Colombia. Doctor en Ciencias, con Orientación en Matemáticas Aplicadas, Centro de Investigación en Matemáticas, Guanajuato, México.</small>
+                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> luisbenitez@correo.unicordoba.edu.co</small></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-3">
+                  <div class="card" style="height: 100%;">
+                    <img src="img/jmuskus.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title text-primary">Soporte TIC´s - CINTIA</h5>
+                    <p class="card-text"><b>Msc. Juan Manuel Muskus</b></p>                      
+                      <small class="card-text">Magister en Software Libre UNAB - UOC, Ing. Sistemas, Lic. en Informatica Educ. Universidad de Córdoba - Colombia. Prof. Universitario CINTIA.</small>
+                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> jmuskus@correo.unicordoba.edu.co</small></p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x"></i> Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </body>
 
@@ -303,6 +417,9 @@
 
   $('#botoncert').click(function() {
     $('#mcert').modal('show');
+  });
+  $('#botonorg').click(function() {
+    $('#morg').modal('show');
   });
 </script>
 <style>
@@ -369,7 +486,7 @@
     /* zoom: .4; */
   }
 
-    .corner-button2 {
+  .corner-button2 {
     font-family: inherit;
     letter-spacing: 0.02rem;
     cursor: pointer;
@@ -386,14 +503,37 @@
     border-radius: 5px;
     /* zoom: .4; */
   }
-  
-  .corner-button:hover{
+
+  .corner-button3 {
+    font-family: inherit;
+    letter-spacing: 0.02rem;
+    cursor: pointer;
+    background: transparent;
+    border: 0.2rem solid currentColor;
+    padding: 0.5rem 0.6rem;
+    font-size: 1em;
+    color: navy;
+    position: fixed;
+    transition: color 0.3s;
+    z-index: 2;
+    top: 1em;
+    left: 15.6em;
+    border-radius: 5px;
+    /* zoom: .4; */
+  }
+
+  .corner-button:hover {
     color: #00c509;
     background: #f8f9fa;
   }
 
   .corner-button2:hover {
     color: red;
+    background: #f8f9fa;
+  }
+
+  .corner-button3:hover {
+    color: blue;
     background: #f8f9fa;
   }
 </style>
