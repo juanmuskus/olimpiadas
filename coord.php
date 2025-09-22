@@ -172,7 +172,7 @@ if (isset($_SESSION['usuario'])) {
                                     </div>
                                     <div class="col-6 mb-2">
                                         <p class="text-start">Modalidad y lugar de Presentación - Fase 1:</p>
-                                        <select name="lugar" id="lugar" class='form-control' required>
+                                        <select name="lugar" id="lugar" class='form-control' required disabled>
                                             <option value="Virtual" selected>Virtual</option>
                                             <option value="Montelíbano">Montelíbano</option>
                                             <option value="Berástegui">Berástegui</option>
@@ -239,7 +239,7 @@ if (isset($_SESSION['usuario'])) {
 
                             <div class="col-6">
                             <p class="text-start">Modalidad y lugar de Presentación - Fase 1:</p>
-                                        <select name="elugar" id="elugar" class='form-control' required>
+                                        <select name="elugar" id="elugar" class='form-control' required disabled>
                                             <option value="Virtual" selected>Virtual</option>
                                             <option value="Montelíbano">Montelíbano</option>
                                             <option value="Berástegui">Berástegui</option>
