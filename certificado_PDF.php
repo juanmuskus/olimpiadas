@@ -60,10 +60,10 @@
         $pdf-> Cell('150','8','','0');
         $pdf-> ln(15);
         
-        $pdf->SetXY(103, 118);
+        $pdf->SetXY(1, 114);
         $pdf-> SetFont('Times','','18');
         $pdf->SetTextColor(20, 90, 50);
-        $pdf-> Cell('257','8',strtoupper($grado),'0','','C');
+        $pdf-> Cell('223','8',strtoupper($grado),'0','','C');
 
         ob_end_clean();
         $pdf->Output('I');
