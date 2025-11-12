@@ -406,7 +406,7 @@
   $(document).ready(function() {
     $('#anuncio').modal('hide');
     $('#ayuda').modal('hide');
-    //$('#mcert').modal('show'); activar para ver certificados
+    $('#mcert').modal('show'); //activar para ver certificados
     $('#rmail').modal('hide');
     $('#coord').modal('hide');
   });
