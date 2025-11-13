@@ -55,7 +55,7 @@
         $pdf->SetTextColor(0,0,0); 
         $pdf-> SetFont('Times','','15');
         var_dump($ie);
-        $pdf-> Cell('257','8','I.E. '.iconv('UTF-8', 'windows-1252',$ie),'0','','C');
+        $pdf-> Cell('257','8',iconv('UTF-8', 'windows-1252',$ie),'0','','C');
         $pdf-> ln(17);
         $pdf-> SetFont('Times','','7');
         $pdf-> Cell('150','8','','0');
