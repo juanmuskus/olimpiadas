@@ -10,8 +10,9 @@
 <?php
 
         $nom = $_REQUEST['nom'];
-        $ie = $_REQUEST['ie'];
+        $ie = utf8_decode($_REQUEST['ie']);
         $rgrado = $_REQUEST['grado'];
+        
         switch ($rgrado) {
             case 6:
                 $grado = "Sexto";
@@ -52,15 +53,15 @@
         $pdf-> Cell('257','8',iconv('UTF-8', 'windows-1252',$nom),'0','','C');
         $pdf-> ln(11);
         $pdf->SetTextColor(0,0,0); 
-        $pdf-> SetFont('Times','','18');
-
+        $pdf-> SetFont('Times','','15');
+        var_dump($ie);
         $pdf-> Cell('257','8','I.E. '.iconv('UTF-8', 'windows-1252',$ie),'0','','C');
         $pdf-> ln(17);
         $pdf-> SetFont('Times','','7');
         $pdf-> Cell('150','8','','0');
         $pdf-> ln(15);
         
-        $pdf->SetXY(103, 118);
+        $pdf->SetXY(78, 114);
         $pdf-> SetFont('Times','','18');
         $pdf->SetTextColor(20, 90, 50);
         $pdf-> Cell('257','8',strtoupper($grado),'0','','C');
