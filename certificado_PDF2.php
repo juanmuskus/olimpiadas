@@ -9,7 +9,7 @@
 <body>
 <?php
 
-        $nom = $_REQUEST['nom'];
+        $nom = strtoupper(utf8_decode($_REQUEST['nom']));
         $ie = utf8_decode($_REQUEST['ie']);
         $rgrado = $_REQUEST['grado'];
         
