@@ -381,7 +381,7 @@
                     <div class="card-body">
                     <h5 class="card-title text-primary">Soporte TIC´s - CINTIA</h5>
                     <p class="card-text"><b>Msc. Juan Manuel Muskus</b></p>                      
-                      <small class="card-text">Magister en Software Libre UNAB - UOC, Ing. Sistemas, Lic. en Informatica Educ. Universidad de Córdoba - Colombia. Prof. Universitario CINTIA.</small>
+                      <small class="card-text">Magister en Software Libre UNAB - UOC, Ing. Sistemas, Lic. en Informatica Educ. Universidad de Córdoba - Colombia. Profesional Universitario CINTIA.</small>
                       <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> jmuskus@correo.unicordoba.edu.co</small></p>
                     </div>
                   </div>
