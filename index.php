@@ -15,10 +15,17 @@
 
 <body class="text-center">
   <main class="form-signin">
+    <div class="text-center mb-3">
+      <img src="img/logo_unicor.png" class="mb-3" alt="Unicordoba" width="100%" height="100%">
+      <div class="hero-badge mb-3">
+        <i class="bi bi-calculator-fill"></i>
+        <span>Dpto. de Matemáticas · Universidad de Córdoba</span>
+      </div>
+      <h1 class="h3 mb-2 fw-bold brand-title">Olimpiadas de Matemáticas</h1>
+      <p class="brand-subtitle mb-3">Accede al sistema y gestiona tu participación en <?php echo date('Y'); ?></p>
+    </div>
+
     <form action="login.php" method="post">
-      <img src="img/logo_unicor.png" class="mb-4" alt="Unicordoba" width="100%" height="100%">
-      <h1 class="h3 mb-3 fw-normal"><b>Universidad de Córdoba</b></h1>
-      <p class="text-center"><img src="img/math.png" width="5%" height="5%"> Olimpiadas de Matemáticas <?php echo date('Y'); ?></p>
       <div class="form-floating">
         <input type="email" class="form-control" id="floatingInput" name="mail" placeholder="name@example.com">
         <label for="floatingInput">Email</label>
@@ -27,19 +34,19 @@
         <input type="password" class="form-control" name="pass" id="floatingPassword" placeholder="Password">
         <label for="floatingPassword">Contraseña</label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit"><i class="bi bi-box-arrow-in-right"></i> Ingresar</button>
+      <button class="w-100 btn btn-lg btn-primary mt-3" type="submit"><i class="bi bi-box-arrow-in-right"></i> Ingresar</button>
     </form>
-    <div class="form-floating mt-4">
-      <button class="btn btn-danger" id="bcoord"><i class="bi bi-person-plus"></i> Incripción para coord. IE's</button>
+
+    <div class="auth-actions">
+      <button class="btn btn-danger" id="bcoord"><i class="bi bi-person-plus"></i> Inscripción coord. IE's</button>
+      <button class="btn btn-secondary" id="bmail"><i class="bi bi-bell"></i> Recuperar contraseña</button>
+      <a class="btn btn-outline-primary" href="#" data-bs-toggle="modal" data-bs-target="#anuncio"><i class="bi bi-info-circle-fill"></i> Ver anuncio</a>
     </div>
-    <div class="form-floating mt-2">
-      <button class="btn btn-secondary" id="bmail"><i class="bi bi-bell"></i> Olvidaste tu contraseña ?</button>
-      <hr>
-      <a href="#" data-bs-toggle="modal" data-bs-target="#anuncio"><i class="bi bi-info-circle-fill"></i> Ver Anuncio</a>
-    </div>
-    <small class="mt-2 text-secondary">Desarrollado por:</small><br>
-    <small class="mt-1 mb-3 text-dark"><img src="img/cintia.ico" width="10%" height="10%"> Centro de Innovación en TIC para apoyo a la Academia <b>CINTIA</b></small>
-    <small class="mt-2">&copy <?php echo date('Y'); ?></small>
+
+    <hr class="my-3">
+    <p class="footer-note mb-2">Desarrollado por <strong>CINTIA</strong></p>
+    <p class="footer-note mb-2"><img src="img/cintia.ico" width="10%" height="10%"> Centro de Innovación en TIC para apoyo a la Academia</p>
+    <small class="text-secondary">&copy; <?php echo date('Y'); ?> Universidad de Córdoba</small>
   </main>
 
   <!-- Modal: recuperar x correo -->
