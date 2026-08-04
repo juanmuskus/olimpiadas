@@ -227,10 +227,9 @@
   <!-- FIN WHATSAPP -->
 
   <!-- AYUDA -->
-  <button class="corner-button" id="botonayuda"><i class="bi bi-question-square-fill"></i> Ayuda</button>
-  <button class="corner-button2" id="botoncert"><i class="bi bi-filetype-pdf"></i> Certificados</button>
-  <button class="corner-button3" id="botonorg"><i class="bi bi-people-fill"></i> Comite Organizador</button>
-
+      <button class="corner-button" id="botonayuda"><i class="bi bi-question-square-fill"></i> Ayuda</button>
+      <button class="corner-button2" id="botoncert"><i class="bi bi-filetype-pdf"></i> Certificados</button>
+      <button class="corner-button3" id="botonorg"><i class="bi bi-people-fill"></i> Comite Organizador</button>
   <!-- -->
 
   <!-- AYUDA - Videos -->

@@ -125,3 +125,45 @@ body {
 .footer-note strong {
   color: #0f4c81;
 }
+
+@media (max-width: 576px) {
+  body {
+    padding: 12px 10px;
+  }
+
+  #botonayuda, #botoncert, #botonorg {
+    font-size: 0.6rem;
+    padding: 0.5rem 0.7rem;
+    color: black;
+    border:  none;
+    text-decoration: underline;
+  } 
+  
+  .form-signin {
+    max-width: 100%;
+    padding: 16px 14px;
+    border-radius: 18px;
+  }
+
+  .auth-actions .btn {
+    font-size: 0.9rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  .brand-title {
+    font-size: 1.45rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .footer-note {
+    font-size: 0.85rem;
+  }
+}
