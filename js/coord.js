@@ -10,7 +10,7 @@ $(document).ready(function(){
     $('#mpio').change(function() {
         var mpiosel = $(this).val();
         $.ajax({
-            url: 'lista_ies.php',
+            url: 'modules/institutions/lista_ies.php',
             type: 'POST',
             data: {mpio: mpiosel},
             success: function(response){

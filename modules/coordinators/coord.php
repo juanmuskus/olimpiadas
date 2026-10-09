@@ -10,7 +10,7 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?>
@@ -18,6 +18,7 @@ if (isset($_SESSION['usuario'])) {
 <html lang="es">
 
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -35,7 +36,7 @@ if (isset($_SESSION['usuario'])) {
     <div id="wrapper">
         <!-- Sidebar -->
         <?php
-        include 'menu.php';
+        include dirname(__DIR__, 2) . '/modules/shared/menu.php';
         ?>
         <!-- /#sidebar-wrapper -->
 
@@ -49,7 +50,7 @@ if (isset($_SESSION['usuario'])) {
                     <!-- /#page-content-wrapper -->
                     <div class="row">
                         <?php
-                        include 'conexion.php';
+                        include dirname(__DIR__, 2) . '/modules/shared/conexion.php';
                         echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
                         // query all
                         $sqlcoord = "SELECT docidentidad, CONCAT(u.apellidos,' ',u.nombres) AS nomcoord, u.email, u.pass, u.estado, u.cant_est, CONCAT(i.nombre,' de ',i.mpio) AS iesnom, lugar, nit FROM users_coord u, ies i WHERE (u.tipo = 'C') AND (idIES = IES_idIES) ORDER BY nomcoord, iesnom";
@@ -120,7 +121,7 @@ if (isset($_SESSION['usuario'])) {
                     </div>
                     <div class="modal-body">
                         <p class="text-start"><b>Nuevo Coordinador de IE's</b></p>
-                        <form action="nregistrar_coord.php" method="post">
+                        <form action="modules/coordinators/nregistrar_coord.php" method="post">
                             <div class="col-5 mb-2">
                                 <p class="text-start">Doc. identidad</p>
                                 <input type="number" name="doci" id="doci" class="form-control" required>
@@ -147,7 +148,7 @@ if (isset($_SESSION['usuario'])) {
                                     <p class="text-start">Municipio:</p>
                                     <select name="mpio" id="mpio" class="form-control" required>
                                         <?php
-                                        include 'conexion.php';
+                                        include dirname(__DIR__, 2) . '/modules/shared/conexion.php';
                                         $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
                                         $result = $con->query($sql);
                                         while ($mostrar = mysqli_fetch_array($result))
@@ -203,7 +204,7 @@ if (isset($_SESSION['usuario'])) {
                     </div>
                     <div class="modal-body">
                         <p class="text-start"><b>Editar Coordinador de IE's</b></p>
-                        <form action="update_coord.php" method="post">
+                        <form action="modules/coordinators/update_coord.php" method="post">
                             <input type="hidden" name="udocicoord">
                             <div class="row mb-2">
                                 <p class="text-start" id="eidcoord">Doc. identidad:</p>
@@ -346,11 +347,11 @@ if (isset($_SESSION['usuario'])) {
             .then((value) => {
                 switch (value) {
                     case "catch":
-                        window.location = 'eliminar_coord.php?id=' + id;
+                        window.location = 'modules/coordinators/eliminar_coord.php?id=' + id;
                         break;
 
                     default:
-                        window.location = 'coord.php';
+                        window.location = 'modules/coordinators/coord.php';
                 }
             });
     }
@@ -379,12 +380,12 @@ if (isset($_SESSION['usuario'])) {
                 if (value) {
                     let cantidadEstudiantes = document.querySelector('.swal-content__input').value;
                     if (cantidadEstudiantes) {
-                        window.location = 'habilitar_coord.php?id=' + id + '&estudiantes=' + cantidadEstudiantes;
+                        window.location = 'modules/coordinators/habilitar_coord.php?id=' + id + '&estudiantes=' + cantidadEstudiantes;
                     } else {
                         swal("Error", "Debe ingresar una cantidad de estudiantes válida.", "error");
                     }
                 } else {
-                    window.location = 'coord.php';
+                    window.location = 'modules/coordinators/coord.php';
                 }
             });
     }
@@ -392,7 +393,7 @@ if (isset($_SESSION['usuario'])) {
     function update_coord(id, col) {
         $('#nuevocoord').modal('hide');
         $.ajax({
-            url: 'get_coord.php',
+            url: 'modules/coordinators/get_coord.php',
             type: 'POST',
             data: {
                 id: id

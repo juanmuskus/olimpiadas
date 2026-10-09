@@ -9,13 +9,14 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,14 +24,14 @@ if (isset($_SESSION['usuario'])) {
 </head>
 <body>
 <?php
-include('conexion.php');
+require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
 $id = $_REQUEST['id'];
 $cant_est = $_REQUEST['estudiantes'];
 //actualizar coordinador
 $sql = "UPDATE users_coord SET estado ='A', cant_est = $cant_est WHERE docidentidad = $id";
 $con->query($sql);
 //notificar por correo
-include 'sendmail.php';
+require dirname(__DIR__, 2) . '/modules/shared/sendmail.php';
 $sql_coord = "SELECT * FROM users_coord WHERE docidentidad = $id";
 $res_coord = $con->query($sql_coord);
 $row_coord = $res_coord->fetch_assoc();
@@ -43,7 +44,7 @@ $lugar = $row_coord['lugar'];
 habilitar_cta($nom . " " . $apel, $pass, $mail, $cant, $lugar);
 echo "<script>
     swal({text: 'Coordinador habilitado con éxito', title: 'Olimpiadas Maths',}).then((value) => {
-    window.location= 'coord.php';
+    window.location= 'modules/coordinators/coord.php';
     });
 </script>";
 $con->close();

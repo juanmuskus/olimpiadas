@@ -1,15 +1,16 @@
 <?php
-include 'conexion.php';
+require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
 mysqli_set_charset($con, "utf8");
-$mpio = $_REQUEST['mpio'];
-$sql = "SELECT * FROM ies where (mpio = '$mpio') ORDER BY nombre ASC";
-$res = $con->query($sql);
+$mpio = $_REQUEST['mpio'] ?? '';
+$stmt = $con->prepare("SELECT idIES, nombre FROM ies WHERE mpio = ? ORDER BY nombre ASC");
+$stmt->bind_param('s', $mpio);
+$stmt->execute();
+$res = $stmt->get_result();
 $datos = array();
 while ($lista = $res->fetch_assoc()) {
     $datos[] = array('id'=> $lista['idIES'], 'nombre'=> $lista['nombre']);
-} 
-$json = json_encode($datos);
-echo $json;
+}
+echo json_encode($datos);
 
 $con->close();
 ?>

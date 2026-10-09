@@ -1,8 +1,8 @@
 <div class="row">
                     <div class="col-lg-12 alert alert-success mt-2">
-                        <p>Bienvenido(a) <b><?php echo $us;?></b> al sistema de inscripción para las Olimpiadas <?php echo date('Y');?> de Matemáticas de la Universidad de Córdoba.</p>
+                        <p>Bienvenido(a) <b><?php echo $us;?></b> al sistema de inscripción para las Olimpiadas de Matemáticas <?php echo date('Y');?>.</p>
                         <?php
-                        include 'conexion.php';
+                        require __DIR__ . '/conexion.php';
                         $idies = $_SESSION['id_ies'];
                         $sql = "SELECT nombre, mpio FROM ies, users_coord WHERE (IES_idIES = idIES) AND (idIES = $idies)";
                         $result = $con->query($sql);

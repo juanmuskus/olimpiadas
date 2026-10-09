@@ -11,13 +11,14 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,7 @@ if (isset($_SESSION['usuario'])) {
 </head>
 <body>
 <?php
-		include('conexion.php');
+		require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
 		// Definimos el archivo exportado
 		$arquivo = 'listado.xls';
 
@@ -47,7 +48,7 @@ if (isset($_SESSION['usuario'])) {
 		$html .= '</tr>';
 
 		//Seleccionar todos los elementos de la tabla
-        $pass = 'Unicor@'.date('y');
+        $pass = 'Olimpiadas@'.date('y');
 		$sql = "SELECT doc AS username, CONCAT(nombre1,' ',nombre2) AS firstname, CONCAT(apellido1,' ',apellido2) AS lastname, email, '$pass' AS password, 'CO' AS country, i.nombre, i.mpio, 
             case grado 
             when 6 then 'M061'
@@ -85,7 +86,7 @@ if (isset($_SESSION['usuario'])) {
 		header("Pragma: no-cache");
 		header("Content-type: application/x-msexcel");
 		header("Content-Disposition: attachment; filename=\"{$arquivo}\"");
-		header("Content-Description: PHP Generado CINTIA");
+		header("Content-Description: Listado generado por el sistema");
 		// Envia contenido al archivo
 		echo $html;
         $con->close();

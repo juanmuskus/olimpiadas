@@ -12,12 +12,13 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,12 +26,11 @@ if (isset($_SESSION['usuario'])) {
 </head>
 <body>
 <?php 
-include('conexion.php');
+require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
 $codigo = $_POST['cod'];
 $mpio = strtoupper($_POST['mpio']);
 $nom = strtoupper($_POST['nomie']);
-$zona = $_POST['tipo'];
-$tipoIE = $_POST['tipoIE']; // Renombrar variable para mayor claridad
+$zona = $_POST['tipo'] === 'R' ? 'R' : 'U';
 
 $sql_evalcodigo = "SELECT * FROM ies WHERE idIES = $codigo";
 $res_evaldoci = $con->query($sql_evalcodigo);
@@ -38,15 +38,15 @@ $filas = mysqli_num_rows($res_evaldoci);
 if ($filas > 0) {
     echo "<script>   
     swal({text: 'Ya existe una IE registrada con este numero de documento o correo: ".$codigo."', title: 'Olimpiadas Maths',}).then((value) => {
-    window.location= 'ies.php';
+    window.location= 'modules/institutions/ies.php';
     });
     </script>";
 } else {
-    $sql = "INSERT INTO ies (idIES, mpio, nombre, zona, tipo) VALUES ($codigo, '$mpio', '$nom','$zona', '$tipoIE')";
+    $sql = "INSERT INTO ies (idIES, mpio, nombre, tipo) VALUES ($codigo, '$mpio', '$nom', '$zona')";
     $con->query($sql);
     echo "<script>   
     swal({text: 'Inst. Educativa registrada con éxito !!!', title: 'Olimpiadas Maths',}).then((value) => {
-    window.location= 'ies.php';
+    window.location= 'modules/institutions/ies.php';
     });
     </script>";
 }

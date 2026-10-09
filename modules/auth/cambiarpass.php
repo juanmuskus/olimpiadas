@@ -10,7 +10,7 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?>
@@ -18,6 +18,7 @@ if (isset($_SESSION['usuario'])) {
 <html lang="es">
 
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -38,13 +39,13 @@ if (isset($_SESSION['usuario'])) {
             $usu = $_SESSION['usuario'];
                 if ((strlen($pas1) >= 5) && (strlen($pas2) >= 5)){
                     if ($pas1 == $pas2){
-                        include('conexion.php');
+                        require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
                         $sql = "UPDATE users_coord SET pass = '$pas1' WHERE email = '$mail'";
                         $result = $con->query($sql);
                         if ($result)
                         echo "<script>   
                         swal({text: 'Password modificado con éxito..!', title: 'Cambiar password',}).then((value) => {
-                        window.location= 'cambiarpass.php';
+                        window.location= 'modules/auth/cambiarpass.php';
                         });
                         </script>";    
                         $con->close();
@@ -52,7 +53,7 @@ if (isset($_SESSION['usuario'])) {
                         else
                         echo "<script>   
                         swal({text: 'No coinciden los password ingresados..!', title: 'Cambiar password',}).then((value) => {
-                        window.location= 'cambiarpass.php';
+                        window.location= 'modules/auth/cambiarpass.php';
                         });
                         </script>";    
         
@@ -60,7 +61,7 @@ if (isset($_SESSION['usuario'])) {
                 else
                 echo "<script>   
                 swal({text: 'La extensión mínima del password es de 5 caracteres..!', title: 'Cambiar password',}).then((value) => {
-                window.location= 'password.php';
+                window.location= 'modules/auth/cambiarpass.php';
                 });
                 </script>";    
             }
@@ -68,7 +69,7 @@ if (isset($_SESSION['usuario'])) {
     <div id="wrapper">
         <!-- Sidebar -->
         <?php
-        include 'menu.php';
+        include dirname(__DIR__, 2) . '/modules/shared/menu.php';
         ?>
         <!-- /#sidebar-wrapper -->
 

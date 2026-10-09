@@ -12,13 +12,14 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +28,7 @@ if (isset($_SESSION['usuario'])) {
 <body>
 <?php
 // update estudiante
-include 'conexion.php';
+require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
 $doci = $_POST['udoci'];
 $nom1 = strtoupper($_POST['unom1']);
 if (!empty($_POST['unom2']))
@@ -48,7 +49,7 @@ $filas = mysqli_num_rows($resultado);
 if ($filas > 1) 
     echo "<script>   
     swal({text: 'Ya existe un estudiante con este correo: ".$email." ...!!!', title: 'Olimpiadas Maths',}).then((value) => {
-    window.location= 'main.php';
+    window.location= 'modules/students/main.php';
     });
     </script>";
 else {
@@ -57,7 +58,7 @@ else {
         $con->query($sql);
         echo "<script>
             swal({text: 'Estudiante actualizado con éxito', title: 'Olimpiadas Maths',}).then((value) => {
-            window.location= 'main.php';
+            window.location= 'modules/students/main.php';
             });
             </script>";
         }

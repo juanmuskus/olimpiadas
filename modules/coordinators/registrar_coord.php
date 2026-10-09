@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +11,12 @@
 
 <body>
     <?php
-    include('conexion.php');
+    require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
     $doci = $_POST['doci'];
     $nom = strtoupper($_POST['nom']);
     $apel = strtoupper($_POST['apel']);
     $mail = $_POST['cmail'];
-    $pass = 'Unicor@'.date('Y');
+    $pass = 'Olimpiadas@'.date('Y');
     $estado = 'I';
     $tipo = 'C';
     $can_est = 0;
@@ -36,7 +37,7 @@
     } else {
         $sql = "INSERT INTO users_coord (docidentidad, nombres, apellidos, email, pass, estado, tipo, cant_est, nit, lugar, IES_idIES) VALUES ($doci, '$nom', '$apel', '$mail', '$pass', '$estado', '$tipo', $can_est, '$nit', '$lugar', $idies)";
         $con->query($sql);
-        include 'sendmail.php';
+        require dirname(__DIR__, 2) . '/modules/shared/sendmail.php';
         //traer el nombre y mpio de la IES
         $sqlies = "SELECT nombre, mpio FROM ies WHERE idIES = $idies";
         $resies = $con->query($sqlies);

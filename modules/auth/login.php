@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
 </head>
 <body>
 <?php
-include('conexion.php');
+require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
 $mail=$_POST['mail'];
 $pass=$_POST['pass'];
 // verificar si existe el usuario
@@ -30,7 +31,7 @@ $cant= $existe_u->num_rows;
             $_SESSION['cant_est']=$cant_est;
             $_SESSION['id_ies']=$id_ies;
             $_SESSION['mail']=$mail;
-            header('location:main.php');    
+            header('Location: ../students/main.php');
         }
         else {
             echo "<script>   

@@ -12,12 +12,13 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,26 +26,25 @@ if (isset($_SESSION['usuario'])) {
 </head>
 <body>
 <?php 
-include('conexion.php');
+require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
 $codigo = $_POST['codx'];
 $mpio = $_POST['mpiox'];
 $nom = strtoupper($_POST['nomie']);
-$zona = $_POST['tipo'];
-$tipoIE = $_POST['tipoIE'];
+$zona = $_POST['tipo'] === 'R' ? 'R' : 'U';
 
-$sql = "UPDATE ies SET mpio = '$mpio', nombre = '$nom', zona = '$zona', tipo = '$tipoIE' WHERE idIES = $codigo";
+$sql = "UPDATE ies SET mpio = '$mpio', nombre = '$nom', tipo = '$zona' WHERE idIES = $codigo";
 
 $res = $con->query($sql);
 if ($res) {
     echo "<script>   
     swal({text: 'I.E. actualizada con exito !', title: 'Olimpiadas Maths',}).then((value) => {
-    window.location= 'ies.php';
+    window.location= 'modules/institutions/ies.php';
     });
     </script>";
 } else {
     echo "<script>   
     swal({text: 'Error al actualizar la I.E.', title: 'Olimpiadas Maths',}).then((value) => {
-    window.location= 'ies.php';
+    window.location= 'modules/institutions/ies.php';
     });
     </script>";
 }

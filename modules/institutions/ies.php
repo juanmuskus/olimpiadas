@@ -10,7 +10,7 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?>
@@ -18,6 +18,7 @@ if (isset($_SESSION['usuario'])) {
 <html lang="es">
 
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -35,7 +36,7 @@ if (isset($_SESSION['usuario'])) {
     <div id="wrapper">
         <!-- Sidebar -->
         <?php
-        include 'menu.php';
+        include dirname(__DIR__, 2) . '/modules/shared/menu.php';
         ?>
         <!-- /#sidebar-wrapper -->
 
@@ -49,11 +50,11 @@ if (isset($_SESSION['usuario'])) {
                     <!-- /#page-content-wrapper -->
                     <div class="row">
                         <?php
-                        include 'conexion.php';
+                        include dirname(__DIR__, 2) . '/modules/shared/conexion.php';
                         echo "<div class='col-lg-12 alert alert-danger mt-2'>Bienvenido <b>Admin</b> del sistema</div>";
                         // query all
                         $con->set_charset("utf8");
-                        $sqlcoord = "SELECT idIES, nombre, mpio, CASE zona WHEN 'U' THEN 'Urbano' WHEN 'R' THEN 'Rural' END as zona, CASE tipo WHEN 'PUB' THEN 'Pública' WHEN 'PRI' THEN 'Privada' END as tipo FROM ies order by mpio, nombre";
+                        $sqlcoord = "SELECT idIES, nombre, mpio, CASE tipo WHEN 'U' THEN 'Urbano' WHEN 'R' THEN 'Rural' END as zona FROM ies order by mpio, nombre";
                         echo "<div class='row mb-3'><div class='col-lg-9 nav-brad text-primary'><h3><i class='bi bi-person-video3'></i> Instituciones Educativas</h3></div><div class='col-lg-3 d-flex justify-content-center align-items-center'>
                         <button class='btn btn-success' id = 'bnuevocoord'><i class='bi bi-person-plus-fill'></i> Nuevo</button>&nbsp;
                         </div>
@@ -69,7 +70,6 @@ if (isset($_SESSION['usuario'])) {
                                         <th scope="col">Nombre IE</th>
                                         <th scope="col">Municpio</th>
                                         <th scope="col">Ubicación</th>
-                                        <th scope="col">Tipo</th>
                                         <th scope="col">Operaciones</th>
                                     </tr>
                                 </thead>
@@ -84,7 +84,6 @@ if (isset($_SESSION['usuario'])) {
                                         echo "<td>" . $row['nombre'] . "</td>";
                                         echo "<td>" . $row['mpio'] . "</td>";
                                         echo "<td>" . $row['zona'] . "</td>";
-                                        echo "<td>" . $row['tipo'] . "</td>";
                                         echo "<td>
                                         <button class='btn btn-warning btn-sm' id='bupdate'><i class='bi bi-arrow-repeat'></i> Actualizar</button>
                                         <button class='btn btn-danger btn-sm' onclick='delete_coord(" . $row['idIES'] . ")'><i class='bi bi-trash-fill'></i> Eliminar</button>";
@@ -111,7 +110,7 @@ if (isset($_SESSION['usuario'])) {
                     </div>
                     <div class="modal-body">
                         <p class="text-start"><b>Nueva Inst. Educativa</b></p>
-                        <form action="registrar_ie.php" method="post">
+                        <form action="modules/institutions/registrar_ie.php" method="post">
                             <div class="col-6 mb-2">
                                 <p class="text-start">Codigo</p>
                                 <input type="number" name="cod" id="cod" class="form-control" required>
@@ -130,13 +129,6 @@ if (isset($_SESSION['usuario'])) {
                                     <select name="tipo" id="tipo" class="form-control" required>
                                         <option value="U" selected>Urbano</option>
                                         <option value="R">Rural</option>
-                                    </select>
-                                </div>
-                                <div class="col-6 mb-2">
-                                    <p class="text-start">Tipo IE's:</p>
-                                    <select name="tipoIE" id="tipoIE" class="form-control" required>
-                                        <option value="PUB" selected>Pública</option>
-                                        <option value="PRI">Privada</option>
                                     </select>
                                 </div>
                             </div>
@@ -160,7 +152,7 @@ if (isset($_SESSION['usuario'])) {
                     </div>
                     <div class="modal-body">
                         <p class="text-start"><b>Actualizar Inst. Educativa</b></p>
-                        <form action="update_ie.php" method="post">
+                        <form action="modules/institutions/update_ie.php" method="post">
                             <div class="col-6 mb-2">
                                 <fieldset disabled>
                                     <p class="text-start">Codigo</p>
@@ -183,13 +175,6 @@ if (isset($_SESSION['usuario'])) {
                                     <select name="tipo" id="tipo" class="form-control" required>
                                         <option value="U" selected>Urbano</option>
                                         <option value="R">Rural</option>
-                                    </select>
-                                </div>
-                                <div class="col-6 mb-2">
-                                    <p class="text-start">Tipo IE's:</p>
-                                    <select name="tipoIE" id="tipoIE" class="form-control" required>
-                                        <option value="PUB" selected>Pública</option>
-                                        <option value="PRI">Privada</option>
                                     </select>
                                 </div>
                             </div>
@@ -283,10 +268,10 @@ if (isset($_SESSION['usuario'])) {
             .then((value) => {
                 switch (value) {
                     case "catch":
-                        window.location = 'eliminar_ie.php?id=' + id;
+                        window.location = 'modules/institutions/eliminar_ie.php?id=' + id;
                         break;
                     default:
-                        window.location = 'ies.php';
+                        window.location = 'modules/institutions/ies.php';
                 }
             });
     }
@@ -315,12 +300,12 @@ if (isset($_SESSION['usuario'])) {
                 if (value) {
                     let cantidadEstudiantes = document.querySelector('.swal-content__input').value;
                     if (cantidadEstudiantes) {
-                        window.location = 'habilitar_coord.php?id=' + id + '&estudiantes=' + cantidadEstudiantes;
+                        window.location = 'modules/coordinators/habilitar_coord.php?id=' + id + '&estudiantes=' + cantidadEstudiantes;
                     } else {
                         swal("Error", "Debe ingresar una cantidad de estudiantes válida.", "error");
                     }
                 } else {
-                    window.location = 'coord.php';
+                    window.location = 'modules/coordinators/coord.php';
                 }
             });
     }
@@ -330,7 +315,6 @@ if (isset($_SESSION['usuario'])) {
         var nombre = $(this).closest('tr').find('td:eq(2)').text();
         var mpio = $(this).closest('tr').find('td:eq(3)').text();
         var tipo = $(this).closest('tr').find('td:eq(4)').text() === 'Urbano' ? 'U' : 'R';
-        var tipoIE = $(this).closest('tr').find('td:eq(5)').text() === 'Pública' ? 'PUB' : 'PRI';
 
         $('#updateIE #cod').val(id);
         $('#updateIE #codx').val(id);
@@ -338,7 +322,6 @@ if (isset($_SESSION['usuario'])) {
         $('#updateIE #mpio').val(mpio);
         $('#updateIE #mpiox').val(mpio);
         $('#updateIE #tipo').val(tipo);
-        $('#updateIE #tipoIE').val(tipoIE);
 
         $('#updateIE').modal('show');
     });

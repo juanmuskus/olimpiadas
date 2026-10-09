@@ -12,13 +12,14 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,7 @@ if (isset($_SESSION['usuario'])) {
 </head>
 <body>
 <?php
-include("conexion.php");
+require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
 // evaluar campos
 $doci = $_POST['rdoci'];
 $nom1 = strtoupper($_POST['rnom1']);
@@ -49,7 +50,7 @@ $filas = mysqli_num_rows($resultado);
 if ($filas > 0) {
     echo "<script>   
     swal({text: 'Ya existe un estudiante con este correo: ".$email." ...!!!', title: 'Olimpiadas Maths',}).then((value) => {
-    window.location= 'main.php';
+    window.location= 'modules/students/main.php';
     });
     </script>";
     } else {
@@ -59,7 +60,7 @@ if ($filas > 0) {
     if ($filas_doc > 0) {
         echo "<script>   
         swal({text: 'Ya existe un estudiante registrado con este numero de  documento: ".$doci."', title: 'Olimpiadas Maths',}).then((value) => {
-        window.location= 'main.php';
+        window.location= 'modules/students/main.php';
         });
         </script>";
     } else {
@@ -78,13 +79,13 @@ if ($filas > 0) {
         mysqli_query($con, $sql);
             echo "<script>   
             swal({text: 'Estudiante registrado con éxito, cantidad: ".($cant+1)."/".$cupo."', title: 'Olimpiadas Maths',}).then((value) => {
-            window.location= 'main.php';
+            window.location= 'modules/students/main.php';
             });
             </script>";
         } else {
             echo "<script>   
             swal({text: 'La IES solo puede registrar: ".$cupo."  estudiantes, No puede sobrepasar esta cantidad ...!!!', title: 'Olimpiadas Maths',}).then((value) => {
-            window.location= 'main.php';
+            window.location= 'modules/students/main.php';
             });
             </script>";
         } 

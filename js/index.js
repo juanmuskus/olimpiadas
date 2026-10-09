@@ -13,21 +13,30 @@ $(document).ready(function(){
 
     // cargar las ies de acuerdo al mpio seleccionado usando ajax
 
-    $('#mpio').change(function() {
-        var mpiosel = $(this).val();
+    function cargarIes() {
+        var mpiosel = $('#mpio').val();
+        $('#lies').empty();
+        if (!mpiosel) {
+            return;
+        }
         $.ajax({
-            url: 'lista_ies.php',
+            url: 'modules/institutions/lista_ies.php',
             type: 'POST',
+            dataType: 'json',
             data: {mpio: mpiosel},
-            success: function(response){
-                $('#lies').empty(); // Limpiar el select de opciones anteriores
-                var data = JSON.parse(response);
+            success: function(data){
+                $('#lies').empty();
                 data.forEach(function(ie) {
-                    $('#lies').append('<option value="' + ie.id + '">' + ie.nombre + '</option>');
+                    $('#lies').append($('<option>').val(ie.id).text(ie.nombre));
                 });
             }
-        });        
-    });
+        });
+    }
+
+    $('#mpio').on('change', cargarIes);
+
+    // el municipio preseleccionado no dispara "change", por eso se carga al abrir el modal
+    document.getElementById('coord').addEventListener('shown.bs.modal', cargarIes);
     
     $('#bbuscar').click(function(){
         let doci = $('#busdoci').val();
@@ -38,7 +47,7 @@ $(document).ready(function(){
         else {
         document.getElementById('busaviso').textContent = '';
         $.ajax({
-            url: 'buscarcert.php',
+            url: 'modules/certificates/buscarcert.php',
             type: 'GET',
             data: {doci: doci},
             success: function(response){

@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="es">
 <head>
+    <base href="../../">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="css/signin.css">
 </head>
 <body>
 <?php
-include 'conexion.php';
+require dirname(__DIR__, 2) . '/modules/shared/conexion.php';
 
 if (isset($_POST['mail'])) {
     $mailu = $_POST['mail'];
@@ -42,7 +43,7 @@ if (isset($_POST['mail'])) {
                 exit;
             } else {
             // notificar por correo usuario y contraseña
-            include 'sendmail.php';
+            require dirname(__DIR__, 2) . '/modules/shared/sendmail.php';
             recovery_cta($nom." ".$apel, $pass, $mailu);
             echo "<script>   
             swal({text: 'Mensaje enviado ...!!!', title: 'Olimpiadas Maths', icon: 'success',}).then((value) => {

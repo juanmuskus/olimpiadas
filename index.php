@@ -10,22 +10,22 @@
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/index.js"></script>
-  <title>Unicordoba - Olimpiadas Maths <?php echo date('Y'); ?></title>
+  <title>Olimpiadas de Matemáticas <?php echo date('Y'); ?></title>
 </head>
 
 <body class="text-center">
   <main class="form-signin">
     <div class="text-center mb-3">
-      <img src="img/logo_unicor.png" class="mb-3" alt="Unicordoba" width="100%" height="100%">
       <div class="hero-badge mb-3">
         <i class="bi bi-calculator-fill"></i>
-        <span>Dpto. de Matemáticas · Universidad de Córdoba</span>
+        <span>Competencia académica</span>
       </div>
-      <h1 class="h3 mb-2 fw-bold brand-title">Olimpiadas de Matemáticas</h1>
-      <p class="brand-subtitle mb-3">Accede al sistema y gestiona tu participación en <?php echo date('Y'); ?></p>
+      <p class="brand-subtitle fw-semibold mb-1 text-primary">Sistema de Administración de Inscripciones</p>
+      <h1 class="h3 mb-2 fw-bold brand-title">Olimpiadas de Matemáticas</h1><hr>
+      <p class="brand-subtitle mb-3 text-muted">Accede al sistema y gestiona tu participación en <?php echo date('Y'); ?></p>
     </div>
 
-    <form action="login.php" method="post">
+    <form action="modules/auth/login.php" method="post">
       <div class="form-floating">
         <input type="email" class="form-control" id="floatingInput" name="mail" placeholder="name@example.com">
         <label for="floatingInput">Email</label>
@@ -40,13 +40,10 @@
     <div class="auth-actions">
       <button class="btn btn-danger" id="bcoord"><i class="bi bi-person-plus"></i> Inscripción coord. IE's</button>
       <button class="btn btn-secondary" id="bmail"><i class="bi bi-bell"></i> Recuperar contraseña</button>
-      <a class="btn btn-outline-primary" href="#" data-bs-toggle="modal" data-bs-target="#anuncio"><i class="bi bi-info-circle-fill"></i> Ver anuncio</a>
     </div>
 
     <hr class="my-3">
-    <p class="footer-note mb-2">Desarrollado por <strong>CINTIA</strong></p>
-    <p class="footer-note mb-2"><img src="img/cintia.ico" width="10%" height="10%"> Centro de Innovación en TIC para apoyo a la Academia</p>
-    <small class="text-secondary">&copy; <?php echo date('Y'); ?> Universidad de Córdoba</small>
+    <small class="text-secondary">&copy; <?php echo date('Y'); ?> Olimpiadas de Matemáticas</small>
   </main>
 
   <!-- Modal: recuperar x correo -->
@@ -60,7 +57,7 @@
         <div class="modal-body">
           <p class="text-start">Ingresa tu e-mail registrado para recuperar tu contraseña:</p>
           <div class="mb-3">
-            <form action="recovery_mail.php" method="POST">
+            <form action="modules/auth/recovery_mail.php" method="POST">
               <input type="mail" name="mail" id="mail" class="form-control" placeholder="ejemplo@correo.com" aria-describedby="helpId" required />
           </div>
         </div>
@@ -85,7 +82,7 @@
         </div>
         <div class="modal-body">
           <p class="text-start"><b>Inscripción de Coordinadores de IE's</b></p>
-          <form action="registrar_coord.php" method="post">
+          <form action="modules/coordinators/registrar_coord.php" method="post">
             <div class="col-6 mb-2">
               <p class="text-start">Doc. identidad</p>
               <input type="number" name="doci" id="doci" class="form-control" required>
@@ -110,7 +107,7 @@
                 <p class="text-start">Municipio:</p>
                 <select name="mpio" id="mpio" class="form-control" required>
                   <?php
-                  include 'conexion.php';
+                  require __DIR__ . '/modules/shared/conexion.php';
                   $con->set_charset("utf8");
                   $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
                   $result = $con->query($sql);
@@ -167,99 +164,14 @@
   </div>
   <!-- FIN Coord -->
 
-  <!-- Modal Anuncio -->
-  <div class="modal fade modal-xl" id="anuncio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-1 text-primary" id="exampleModalLabel">Información Importante !</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <?php
-          $y = date('Y');
-          $valor = 10000 + (((int)$y - 2023) * 1000);
-          include 'fun_texto.php';
-          $valor_texto = num2Text($valor);
-          ?>
-          <p class="text-start">La inscripción a las Olimpiadas Matemáticas Unicórdoba <?php echo date('Y'); ?> tiene como fecha límite el día <b>20 de septiembre de <?php echo date('Y'); ?></b>. Este proceso se hace a través de este formulario y tiene una inversión de $<?php echo number_format($valor); ?> (<?php echo $valor_texto; ?> mil pesos) por estudiante participante. Cada colegio debe hacer una única consignación por el valor total de los inscritos, el recibo de pago se generará en el siguiente link <a href="https://educacioncontinuada.appsprod.unicordoba.edu.co/inscripcursos/576" target="_blank"><button class="btn btn-primary btn-sm"><i class="bi bi-currency-dollar"></i> Pago</button></a>, debe diligenciar bien la información para que la factura electrónica salga correctamente. El recibo de pago aparece por $ <?php echo number_format($valor); ?> pesos, pero una vez nos informe el número de estudiantes que participarán se ajustará el valor a pagar.</p>
-          <p class="text-start">El evento se desarrollará en dos etapas.</p>
-          <table class="table table-hover">
-            <tbody>
-              <tr>
-                <th scope="row" class="align-middle text-danger">Primera Etapa</th>
-                <td>
-                  <p class="text-start">Clasificatoria: se llevará a cabo de manera virtual</p>
-                  <p class="text-start">De forma virtual del <b>29 de septiembre al 3 de octubre de <?php echo date('Y'); ?></b>, de 8:00 am a 6:00 pm, a través de la plataforma <a href="https://maraton.unicordoba.edu.co/login/index.php" target="_blank">Maratón</a> de la Universidad de Córdoba. Se detalla a continuación por grados:</p>
-                  <p class="text-start">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-primary text-start">Grado 6 el día 29 de septiembre</li>
-                    <li class="list-group-item text-primary text-start">Grado 7 el día 30 de septiembre</li>
-                    <li class="list-group-item text-primary text-start">Grado 8 el día 1 de octubre</li>
-                    <li class="list-group-item text-primary text-start">Grado 9 el día 2 de octubre</li>
-                    <li class="list-group-item text-primary text-start">Grado 10 y 11 el día 3 de octubre</li>
-                  </ul>
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row" class="align-middle text-danger">Segunda Etapa</th>
-                <td>
-                  <p class="text-start"><b>Final:</b> se realizará el día <b>31 de septiembre del <?php echo date('Y'); ?></b>, de 7:30 am a 1:00 pm, en las instalaciones de la Universidad de Córdoba (Departamento de Matemáticas y Estadística, Bloque 38). Carrera 6 No. 77- 305 Montería - Córdoba, Colombia, Nit: 891080031-3.</p>
-                  <p class="text-start bg-danger-subtle">Cada colegio puede inscribir <b>hasta 36 estudiantes</b>, los cuales puede distribuir a su conveniencia. Además, después de haber realizado el respectivo pago por derecho a inscripción, por favor, enviar comprobante de pago al número de WhatsApp del coordinador del evento<a href="https://wa.me/573015920775" class="btn btn-success" target="_blank"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a></p>
-                  <p class="text-start">Cualquier inquietud ponte en contacto con nosotros a través del <a href="https://wa.me/573015920775" class="btn btn-success" target="_blank"><i class="bi bi-whatsapp"></i> WhatsApp (+57) 301 5920775</a> o escribe al coordinador de las olimpiadas, Carlos Banquet Brango <b><i>cbanquet@correo.unicordoba.edu.co</i></b></p>
-                </td>
-              </tr>
-            </tbody>
-
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- WHATSAPP -->
   <a target="_blank" href="https://wa.me/+573015920775?text=Hola,%20Estoy%20intresado%20en%20las%20Olimpiadas%20de%20Matemáticas"
     class="whatsapp-button"><i class="bi bi-whatsapp"></i></a>
   <!-- FIN WHATSAPP -->
 
   <!-- AYUDA -->
-      <button class="corner-button" id="botonayuda"><i class="bi bi-question-square-fill"></i> Ayuda</button>
       <button class="corner-button2" id="botoncert"><i class="bi bi-filetype-pdf"></i> Certificados</button>
-      <button class="corner-button3" id="botonorg"><i class="bi bi-people-fill"></i> Comite Organizador</button>
   <!-- -->
-
-  <!-- AYUDA - Videos -->
-  <div class="modal fade" id="ayuda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Ayuda - Video Tutoriales</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12" style="height: 250px;">
-              <p class="text-primary fs-5">Inscripción de Coordinadores IE's</p>
-              <video src="video/Inscripcion_Coord_IEs.mp4" style="width: 100%; height: 100%; object-fit: cover;" controls></video>
-            </div>
-          </div>
-          <div class="row" style="margin-top:5rem;">
-            <div class="col-12" style="height: 250px;">
-              <p class="text-primary fs-5">Registro de Estudiantes</p>
-              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/imwxIgu-2HI?si=VHZjWoJri6qQiR_m" title="Ayuda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style=''></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer mt-5">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Certificados -->
   <div class="modal fade" id="mcert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -293,139 +205,18 @@
     </div>
   </div>
 
-  <!-- Modal Comite Organizador-->
-  <div class="modal fade" id="morg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-people-fill"></i> Comite Organizador</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="row p-2">
-            <div class="card mt-2 p-1">
-              <div class="row">
-                <div class="col-md-2">
-                  <img src="img/cbanquet.png" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-10">
-                  <div class="card-body text-start">
-                    <h5 class="card-title text-primary">Coordinador / 7°</h5>
-                    <p class="card-text"><b>Phd. Carlos Banquet Brango</b></p>
-                    <small>Licenciatura en Matemáticas y Física, Universidad De Córdoba, Colombia. Maestría en Matemáticas, Universidad Nacional de Colombia, Sede Medellín, Colombia. Doctor En Matemáticas, Universidad Estatal De Campinas, Campinas, Brasil.</small>
-                    <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> cbanquet@correo.unicordoba.edu.co</small></p>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-3">
-                  <div class="card" style="height: 100%;">
-                    <img src="img/jborja.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title text-primary">Sexto grado</h5>
-                    <p class="card-text"><b>Phd. Jerson Mnauel Borja Soto</b></p>                      
-                      <small class="card-text">Matemático, Universidad de Córdoba, Colombia. Magister en Matemáticas- Universidad De Los Andes, Colombia. Doctorado En Matemáticas - Universidad De Los Andes, Colombia.</small>
-                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> yersonborjas@correo.unicordoba.edu.co</small></p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-3">
-                  <div class="card" style="height: 100%;">
-                    <img src="img/jlloreda.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title text-primary">Octavo grado</h5>
-                    <p class="card-text"><b>Msc. Jimmy Herlin Lloreda Zuñiga</b></p>                      
-                      <small class="card-text">Matemático, Universidad de Córdoba, Colombia. Maestría en Matemáticas, Universidad Nacional de Colombia, Sede Medellín, Colombia.</small>
-                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> jhlloreda@correo.unicordoba.edu.co</small></p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-3">
-                  <div class="card" style="height: 100%;">
-                    <img src="img/eperez.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title text-primary">Noveno grado</h5>
-                    <p class="card-text"><b>Phd. Edgardo Enrique Pérez Reyes</b></p>                      
-                      <small class="card-text">Matemático, Universidad de Córdoba, Colombia. Magister en Matemáticas Aplicadas - Recinto Universitario de Mayaguez Universidad de Puerto Rico, Doctor en Ciencias-Matemática Aplicada, Universidade de São Paulo - Brazil.</small>
-                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> edgardoperezr@correo.unicordoba.edu.co</small></p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="col-3">
-                  <div class="card" style="height: 100%;">
-                    <img src="img/jreyes.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title text-primary">Decimo grado</h5>
-                    <p class="card-text"><b>Msc. Jorge Armando Reyes Vasquez</b></p>                      
-                      <small class="card-text">Matemático, Universidad de Córdoba, Colombia. Maestría En Matemáticas, Universidad Nacional De Colombia, Sede Medellín, Colombia.</small>
-                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> jorgereyesv@correo.unicordoba.edu.co</small></p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="row mt-2">
-                <div class="col-3">
-                  <div class="card" style="height: 100%;">
-                    <img src="img/lbenites.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title text-primary">Once grado</h5>
-                    <p class="card-text"><b>Phd. Luis Enrique Benitez Babilonia</b></p>                      
-                      <small class="card-text">Matemático, Universidad De Córdoba, Colombia. Magíster en Matemáticas, Universidad de Antioquia, Colombia. Doctor en Ciencias, con Orientación en Matemáticas Aplicadas, Centro de Investigación en Matemáticas, Guanajuato, México.</small>
-                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> luisbenitez@correo.unicordoba.edu.co</small></p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-3">
-                  <div class="card" style="height: 100%;">
-                    <img src="img/jmuskus.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title text-primary">Soporte TIC´s - CINTIA</h5>
-                    <p class="card-text"><b>Msc. Juan Manuel Muskus</b></p>                      
-                      <small class="card-text">Magister en Software Libre UNAB - UOC, Ing. Sistemas, Lic. en Informatica Educ. Universidad de Córdoba - Colombia. Profesional Universitario CINTIA.</small>
-                      <p class="card-text"><small class="text-body-secondary"><i class="bi bi-envelope"></i> jmuskus@correo.unicordoba.edu.co</small></p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x"></i> Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
 </body>
 
 </html>
 <script>
   $(document).ready(function() {
-    $('#anuncio').modal('hide');
-    $('#ayuda').modal('hide');
     $('#mcert').modal('show'); //activar para ver certificados
     $('#rmail').modal('hide');
     $('#coord').modal('hide');
   });
 
-  $('#botonayuda').click(function() {
-    $('#ayuda').modal('show');
-  });
-
   $('#botoncert').click(function() {
     $('#mcert').modal('show');
-  });
-  $('#botonorg').click(function() {
-    $('#morg').modal('show');
   });
 </script>
 <style>
@@ -474,24 +265,6 @@
     }
   }
 
-  .corner-button {
-    font-family: inherit;
-    letter-spacing: 0.02rem;
-    cursor: pointer;
-    background: transparent;
-    border: 0.2rem solid currentColor;
-    padding: 0.5rem 0.6rem;
-    font-size: 1em;
-    color: olive;
-    position: fixed;
-    transition: color 0.3s;
-    z-index: 1;
-    top: 1em;
-    left: 1em;
-    border-radius: 5px;
-    /* zoom: .4; */
-  }
-
   .corner-button2 {
     font-family: inherit;
     letter-spacing: 0.02rem;
@@ -505,41 +278,13 @@
     transition: color 0.3s;
     z-index: 2;
     top: 1em;
-    left: 7em;
+    left: 1em;
     border-radius: 5px;
     /* zoom: .4; */
-  }
-
-  .corner-button3 {
-    font-family: inherit;
-    letter-spacing: 0.02rem;
-    cursor: pointer;
-    background: transparent;
-    border: 0.2rem solid currentColor;
-    padding: 0.5rem 0.6rem;
-    font-size: 1em;
-    color: navy;
-    position: fixed;
-    transition: color 0.3s;
-    z-index: 2;
-    top: 1em;
-    left: 15.6em;
-    border-radius: 5px;
-    /* zoom: .4; */
-  }
-
-  .corner-button:hover {
-    color: #00c509;
-    background: #f8f9fa;
   }
 
   .corner-button2:hover {
     color: red;
-    background: #f8f9fa;
-  }
-
-  .corner-button3:hover {
-    color: blue;
     background: #f8f9fa;
   }
 </style>

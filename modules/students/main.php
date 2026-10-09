@@ -12,7 +12,7 @@ if (isset($_SESSION['usuario'])) {
     echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>";
     echo "<div style='margin: 20px 20px 20px 20px;'><div class='alert alert-danger' role='alert'>";
     echo "Ud no posee acceso al sistema !!!";
-    echo "<hr><a href='index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
+    echo "<hr><a href='../../index.php'><button class='btn btn-danger'><i class='bi bi-box-arrow-in-left'> </i>Login</button></a></div></div>";
     die();
 }
 ?>
@@ -20,6 +20,7 @@ if (isset($_SESSION['usuario'])) {
 <html lang="es">
 
 <head>
+    <base href="../../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -36,7 +37,7 @@ if (isset($_SESSION['usuario'])) {
     <div id="wrapper">
         <!-- Sidebar -->
         <?php
-        include 'menu.php';
+        include dirname(__DIR__, 2) . '/modules/shared/menu.php';
         ?>
         <!-- /#sidebar-wrapper -->
 
@@ -49,9 +50,9 @@ if (isset($_SESSION['usuario'])) {
                     </div>
                 </div>
                 <?php
-                include 'conexion.php';
+                include dirname(__DIR__, 2) . '/modules/shared/conexion.php';
                 if ($tipo == 'C') { // listado para cooord
-                    include 'aviso.php';
+                    include dirname(__DIR__, 2) . '/modules/shared/aviso.php';
                     // query x Ies
                     $idies = $_SESSION['id_ies'];
                     $sql = "SELECT e.*, lugar FROM estudiantes e, users_coord us WHERE (e.IES_idIES = us.IES_idIES) and (us.IES_idIES = $idies) ORDER BY grado, apellido1 DESC";
@@ -172,7 +173,7 @@ if (isset($_SESSION['usuario'])) {
                 </div>
                 <div class="modal-body">
                     <!-- formulario -->
-                    <form method='post' action='nuevo_est.php'>
+                    <form method='post' action='modules/students/nuevo_est.php'>
                         <fieldset>
                             <!-- Text input Id -->
                             <div class="form-group">
@@ -231,7 +232,7 @@ if (isset($_SESSION['usuario'])) {
                                     <div class="col-md-12">
                                         <input type="hidden" name="id_ies" value="<?php echo $id_ies; ?>">
                                         <?php
-                                        include 'conexion.php';
+                                        include dirname(__DIR__, 2) . '/modules/shared/conexion.php';
                                         $sqlnomies = "SELECT nombre, mpio FROM ies WHERE idIES = $id_ies";
                                         $result = $con->query($sqlnomies);
                                         foreach ($result as $row)
@@ -268,7 +269,7 @@ if (isset($_SESSION['usuario'])) {
                 </div>
                 <div class="modal-body">
                     <!-- formulario -->
-                    <form method='post' action='update_est.php'>
+                    <form method='post' action='modules/students/update_est.php'>
                         <fieldset>
                             <!-- Text input Id -->
                             <div class="row">
@@ -329,7 +330,7 @@ if (isset($_SESSION['usuario'])) {
                                     <div class="col-md-12">
                                         <input type="hidden" name="uid_ies" value="<?php echo $id_ies; ?>">
                                         <?php
-                                        include 'conexion.php';
+                                        include dirname(__DIR__, 2) . '/modules/shared/conexion.php';
                                         $sqlnomies = "SELECT nombre, mpio FROM ies WHERE idIES = $id_ies";
                                         $result = $con->query($sqlnomies);
                                         foreach ($result as $row)
@@ -366,7 +367,7 @@ if (isset($_SESSION['usuario'])) {
                 </div>
                 <div class="modal-body">
                     <!-- formulario -->
-                    <form method='post' action='nuevo_estroot.php'>
+                    <form method='post' action='modules/students/nuevo_estroot.php'>
                         <fieldset>
                             <!-- Text input Id -->
                             <div class="form-group">
@@ -426,7 +427,7 @@ if (isset($_SESSION['usuario'])) {
                                     <p class="text-start"><i class="bi bi-check text-success"></i> Municipio:</p>
                                     <select name="rmpio" id="rmpio" class="form-control" required>
                                         <?php
-                                        include 'conexion.php';
+                                        include dirname(__DIR__, 2) . '/modules/shared/conexion.php';
                                         $sql = "SELECT distinct mpio FROM ies ORDER BY mpio ASC";
                                         $result = $con->query($sql);
                                         while ($mostrar = mysqli_fetch_array($result))
@@ -616,11 +617,11 @@ if (isset($_SESSION['usuario'])) {
             .then((value) => {
                 switch (value) {
                     case "catch":
-                        window.location = 'eliminar_est.php?id=' + id;
+                        window.location = 'modules/students/eliminar_est.php?id=' + id;
                         break;
 
                     default:
-                        window.location = 'main.php';
+                        window.location = 'modules/students/main.php';
                 }
             });
     }
@@ -628,7 +629,7 @@ if (isset($_SESSION['usuario'])) {
     $('#rmpio').change(function() {
         var mpiosel = $(this).val();
         $.ajax({
-            url: 'lista_ies.php',
+            url: 'modules/institutions/lista_ies.php',
             type: 'POST',
             data: {mpio: mpiosel},
             success: function(response){

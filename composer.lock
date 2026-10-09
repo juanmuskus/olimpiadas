@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c37dca25de47ee0250a15651b1ad198",
+    "content-hash": "c7059b4f22c274c17f764f97da0eda29",
     "packages": [
         {
             "name": "getbrevo/brevo-php",
@@ -1649,7 +1649,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^8.2"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
 }
