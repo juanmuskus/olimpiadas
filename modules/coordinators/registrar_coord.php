@@ -23,7 +23,7 @@
     $idies = $_POST['lies'];
     $nit = $_POST['nit'];
     $lugar = $_POST['lugar'];
-    $tipoIE = $_POST['tipo'];
+    $tipoIE = 'C';
 
     $sql_evaldoci = "SELECT * FROM users_coord WHERE (docidentidad = $doci) or (email = '$mail')";
     $res_evaldoci = $con->query($sql_evaldoci);

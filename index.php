@@ -139,18 +139,11 @@
                 </select>
               </div>
 
-              <div class="col-3 mb-2">
+              <div class="col-6 mb-2">
                 <p class="text-start">Nit. - Ins. Educativa:</p>
                 <input type="number" name="nit" id="nit" class="form-control" pattern="\d*" required>
               </div>
 
-              <div class="col-3 mb-2">
-                <p class="text-start">Tipo Ins. Educ.:</p>
-                <select name="tipo" id="tipo" class='form-control' required>
-                  <option value="PUB" selected>Pública</option>
-                  <option value="PRI">Privada</option>
-                </select>
-              </div>
             </div>
 
         </div>
@@ -165,7 +158,7 @@
   <!-- FIN Coord -->
 
   <!-- WHATSAPP -->
-  <a target="_blank" href="https://wa.me/+573015920775?text=Hola,%20Estoy%20intresado%20en%20las%20Olimpiadas%20de%20Matemáticas"
+  <a target="_blank" href="https://wa.me/573003337788?text=Hola,%20Estoy%20intresado%20en%20las%20Olimpiadas%20de%20Matemáticas"
     class="whatsapp-button"><i class="bi bi-whatsapp"></i></a>
   <!-- FIN WHATSAPP -->
 
@@ -210,7 +203,7 @@
 </html>
 <script>
   $(document).ready(function() {
-    $('#mcert').modal('show'); //activar para ver certificados
+    $('#mcert').modal('hide'); //activar para ver certificados
     $('#rmail').modal('hide');
     $('#coord').modal('hide');
   });

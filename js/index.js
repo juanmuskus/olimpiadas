@@ -1,3 +1,5 @@
+const listaIesUrl = new URL('../modules/institutions/lista_ies.php', document.currentScript.src).href;
+
 $(document).ready(function(){
     
     $('#bmail').click(function(){
@@ -20,15 +22,18 @@ $(document).ready(function(){
             return;
         }
         $.ajax({
-            url: 'modules/institutions/lista_ies.php',
+            url: listaIesUrl,
             type: 'POST',
             dataType: 'json',
             data: {mpio: mpiosel},
             success: function(data){
-                $('#lies').empty();
                 data.forEach(function(ie) {
                     $('#lies').append($('<option>').val(ie.id).text(ie.nombre));
                 });
+            },
+            error: function(xhr, status, error){
+                console.error('No se pudieron cargar las IE del municipio seleccionado:', error);
+                $('#lies').append($('<option>').val('').text('No fue posible cargar las IE'));
             }
         });
     }
